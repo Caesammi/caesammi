@@ -151,9 +151,12 @@
     width: 18px;
     height: 40px;
     margin-top: 250px;
+    margin-right: 4px;
     line-height: 40px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    z-index: 1;
+
   }
 
   #arrow:hover {
@@ -185,6 +188,7 @@
 
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
+    z-index: 999;
     width: 250px;
     min-height: 400px;
     border: #2a3446 solid 1px;
