@@ -6,16 +6,14 @@
       <el-menu class="master"
                mode="horizontal">
         <el-menu-item class="master" index="0" style="
-          padding-left: 10px;  border-left: #3a8ee6 2px solid;border-bottom: none" >
+          padding-left: 10px;  border-left: #3a8ee6 8px solid;border-bottom: none" >
           <template slot="title">
-            <el-row>
-              <div style="width: 50px;height: 50px">
-                <img alt style="width: 100%;height: 100%" src="../../assets/logo.png">
-              </div>
-            </el-row>
+                <img alt style="margin-left: 5%;width: 80%;height: 100%" src="../../assets/logo.png">
           </template>
         </el-menu-item>
-        <el-menu-item index="1" style="color: rgb(83,161,255);font-weight: 400;font-size: 30px;border-bottom: none" class="noFocus noHover">
+        <el-menu-item index="1" style="margin-left: -50px;color: rgb(83,161,255);height: 100%;border-bottom: none" class="myBorderRight noFocus noHover">
+        </el-menu-item>
+        <el-menu-item index="1" style="margin-left: -7px;color: rgb(83,161,255);font-weight: 400;font-size: 25px;border-bottom: none" class="noFocus noHover">
           上海台账
         </el-menu-item>
         <!--用户设置栏封装-->
@@ -208,6 +206,17 @@
     -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
     box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
   }
-
+  .myBorderRight{
+    border-right: 1px solid;
+    border-image: -webkit-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 控制边框颜色渐变 */
+    border-image: -moz-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1;
+    border-image: linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 标准的必须写在最后 */
+  }
+  .noFocus:focus{
+    background: none;
+  }
+  .noHover:hover{
+    background: none!important;
+  }
 
 </style>
