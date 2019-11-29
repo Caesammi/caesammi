@@ -25,18 +25,19 @@
         },
         computed: {
             breadCrumbList () {
-                const { name} = this.$route;
-                let breadlist = [{ path: 'map', name: 'Home' }];
+                const {name} = this.$route;
+                let breadList = [{ path: 'map', name: 'Home' }];
                 this.menuList.forEach(item => {
                     if (item.childrens.length > 0) {
                         item.childrens.forEach(sub => {
                             if (sub.path === '/'+name) {
-                                breadlist.push({ path: sub.path,name: item.header }, { path:sub.path,name: sub.name });
+                                breadList.push({ path: item.path,name: item.header }, { path:sub.path,name: sub.name });
                             }
                         });
                     }
                 });
-               return breadlist;
+                console.log(breadList)
+               return breadList;
             }
         },
     }

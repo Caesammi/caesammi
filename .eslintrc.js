@@ -8,9 +8,11 @@ module.exports = {
     'eslint:recommended'
   ],
   rules: {
-    "no-unused-vars":0,
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-unused-vars': 0,
+    'no-console': 'off',
+    'no-debugger': 'off',
+    'vue/attribute-hyphenation': 'warning',
+    'vue/html-closing-bracket-newline': 'warning'
   },
   parserOptions: {
     parser: 'babel-eslint'

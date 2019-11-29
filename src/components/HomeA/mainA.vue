@@ -64,6 +64,7 @@
 
       </el-aside>
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -18px;">
+        <headerA :menuList="menuList" style="height: 20px"></headerA>
         <template>
           <el-backtop target=".myBacktop"></el-backtop>
         </template>
@@ -82,10 +83,12 @@
 
 <script>
   import power from './power'
+  import headerA from "./headerA"
 
   export default {
     name: "mainA",
     components: {
+      headerA
     },
     data() {
       return {
