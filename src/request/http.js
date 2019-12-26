@@ -7,7 +7,7 @@ import router from '../router'
 // 环境的切换
 switch (process.env.NODE_ENV) {
   case 'development':
-    axios.defaults.baseURL = 'http://10.238.213.195:8080'
+    axios.defaults.baseURL = 'http://10.238.213.72:8080'
     break
   case 'debug':
     axios.defaults.baseURL = 'http://www.ceshi.com'
