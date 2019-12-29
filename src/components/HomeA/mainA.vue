@@ -1,29 +1,13 @@
 <template>
-  <el-container class="master">
+  <div class="master">
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
-    <el-header class="master" style="z-index: 991">
-      <el-menu class="master"
-               mode="horizontal">
-        <el-menu-item class="master" index="0" style="
-          padding-left: 10px;  border-left: #3a8ee6 8px solid;border-bottom: none" >
-          <template slot="title">
-                <img alt style="margin-left: 5%;width: 80%;height: 100%" src="../../assets/logo.png">
-          </template>
-        </el-menu-item>
-        <el-menu-item index="1" style="margin-left: -50px;color: rgb(83,161,255);height: 100%;border-bottom: none" class="myBorderRight noFocus noHover">
-        </el-menu-item>
-        <el-menu-item index="1" style="margin-left: -7px;color: rgb(83,161,255);font-weight: 400;font-size: 25px;border-bottom: none" class="noFocus noHover">
-          上海台账
-        </el-menu-item>
-        <!--用户设置栏封装-->
-        <el-submenu index="2" style="float: right">
-          <template slot="title">用户中心</template>
-          <el-menu-item index="1-1" @click="logOut">退出登录</el-menu-item>
-        </el-submenu>
-      </el-menu>
+    <el-header class=" myFlex" style="z-index: 991;height:6%;">
+      <div style="fontWeight:bolder">CAESAMMI</div>
+      <div style="100%"><img alt style="width: 135px;height: 80%" src="../../assets/logo.png"></div>
+
     </el-header>
-    <el-container class="myContainer" style="height: 100%;">
+    <el-container class="myContainer" style="height: 94%;">
       <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);z-index: 990;">
 <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
         <el-container style="height: 100%">
@@ -61,8 +45,8 @@
         </el-container>
 
       </el-aside>
-      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -18px;">
-        <headerA :menuList="menuList" style="height: 20px"></headerA>
+      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -20px;">
+        <headerA :menuList="menuList" style="height: 20px;position:fixed;"></headerA>
         <template>
           <el-backtop target=".myBacktop"></el-backtop>
         </template>
@@ -70,13 +54,13 @@
         <!--内容面包屑组件-->
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
-        <router-view></router-view>
+        <router-view style="margin-top:20px"></router-view>
 <!--        <footerA style="height: auto;"></footerA>-->
 
       </el-main>
     </el-container>
     <!--顶部动态工具栏结束-->
-  </el-container>
+  </div>
 </template>
 
 <script>
@@ -192,7 +176,7 @@
     z-index: 999;
     width: 250px;
     min-height: 400px;
-    border: #2a3446 solid 1px;
+  
     border-bottom: none;
     border-right: none;
     -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
@@ -218,5 +202,11 @@
   .noHover:hover{
     background: none!important;
   }
+.myFlex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+   
+}
 
 </style>

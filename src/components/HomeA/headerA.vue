@@ -1,10 +1,10 @@
 <template>
     <el-header class="headerA">
-        <el-container style="padding-top: 3px;height: 100%">
-            <el-breadcrumb separator-class="el-icon-arrow-right">
+       
+            <el-breadcrumb style="lineHeight:1.4" separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item v-for="(item,index) in breadCrumbList" :key="index" :to="item.path">{{item.name}}</el-breadcrumb-item>
             </el-breadcrumb>
-        </el-container>
+   
     </el-header>
 </template>
 
@@ -46,7 +46,9 @@
 <style scoped>
     .headerA{
         opacity: 0.8;
+        width: 100%;
       background: #EBEEF5;
+      margin-bottom:20px
     }
 
 </style>
