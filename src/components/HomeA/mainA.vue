@@ -54,7 +54,9 @@
         <!--内容面包屑组件-->
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
-        <router-view style="margin-top:20px"></router-view>
+        <el-main style="padding: 0;margin: 0">
+          <router-view style="margin-top:20px"></router-view>
+        </el-main>
 <!--        <footerA style="height: auto;"></footerA>-->
 
       </el-main>

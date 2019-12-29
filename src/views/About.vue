@@ -1,7 +1,7 @@
 <template>
 
 
-      <div class="about" style="width:3000px;height:30000px;background:black;border-right:1px red solid;textAlign:right">
+      <div class="about" style="width:3000px;height:3000px;background:black;border-right:1px red solid;textAlign:right">
     This is an about page
   </div>
 
