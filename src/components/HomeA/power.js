@@ -5,7 +5,7 @@ const admin = [
     "path":"/",
     "childrens": [
       {"name": "about", "path": "/about"},
-      {"name": "mytest", "path": "/mytest"},
+      {"name": "myTest", "path": "/myTest"},
     ]
   },
 

@@ -3,22 +3,26 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+function getComponent(myPath) {
+  return () => import(`@/${myPath}`)
+}
+
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../components/HomeA/mainA.vue'),
+    component: getComponent('components/HomeA/mainA.vue'),
     children: [
       {
         path: '/about',
         name: 'about',
-        component: () => import('../views/About.vue'),
+        component: getComponent('views/About.vue'),
         meta: {title: 'about'}
       },
       {
         path: '/mytest',
         name: 'mytest',
-        component: () => import('../components/mytest.vue'),
+        component: getComponent('components/mytest.vue'),
         meta: {title: 'about'}
       },
     ]
