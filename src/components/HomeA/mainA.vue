@@ -3,8 +3,8 @@
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
     <el-header class=" myFlex" style="z-index: 991;height:6%;">
-      <div style="fontWeight:bolder">CAESAMMI</div>
-      <div style="100%"><img alt style="width: 135px;height: 80%" src="../../assets/logo.png"></div>
+      <div style="font-weight:bolder">CAESAMMI</div>
+      <div><img alt style="width: 135px;height: 80%" src="../../assets/logo.png"></div>
 
     </el-header>
     <el-container class="myContainer" style="height: 94%;">
@@ -178,7 +178,7 @@
     z-index: 999;
     width: 250px;
     min-height: 400px;
-  
+
     border-bottom: none;
     border-right: none;
     -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
@@ -208,7 +208,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-   
+
 }
 
 </style>

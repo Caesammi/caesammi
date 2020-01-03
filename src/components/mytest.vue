@@ -1,18 +1,43 @@
 <template>
-    <div style="height: 3000px">
-sdfsdf
+    <div>
+        {{test}}<br>{{myArr}}
     </div>
 </template>
 
 <script>
+    import {mapState, mapActions,mapGetters} from 'vuex'
   export default {
     name: "mytest",
-    mounted() {
-      this.myApi.getSitePage().then(res=>{
+    computed:{
 
-      }).catch(res=>{
-        console.log(res)
-      })
+    },
+    data(){
+      return{
+        test:{},
+        myArr:[],
+        a3:[]
+      }
+    },
+    methods:{
+      pu(){
+        this.a3.push('fff')
+        console.log(this.a3)
+      }
+    },
+    mounted() {
+
+      for(let i = 0; i<3000;i++){
+        this.test[i]='test'
+      }
+
+
+      let pu = ()=>{
+        this.myArr.push('test')
+      }
+      setInterval(pu,2000)
+setInterval(this.pu,2000)
+
+
     }
   }
 </script>
