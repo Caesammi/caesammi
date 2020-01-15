@@ -1,14 +1,15 @@
 <template>
   <div class="master">
+
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
-    <el-header class=" myFlex" style="z-index: 991;height:6%;">
+    <el-header class=" myFlex myBorderBottom" style="height:6%;">
       <div style="font-weight:bolder">CAESAMMI</div>
       <div><img alt style="width: 135px;height: 80%" src="../../assets/logo.png"></div>
 
     </el-header>
     <el-container class="myContainer" style="height: 94%;">
-      <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);z-index: 990;">
+      <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
 <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
         <el-container style="height: 100%">
           <el-menu class="el-menu-vertical-demo"
@@ -45,7 +46,7 @@
         </el-container>
 
       </el-aside>
-      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -20px;">
+      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
         <headerA :menuList="menuList" style="height: 20px;position:fixed;"></headerA>
         <template>
           <el-backtop target=".myBacktop"></el-backtop>
@@ -198,6 +199,12 @@
     border-image: -moz-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1;
     border-image: linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 标准的必须写在最后 */
   }
+  .myBorderBottom{
+    border-bottom: 1px solid;
+    border-image: -webkit-linear-gradient(to right, white, #bdbdbd, white) 1 8 1; /* 控制边框颜色渐变 */
+    border-image: -moz-linear-gradient(   to right, white, #bdbdbd, white) 1 10 1;
+    border-image: linear-gradient(        to right, white, #bdbdbd, white) 1 10 1; /* 标准的必须写在最后 */
+  }
   .noFocus:focus{
     background: none;
   }
@@ -211,4 +218,6 @@
 
 }
 
+
 </style>
+

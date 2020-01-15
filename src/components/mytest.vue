@@ -1,7 +1,7 @@
 <template>
     <div>
         {{test}}<br>{{myArr}}
-        <el-button>
+        <el-button v-loading="myLoading1">
             你好
         </el-button>
     </div>
@@ -18,7 +18,8 @@
       return{
         test:{},
         myArr:[],
-        a3:[]
+        a3:[],
+          myLoading1:true
       }
     },
     methods:{
@@ -162,11 +163,11 @@
       //   return this.plug.getName()+'适配Type-c'
       //   }
       // }
-      
+
       // let target = new Target()
       // console.log('------')
       // console.log(target.getName())
-  
+
 
 
 // class Plug {
