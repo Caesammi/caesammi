@@ -23,6 +23,25 @@
       }
     },
     methods:{
+         myPro(){
+            return  new Promise((resolve,reject) => {
+                 let myNumber=100
+                 for(let i = 0;i<myNumber;i++){
+                     if(i===99){
+                         console.log(i)
+                        setTimeout(()=>{
+                            resolve(i)
+                        },2000)
+                     }
+                 }
+             })
+        },
+         myWait(){
+             this.myPro().then(res=>{
+                 console.log(res)
+             })
+
+        },
       pu(){
       let flower = function () {
 
@@ -40,6 +59,41 @@
       }
     },
     mounted() {
+        let objFun={
+            fullName:function () {
+                return this.firstName+' '+this.lastName
+            }
+        }
+        let person1={
+            firstName:'Bill',
+            lastName:'Gates'
+        }
+        let person2={
+            firstName:'Zhang',
+            lastName:'Chi'
+        }
+        console.log(objFun.fullName.call(person1))
+        let test =''
+        console.log(typeof(test))
+        let father={
+            name1:'value1',
+            name2:'value2',
+            name3:'value3',
+            name4:{
+                name41:'value41',
+                name42:'value42'
+            }
+        }
+        // let son={...father}
+        let son = JSON.parse(JSON.stringify(father))
+        father.name1='valuechange1'
+        father.name4.name41='valuechange2'
+        console.log(father)
+        console.log(son)
+        return
+
+        this.myWait()
+        return
         // 主题 保存状态，状态变化之后触发所有观察者对象
         class Subject {
             constructor() {
