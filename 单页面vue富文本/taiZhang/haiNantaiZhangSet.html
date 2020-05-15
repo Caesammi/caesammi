@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="Element.css">
+  <link rel="stylesheet" href="css/idangerous.swiper.css">
+  <link rel="stylesheet" href="css/commy.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+
+  <script src="js/axios.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/Element.js"></script>
+  <script src="css/tinymce/tinymce.min.js"></script>
+  <script src="css/tinymce/tinymceTemplate.js"></script>
+  <script src="js/jsencrypt.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script src="js/idangerous.swiper.min.js"></script>
+  <script src="js/ETTool.js"></script>
+  <script src="js/hnUrl.js"></script>
+<!--  <script src="../../../js/common/common.js"></script>-->
+<!--  <script src="../../../js/common/public.js"></script>-->
+<!--  <script src="../../../js/common/apiUrl.js"></script>-->
+
+
+</head>
+<body>
+<el-row
+  style="width: 100%" id="app">
+  <div class="titleBox">
+    海南台账
+  </div>
+  <el-col style="margin:10px 0 10px 0">
+    <el-col span="24">
+      <el-form>
+          <el-button type="ghost" size="small" class="btnBox" @click="openCreate()">新增
+          </el-button>
+        </el-form-item>
+
+      </el-form>
+    </el-col>
+
+  </el-col>
+  <!--  :data="tableData.slice((pageIndex-1)*pageSize,pageIndex*pageSize)"-->
+  <el-table
+    :header-cell-style="{background:'#555a5d'}"
+    :data="tableData"
+    class="table1"
+    size="small"
+    border
+    style="width: 100%; margin-top: 20px">
+    <el-table-column label="序号" prop="myIndex" align="center" width="200px">
+    </el-table-column>
+    <el-table-column label="模板内容" align="center">
+      <template slot-scope="scope">
+      <el-tooltip style="height: 40px" placement="top">
+        <div
+          v-html="scope.row.templateContent"
+          style="overflow: hidden;text-overflow: ellipsis;width: 1000px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;"
+          slot="content">
+
+        </div>
+        <div  v-html="scope.row.templateContent" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
+
+        </div>
+      </el-tooltip>
+      </template>
+    </el-table-column>
+    <el-table-column label="激活状态" align="center" width="300px">
+      <template slot-scope="scope">
+        <p>{{filter1(scope.row.templateDesc)}}</p>
+      </template>
+    </el-table-column>
+
+    <el-table-column align="center" label="操作" width="250px">
+      <template slot-scope="scope">
+        <a class="editGroup" @click="openEdit(scope.$index, scope.row)">
+          编辑
+        </a>
+        <a class="editGroup"  @click="openDelete(scope.$index, scope.row)">
+          删除
+        </a>
+        <a class="editGroup"  @click="Active(scope.$index, scope.row)">
+          激活
+        </a>
+      </template>
+    </el-table-column>
+  </el-table>
+
+
+  <el-dialog :close-on-click-modal="false" :title="dialogTitle" :visible.sync="dialog">
+    <el-col>
+      <el-form ref="form" :model="modelForm">
+        <el-col>
+          <el-form-item>
+            模板内容：
+
+            <tinymce v-model="editorContent"></tinymce>
+          </el-form-item>
+        </el-col>
+      </el-form>
+
+    </el-col>
+    <div slot="footer" class="dialog-footer">
+      <el-button size="small" type="info" @click="dialog=false">关 闭</el-button>
+      <el-button size="small" type="success" @click="save">提 交</el-button>
+
+    </div>
+  </el-dialog>
+
+</el-row>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                editorContent:'',
+                dialog: false,
+                dialogTitle:'',
+                bTime: '',
+                eTime: '',
+                tableData: [],
+                modelForm: {},
+                saveForm:{},
+            }
+        },
+        methods: {
+            filter1(a){
+                if(a==1){
+                   return '激活'
+                }else {
+                    return '未激活'
+                }
+            },
+            openCreate() {
+                this.dialogTitle='新增模板'
+                this.editorContent=''
+                this.dialog=true
+            },
+            openEdit(index,row){
+                this.dialogTitle='编辑模板'
+
+                this.editorContent=row.templateContent
+                this.saveForm=row
+                this.dialog=true
+                // var originModel = $("#txtEditor").Editor("getText")
+                // $("#txtEditor").Editor('setText', rowData.templateContent)
+            },
+            save() {
+                this.saveForm.templateContent=this.editorContent
+                let contentPre= this.saveForm.templateContent.split('%')
+                this.saveForm.templateContent=contentPre.join('baifenhao')
+                console.log(this.saveForm)
+                let finalData = toCollectionJson([this.saveForm])
+                console.log(finalData)
+                axios.post(hn+'/api/hnsh/hnshDispatchingLogMonitor/saveShiftLogTemplateContent',JSON.stringify(finalData)).then((res)=>{
+                    this.$message.success(res.data)
+                    console.log(res)
+                }).catch(()=>{
+                    this.$message.error('保存失败，请联系系统管理员')
+                }).finally(()=>{
+                    this.dialog=false
+                    this.gethTable()
+                })
+            },
+            openDelete(index,row){
+                this.$confirm('确定删除?').then(()=>{
+                    console.log(row)
+                    axios.delete(hn+'/api/hnsh/hnshDispatchingLogMonitor/deleteShiftLogTemplateContentByTemplateId?templateId='+row.templateId).then((res)=>{
+                        this.$message.success(res.data)
+                        console.log(res)
+                    }).catch((res)=>{
+                        this.$message.error('删除失败，请联系系统管理员')
+                    }).finally(()=>{
+                        this.gethTable()
+                    })
+
+                })
+
+            },
+            Active(index,row){
+                this.$confirm('确定激活?').then(()=>{
+                    console.log(row)
+                        axios.get(hn+'/api/hnsh/hnshDispatchingLogMonitor/activeShiftLogTemplateContent?templateId='+row.templateId).then((res)=>{
+                            this.$message.success(res.data)
+                            console.log(res)
+                        }).catch((res)=>{
+                            this.$message.error('激活失败，请联系系统管理员')
+                        }).finally(()=>{
+                            this.gethTable()
+                        })
+
+                })
+            },
+            gethTable() {
+                axios.get(hn+'/api/hnsh/hnshDispatchingLogMonitor/findShiftLogTemplateContentListPage?pageSize=&pageNumber&_=1589443660944').then((res)=>{
+                    console.log(res.data)
+                    for(let i = 0;i<res.data.length;i++){
+                        res.data[i].myIndex=i+1
+                    }
+                    this.tableData=res.data
+                })
+            },
+
+        },
+
+        mounted: function () {
+
+            this.gethTable()
+        },
+        watch: {},
+        computed: {
+            // 前端过滤
+
+            // total() {
+            //     return this.faBuTable.length
+            // },
+        },
+
+    })
+</script>
+<style>
+  html, body, #app {
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+
+  body {
+    background: #0f0f0f
+
+  }
+.editGroup{
+  padding-left: 20px;
+  color: #00feff;
+  text-underline: #00feff;
+  cursor: pointer;
+}
+  .el-select-dropdown__empty {
+    background: black;
+  }
+
+  .el-table .hovered-row {
+    background: #9b9c9e;
+  }
+
+  .myForm .el-input__inner {
+    max-width: 218px;
+  }
+
+  .myForm2 .el-range-editor--small.el-input__inner {
+    width: 250px !important;
+  }
+
+  .el-input {
+    max-width: 218px;
+  }
+
+  .myForm2 .el-form-item__content {
+    margin-left: 0 !important;
+  }
+
+  .myForm2 .el-date-editor .el-range-separator {
+    color: white
+  }
+
+  .table1 .el-input.is-disabled .el-input__inner {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    border-color: #687074;
+    cursor: pointer;
+  }
+
+  .table1 .el-input.is-disabled .el-input__inner:hover {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #687074;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .el-upload__tip {
+    color: white
+  }
+
+  .el-pagination__editor.el-input {
+    margin: -2px 5px 5px 5px !important;
+    border: #62718f 1px solid !important;
+    /*border-radius: 1px;*/
+    width: 41px
+  }
+
+  .table1 .el-input.is-disabled .el-input__icon {
+    opacity: 0;
+  }
+
+  .el-tabs--border-card > .el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+    color: #8cade9;
+    border-color: #687074;
+  }
+
+  .el-input.is-disabled .el-input__inner {
+    background-color: transparent !important;
+    border-color: #687074;
+  }
+
+  .el-textarea.is-disabled .el-textarea__inner {
+    background: transparent;
+    color: white;
+    border-color: #687074;
+  }
+
+  .el-time-spinner__item.active:not(.disabled) {
+    color: white;
+  }
+
+  .el-time-spinner__item:hover:not(.disabled):not(.active) {
+    background: #282828;
+    color: white;
+  }
+
+  .el-picker-panel__icon-btn {
+    color: white !important;
+  }
+
+</style>
+</html>

@@ -1,5 +1,10 @@
+/* eslint-disable no-unreachable */
+/* eslint-disable no-unreachable */
+/* eslint-disable no-unreachable */
 <template>
+
     <div>
+        <canvas id="draw"  style="border: 1px solid black;color:black;background: transparent">berrrrrrrrr</canvas>
         {{test}}<br>{{myArr}}
         <el-button v-loading="myLoading1">
             你好
@@ -53,12 +58,80 @@
       }
       let A ={
           receiveFlower:function (flower) {
-              console.log
           }
       }
-      }
+      },
+        canvasDraw(){
+         let draw= document.getElementById('draw')
+            draw.height=200
+            draw.width=200
+            let context = draw.getContext('2d')
+
+            context.fillstyle="rgba(0,0,255,0.5)"
+            context.fillRect(10,10,50,50)
+            context.fillstyle="rgba(0,0,255,0.5)"
+            context.fillRect(30,30,50,50)
+            console.log(context)
+        },
     },
     mounted() {
+        let sortData=[15,0,5,7,20,700,100]
+        let myCompare = function(value1,value2){
+            if(value1<value2){
+                return -1
+            }else if(value1>value2){
+                return 1
+            }else {
+                return 0
+            }
+        }
+         let finalSort = sortData.sort(myCompare)
+        console.log(finalSort)
+
+        let myA = 'sdfsdf%/sdfsdf%sdfop'
+        let myB = myA.replace(/%/g,'百分号')
+        console.log(myB)
+       let originObj=[{
+            name:'test1',
+            code:'111'
+        },{
+            name:'test2',
+            code:'222'
+        },{
+            name:'test3',
+            code:'333'
+        },]
+        let newObj = originObj.filter((item) => {
+            return item.code === '111'
+
+        })
+        console.log(newObj) //[{name: "test1", code: "111"}]
+        console.log(originObj)
+        return
+        var obj = [
+            {name:'小明',age:16,sex:'男'},
+            {name:'小红',age:17,sex:'女'},
+            {name:'小白',age:18,sex:'女'},
+        ]
+        let mytest= obj.map(item=>{
+            console.log(item.age)
+                return item.age
+        })
+        console.log(mytest) //[16,17,18]
+        return
+
+        this.canvasDraw()
+        let person={
+            fN:'John',
+            sN:'Doe',
+            myFunc:function () {
+                return this
+            }
+        }
+        console.log('-------------------------------------------')
+        console.log(person)
+        console.log('-------------------------------------------')
+
         let objFun={
             fullName:function () {
                 return this.firstName+' '+this.lastName
@@ -90,8 +163,10 @@
         father.name4.name41='valuechange2'
         console.log(father)
         console.log(son)
+        // sss
         return
 
+        // eslint-disable-next-line no-unreachable
         this.myWait()
         return
         // 主题 保存状态，状态变化之后触发所有观察者对象
@@ -117,6 +192,7 @@
             }
         }
 // 观察者
+        // eslint-disable-next-line no-unreachable
         class Observer {
             constructor(name, subject) {
                 this.name = name    //创建观察者姓名
@@ -129,6 +205,7 @@
             }
         }
 // 测试
+        // eslint-disable-next-line no-unreachable
         let s = new Subject()//...........首先创建被观察的对象
 //........................................然后创建观察者
         let o1 = new Observer('od1', s) //观察者1
@@ -260,5 +337,7 @@
 </script>
 
 <style scoped>
-
+    .sss{
+        color: aliceblue;
+    }
 </style>
