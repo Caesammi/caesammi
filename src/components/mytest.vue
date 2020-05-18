@@ -75,146 +75,147 @@
         },
     },
     mounted() {
-        let sortData=[15,0,5,7,20,700,100]
-        let myCompare = function(value1,value2){
-            if(value1<value2){
-                return -1
-            }else if(value1>value2){
-                return 1
-            }else {
-                return 0
-            }
-        }
-         let finalSort = sortData.sort(myCompare)
-        console.log(finalSort)
-
-        let myA = 'sdfsdf%/sdfsdf%sdfop'
-        let myB = myA.replace(/%/g,'百分号')
-        console.log(myB)
-       let originObj=[{
-            name:'test1',
-            code:'111'
-        },{
-            name:'test2',
-            code:'222'
-        },{
-            name:'test3',
-            code:'333'
-        },]
-        let newObj = originObj.filter((item) => {
-            return item.code === '111'
-
-        })
-        console.log(newObj) //[{name: "test1", code: "111"}]
-        console.log(originObj)
-        return
-        var obj = [
-            {name:'小明',age:16,sex:'男'},
-            {name:'小红',age:17,sex:'女'},
-            {name:'小白',age:18,sex:'女'},
-        ]
-        let mytest= obj.map(item=>{
-            console.log(item.age)
-                return item.age
-        })
-        console.log(mytest) //[16,17,18]
-        return
-
-        this.canvasDraw()
-        let person={
-            fN:'John',
-            sN:'Doe',
-            myFunc:function () {
-                return this
-            }
-        }
-        console.log('-------------------------------------------')
-        console.log(person)
-        console.log('-------------------------------------------')
-
-        let objFun={
-            fullName:function () {
-                return this.firstName+' '+this.lastName
-            }
-        }
-        let person1={
-            firstName:'Bill',
-            lastName:'Gates'
-        }
-        let person2={
-            firstName:'Zhang',
-            lastName:'Chi'
-        }
-        console.log(objFun.fullName.call(person1))
-        let test =''
-        console.log(typeof(test))
-        let father={
-            name1:'value1',
-            name2:'value2',
-            name3:'value3',
-            name4:{
-                name41:'value41',
-                name42:'value42'
-            }
-        }
-        // let son={...father}
-        let son = JSON.parse(JSON.stringify(father))
-        father.name1='valuechange1'
-        father.name4.name41='valuechange2'
-        console.log(father)
-        console.log(son)
-        // sss
-        return
-
-        // eslint-disable-next-line no-unreachable
-        this.myWait()
-        return
-        // 主题 保存状态，状态变化之后触发所有观察者对象
-        class Subject {
-            constructor() {
-                this.state = 0    //被观察对象自己的属性
-                this.observers = []   //储存观察者对象的数组
-            }
-            getState() {
-                return this.state
-            }
-            setState(state) {
-                this.state = state  //改变被观察者自己的属性
-                this.notifyAllObservers() //通知所有观察者
-            }
-            notifyAllObservers() {
-                this.observers.forEach(observer => {
-                    observer.update()    //将改变告知观察者
-                })
-            }
-            attach(observer) {
-                this.observers.push(observer) //保存观察者属性
-            }
-        }
-// 观察者
-        // eslint-disable-next-line no-unreachable
-        class Observer {
-            constructor(name, subject) {
-                this.name = name    //创建观察者姓名
-                this.subject = subject //创建被观察的对象
-                console.log(this)
-                this.subject.attach(this)//将观察者对象的属性注入被观察的对象中
-            }
-            update() {
-                console.log(`${this.name} update, state: ${this.subject.getState()}`)
-            }
-        }
-// 测试
-        // eslint-disable-next-line no-unreachable
-        let s = new Subject()//...........首先创建被观察的对象
-//........................................然后创建观察者
-        let o1 = new Observer('od1', s) //观察者1
-        let o2 = new Observer('od2', s) //观察者2
-
-        s.setState(12)
-        setTimeout(()=>{
-           s.setState(11)
-        },6000)
+//         return
+//         let sortData=[15,0,5,7,20,700,100]
+//         let myCompare = function(value1,value2){
+//             if(value1<value2){
+//                 return -1
+//             }else if(value1>value2){
+//                 return 1
+//             }else {
+//                 return 0
+//             }
+//         }
+//          let finalSort = sortData.sort(myCompare)
+//         console.log(finalSort)
+//
+//         let myA = 'sdfsdf%/sdfsdf%sdfop'
+//         let myB = myA.replace(/%/g,'百分号')
+//         console.log(myB)
+//        let originObj=[{
+//             name:'test1',
+//             code:'111'
+//         },{
+//             name:'test2',
+//             code:'222'
+//         },{
+//             name:'test3',
+//             code:'333'
+//         },]
+//         let newObj = originObj.filter((item) => {
+//             return item.code === '111'
+//
+//         })
+//         console.log(newObj) //[{name: "test1", code: "111"}]
+//         console.log(originObj)
+//         return
+//         var obj = [
+//             {name:'小明',age:16,sex:'男'},
+//             {name:'小红',age:17,sex:'女'},
+//             {name:'小白',age:18,sex:'女'},
+//         ]
+//         let mytest= obj.map(item=>{
+//             console.log(item.age)
+//                 return item.age
+//         })
+//         console.log(mytest) //[16,17,18]
+//         return
+//
+//         this.canvasDraw()
+//         let person={
+//             fN:'John',
+//             sN:'Doe',
+//             myFunc:function () {
+//                 return this
+//             }
+//         }
+//         console.log('-------------------------------------------')
+//         console.log(person)
+//         console.log('-------------------------------------------')
+//
+//         let objFun={
+//             fullName:function () {
+//                 return this.firstName+' '+this.lastName
+//             }
+//         }
+//         let person1={
+//             firstName:'Bill',
+//             lastName:'Gates'
+//         }
+//         let person2={
+//             firstName:'Zhang',
+//             lastName:'Chi'
+//         }
+//         console.log(objFun.fullName.call(person1))
+//         let test =''
+//         console.log(typeof(test))
+//         let father={
+//             name1:'value1',
+//             name2:'value2',
+//             name3:'value3',
+//             name4:{
+//                 name41:'value41',
+//                 name42:'value42'
+//             }
+//         }
+//         // let son={...father}
+//         let son = JSON.parse(JSON.stringify(father))
+//         father.name1='valuechange1'
+//         father.name4.name41='valuechange2'
+//         console.log(father)
+//         console.log(son)
+//         // sss
+//         return
+//
+//         // eslint-disable-next-line no-unreachable
+//         this.myWait()
+//         return
+//         // 主题 保存状态，状态变化之后触发所有观察者对象
+//         class Subject {
+//             constructor() {
+//                 this.state = 0    //被观察对象自己的属性
+//                 this.observers = []   //储存观察者对象的数组
+//             }
+//             getState() {
+//                 return this.state
+//             }
+//             setState(state) {
+//                 this.state = state  //改变被观察者自己的属性
+//                 this.notifyAllObservers() //通知所有观察者
+//             }
+//             notifyAllObservers() {
+//                 this.observers.forEach(observer => {
+//                     observer.update()    //将改变告知观察者
+//                 })
+//             }
+//             attach(observer) {
+//                 this.observers.push(observer) //保存观察者属性
+//             }
+//         }
+// // 观察者
+//         // eslint-disable-next-line no-unreachable
+//         class Observer {
+//             constructor(name, subject) {
+//                 this.name = name    //创建观察者姓名
+//                 this.subject = subject //创建被观察的对象
+//                 console.log(this)
+//                 this.subject.attach(this)//将观察者对象的属性注入被观察的对象中
+//             }
+//             update() {
+//                 console.log(`${this.name} update, state: ${this.subject.getState()}`)
+//             }
+//         }
+// // 测试
+//         // eslint-disable-next-line no-unreachable
+//         let s = new Subject()//...........首先创建被观察的对象
+// //........................................然后创建观察者
+//         let o1 = new Observer('od1', s) //观察者1
+//         let o2 = new Observer('od2', s) //观察者2
+//
+//         s.setState(12)
+//         setTimeout(()=>{
+//            s.setState(11)
+//         },6000)
         // //代理模式
         // let Flower = function() {}
         // let xiaoMing = {

@@ -3,9 +3,9 @@
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
-    <el-header class=" myFlex myBorderBottom" style="height:6%;">
+    <el-header class=" myFlex myBorderBottom">
       <div style="font-weight:bolder">CAESAMMI</div>
-      <div><img alt style="width: 135px;height: 80%" src="../../assets/logo.png"></div>
+      <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
 
     </el-header>
     <el-container class="myContainer" style="height: 94%;">

@@ -20,10 +20,16 @@ const routes = [
         meta: {title: 'about'}
       },
       {
-        path: '/mytest',
-        name: 'mytest',
+        path: '/myTest',
+        name: 'myTest',
         component: getComponent('components/mytest.vue'),
-        meta: {title: 'about'}
+        meta: {title: 'myTest'}
+      },
+      {
+        path: '/myHome',
+        name: 'home',
+        component: getComponent('views/Home.vue'),
+        meta: {title: 'home'}
       },
     ]
   },

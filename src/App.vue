@@ -13,8 +13,9 @@ html, body, #app{
   -moz-osx-font-smoothing, grayscale,
   text-align center;
   color: #606266;
-  height: 100%;
+  height: 101%;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 </style>

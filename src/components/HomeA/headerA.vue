@@ -27,10 +27,14 @@
             breadCrumbList () {
                 const {name} = this.$route;
                 let breadList = [{ path: 'map', name: 'Home' }];
+                console.log('--------------------')
+                console.log(name)
+                console.log(this.menuList)
+                console.log('--------------------')
                 this.menuList.forEach(item => {
                     if (item.childrens.length > 0) {
                         item.childrens.forEach(sub => {
-                            if (sub.path === '/'+name) {
+                            if (sub.name === name) {
                                 breadList.push({ path: item.path,name: item.header }, { path:sub.path,name: sub.name });
                             }
                         });
