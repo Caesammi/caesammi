@@ -15,7 +15,7 @@
     "element-china-area-data": "^4.1.2",
     "element-ui": "^2.13.0",
     "epic-spinners": "^1.1.0",
-    "event-source-polyfill": "^1.0.9",
+    "event-source-polyfill": "^1.0.14",
     "file-saver": "^2.0.2",
     "fingerprintjs2": "^2.1.0",
     "js-md5": "^0.7.3",
