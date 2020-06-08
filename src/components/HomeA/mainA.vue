@@ -54,25 +54,31 @@
         <!--内容面包屑组件-->
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
-        <el-main style="padding: 0;margin: 0;height: 93%;">
+        <el-main style="padding: 0;margin: 0;height: 97%;">
           <router-view style="margin-top:20px"></router-view>
+          <footerA style="height: auto;"></footerA>
         </el-main>
-<!--        <footerA style="height: auto;"></footerA>-->
+<!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
+
 
       </el-main>
+
     </el-container>
     <!--顶部动态工具栏结束-->
   </div>
+
 </template>
 
 <script>
   import power from './power'
   import headerA from "./headerA"
+  import footerA from './footerA'
 
   export default {
     name: "mainA",
     components: {
-      headerA
+      headerA,
+        footerA
     },
     data() {
       return {
@@ -118,6 +124,7 @@
 </script>
 
 <style scoped>
+
   .master{
     padding: 0;
     margin: 0;
