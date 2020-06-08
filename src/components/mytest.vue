@@ -6,12 +6,12 @@
     <div>
         <canvas id="draw"  style="border: 1px solid black;color:black;background: transparent">berrrrrrrrr</canvas>
         {{test}}<br>{{myArr}}
-        <sticky :sticky-top="200">
-            <el-button type="ghost"> placeholder</el-button>
-            <div style="color: green">sdfsdfsdf
-                <el-button type="primary"> placeholder</el-button>
-            </div>
-        </sticky>
+<!--        <sticky :sticky-top="200">-->
+<!--            <el-button type="ghost"> placeholder</el-button>-->
+<!--            <div style="color: green">sdfsdfsdf-->
+<!--                <el-button type="primary"> placeholder</el-button>-->
+<!--            </div>-->
+<!--        </sticky>-->
         <div>placeholder</div>
         <div>placeholder</div>
         <div>placeholder</div>
@@ -50,7 +50,7 @@
         <div>placeholder</div>
         <div>placeholder</div>
         <div>placeholder</div>
-        <el-button style="margin-top: 1000px" v-loading="myLoading1">
+        <el-button v-loading="myLoading1">
             你好
         </el-button>
     </div>
@@ -58,10 +58,10 @@
 
 <script>
     import {mapState, mapActions,mapGetters} from 'vuex'
-    import Sticky from '@/components/Widget/index.vue'
+    // import Sticky from '@/components/Widget/index.vue'
   export default {
     name: "mytest",
-      components: { Sticky },
+      // components: { Sticky },
     computed:{
 
     },

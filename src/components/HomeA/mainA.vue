@@ -6,9 +6,8 @@
     <el-header class=" myFlex myBorderBottom">
       <div style="font-weight:bolder">CAESAMMI</div>
       <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
-
     </el-header>
-    <el-container class="myContainer" style="height: 94%;">
+    <el-container class="myContainer" style="height: calc(100% - 60px);background: red">
       <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
 <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
         <el-container style="height: 100%">
@@ -48,14 +47,14 @@
       </el-aside>
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
         <headerA :menuList="menuList" style="height: 20px;position:fixed;"></headerA>
-        <template>
-          <el-backtop target=".myBacktop"></el-backtop>
-        </template>
+<!--        <template>-->
+<!--          <el-backtop target=".myBacktop"></el-backtop>-->
+<!--        </template>-->
 
         <!--内容面包屑组件-->
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
-        <el-main style="padding: 0;margin: 0;height:100%">
+        <el-main style="padding: 0;margin: 0;height: 93%;">
           <router-view style="margin-top:20px"></router-view>
         </el-main>
 <!--        <footerA style="height: auto;"></footerA>-->
@@ -124,9 +123,9 @@
     margin: 0;
     height: 100%;
   }
-  /*.noScrollbar::-webkit-scrollbar {*/
-  /*  display: none;*/
-  /*}*/
+  .noScrollbar::-webkit-scrollbar {
+    display: none;
+  }
   .myContainer {
     height: 90%;
   }
