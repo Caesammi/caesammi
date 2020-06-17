@@ -7,7 +7,7 @@
       <div style="font-weight:bolder">CAESAMMI</div>
       <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
     </el-header>
-    <el-container class="myContainer" style="height: calc(100% - 60px);background: red">
+    <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
 <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
         <el-container style="height: 100%">

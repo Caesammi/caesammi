@@ -3,128 +3,130 @@
 /* eslint-disable no-unreachable */
 <template>
 
-    <div>
-        <canvas id="draw"  style="border: 1px solid black;color:black;background: transparent">berrrrrrrrr</canvas>
-        {{test}}<br>{{myArr}}
-<!--        <sticky :sticky-top="200">-->
-<!--            <el-button type="ghost"> placeholder</el-button>-->
-<!--            <div style="color: green">sdfsdfsdf-->
-<!--                <el-button type="primary"> placeholder</el-button>-->
-<!--            </div>-->
-<!--        </sticky>-->
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <div>placeholder</div>
-        <el-button v-loading="myLoading1">
-            你好
-        </el-button>
-    </div>
+  <div>
+    <canvas id="draw" style="border: 1px solid black;color:black;background: transparent">berrrrrrrrr</canvas>
+    {{test}}<br>{{myArr}}
+    <!--        <sticky :sticky-top="200">-->
+    <!--            <el-button type="ghost"> placeholder</el-button>-->
+    <!--            <div style="color: green">sdfsdfsdf-->
+    <!--                <el-button type="primary"> placeholder</el-button>-->
+    <!--            </div>-->
+    <!--        </sticky>-->
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <div>placeholder</div>
+    <el-button v-loading="myLoading1">
+      你好
+    </el-button>
+  </div>
 </template>
 
 <script>
-    import {mapState, mapActions,mapGetters} from 'vuex'
+    import {mapState, mapActions, mapGetters} from 'vuex'
     // import Sticky from '@/components/Widget/index.vue'
-  export default {
-    name: "mytest",
-      // components: { Sticky },
-    computed:{
-
-    },
-    data(){
-      return{
-        test:{},
-        myArr:[],
-        a3:[],
-          myLoading1:true
-      }
-    },
-    methods:{
-         myPro(){
-            return  new Promise((resolve,reject) => {
-                 let myNumber=100
-                 for(let i = 0;i<myNumber;i++){
-                     if(i===99){
-                         console.log(i)
-                        setTimeout(()=>{
-                            resolve(i)
-                        },2000)
-                     }
-                 }
-             })
+    export default {
+        name: "mytest",
+        // components: { Sticky },
+        computed: {},
+        data() {
+            return {
+                test: {},
+                myArr: [{a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}],
+                myArr2: [{a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}],
+                a3: [],
+                myLoading1: true
+            }
         },
-         myWait(){
-             this.myPro().then(res=>{
-                 console.log(res)
-             })
+        methods: {
+            myPro() {
+                return new Promise((resolve, reject) => {
+                    let myNumber = 100
+                    for (let i = 0; i < myNumber; i++) {
+                        if (i === 99) {
+                            console.log(i)
+                            setTimeout(() => {
+                                resolve(i)
+                            }, 2000)
+                        }
+                    }
+                })
+            },
+            myWait() {
+                this.myPro().then(res => {
+                    console.log(res)
+                })
 
+            },
+            pu() {
+                let flower = function () {
+
+                }
+                let C = {
+                    sendFlower: function (t) {
+                        let flower = new flower()
+                    }
+                }
+                let A = {
+                    receiveFlower: function (flower) {
+                    }
+                }
+            },
+            canvasDraw() {
+                let draw = document.getElementById('draw')
+                draw.height = 200
+                draw.width = 200
+                let context = draw.getContext('2d')
+
+                context.fillstyle = "rgba(0,0,255,0.5)"
+                context.fillRect(10, 10, 50, 50)
+                context.fillstyle = "rgba(0,0,255,0.5)"
+                context.fillRect(30, 30, 50, 50)
+                console.log(context)
+            },
         },
-      pu(){
-      let flower = function () {
-
-      }
-      let C = {
-          sendFlower:function (t) {
-              let flower = new flower()
-          }
-      }
-      let A ={
-          receiveFlower:function (flower) {
-          }
-      }
-      },
-        canvasDraw(){
-         let draw= document.getElementById('draw')
-            draw.height=200
-            draw.width=200
-            let context = draw.getContext('2d')
-
-            context.fillstyle="rgba(0,0,255,0.5)"
-            context.fillRect(10,10,50,50)
-            context.fillstyle="rgba(0,0,255,0.5)"
-            context.fillRect(30,30,50,50)
-            console.log(context)
-        },
-    },
-    mounted() {
-        let book =[{a:'s',b:'dddd',c:'00'},{a:'ddd',b:'333',d:'444'}]
-        console.log(JSON.stringify(book,['a','c']))
-        console.log(book)
-        return
+        mounted() {
+            setTimeout(() => {
+                this.myArr[0].a = 'changed'
+            }, 5000)
+            // let book =[{a:'s',b:'dddd',c:'00'},{a:'ddd',b:'333',d:'444'}]
+            // console.log(JSON.stringify(book,['a','c']))
+            // console.log(book)
+            // return
 //         return
 //         let sortData=[15,0,5,7,20,700,100]
 //         let myCompare = function(value1,value2){
@@ -266,36 +268,36 @@
 //         setTimeout(()=>{
 //            s.setState(11)
 //         },6000)
-        // //代理模式
-        // let Flower = function() {}
-        // let xiaoMing = {
-        //        //将花给B
-        //     sendFlower: function(target) {
-        //         let flower = new Flower()
-        //         target.receiveFlower(flower)
-        //     }
-        // }
-        // let B = {
-        //         //将花给A
-        //     receiveFlower: function(flower) {
-        //         //监听A的心情，给A的listenGoodMood方法传入方法，在合适的时间执行
-        //         A.listenGoodMood(function() {
-        //             A.receiveFlower(flower)
-        //         })
-        //     }
-        // }
-        // let A = {
-        //     receiveFlower: function(flower) {
-        //         console.log('收到花'+ JSON.stringify(flower))
-        //     },
-        //     listenGoodMood: function(fn) {
-        //         setTimeout(function() {
-        //             fn()
-        //         }, 1000)
-        //     }
-        // }
-        // //启动送花的方法
-        // xiaoMing.sendFlower(B)
+            // //代理模式
+            // let Flower = function() {}
+            // let xiaoMing = {
+            //        //将花给B
+            //     sendFlower: function(target) {
+            //         let flower = new Flower()
+            //         target.receiveFlower(flower)
+            //     }
+            // }
+            // let B = {
+            //         //将花给A
+            //     receiveFlower: function(flower) {
+            //         //监听A的心情，给A的listenGoodMood方法传入方法，在合适的时间执行
+            //         A.listenGoodMood(function() {
+            //             A.receiveFlower(flower)
+            //         })
+            //     }
+            // }
+            // let A = {
+            //     receiveFlower: function(flower) {
+            //         console.log('收到花'+ JSON.stringify(flower))
+            //     },
+            //     listenGoodMood: function(fn) {
+            //         setTimeout(function() {
+            //             fn()
+            //         }, 1000)
+            //     }
+            // }
+            // //启动送花的方法
+            // xiaoMing.sendFlower(B)
 
 
 //
@@ -329,27 +331,26 @@
 // dec.create()   //生成一个手机 生成手机壳
 
 
-      // //适配器模式，可以兼容老接口可以让任何两个没有关联的类一起运行。提高了类的复用。适配对象，适配库，适配数据
-      // // 老的类
-      // class Plug{
-      //   getName(){
-      //     return 'iphone充电头'
-      //   }
-      // }
-      // //新的类想与老的类一起运行
-      // class Target{
-      //   constructor(){
-      //     this.plug=new Plug()
-      //   }
-      //   getName(){
-      //   return this.plug.getName()+'适配Type-c'
-      //   }
-      // }
+            // //适配器模式，可以兼容老接口可以让任何两个没有关联的类一起运行。提高了类的复用。适配对象，适配库，适配数据
+            // // 老的类
+            // class Plug{
+            //   getName(){
+            //     return 'iphone充电头'
+            //   }
+            // }
+            // //新的类想与老的类一起运行
+            // class Target{
+            //   constructor(){
+            //     this.plug=new Plug()
+            //   }
+            //   getName(){
+            //   return this.plug.getName()+'适配Type-c'
+            //   }
+            // }
 
-      // let target = new Target()
-      // console.log('------')
-      // console.log(target.getName())
-
+            // let target = new Target()
+            // console.log('------')
+            // console.log(target.getName())
 
 
 // class Plug {
@@ -383,12 +384,51 @@
 // setInterval(this.pu,2000)
 
 
+        },
+        watch: {
+            myArr: {
+                handler: function (newVal) {
+                    let that = this
+                    let oldVal = that.myArr2
+                    console.log('this is new value')
+                    console.log(newVal)
+                    console.log('this is old value')
+                    console.log(oldVal)
+                    for (let i = 0; i < newVal.length; i++) {
+                        let o2=JSON.stringify(oldVal[i])
+                        let n2=JSON.stringify(newVal[i])
+                        if (o2===n2) {
+                            console.log('相同')
+                        } else {
+                            let o = JSON.stringify(oldVal[i]).split(',')
+                            let n = JSON.stringify(newVal[i]).split(',')
+                            console.log(o)
+                            console.log(n)
+                            for (let i2 = 0; i2 < o.length; i2++) {
+                                if (o[i2] !== n[i2]) {
+                                    let newClassName = ''
+                                    console.log('myName')
+                                    console.log(JSON.parse(n[i2]))
+
+                                    newVal[i][i2] = 'Green'
+                                    console.log(newVal)
+                                }
+                            }
+
+
+                        }
+                    }
+
+                },
+                deep: true
+            }
+
+        }
     }
-  }
 </script>
 
 <style scoped>
-    .sss{
-        color: aliceblue;
-    }
+  .sss {
+    color: aliceblue;
+  }
 </style>
