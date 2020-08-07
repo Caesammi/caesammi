@@ -31,7 +31,7 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 // 请求拦截器
 axios.interceptors.request.use(
   config => {
-    const token = store.state.account
+    const token = store.state.userName
     token && (config.headers.Authorization = token)
     return config
   },

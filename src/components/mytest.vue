@@ -4,6 +4,20 @@
 <template>
 
   <div>
+    <el-table
+      size="mini"
+      class="table1"
+      :data="myArr"
+      border
+      style="width: 100%; margin-top: 20px">
+      <el-table-column label="发送方" align="center">
+        <template slot-scope="scope">
+          <p style="color:yellow">{{scope.row.a}}</p>
+        </template>
+      </el-table-column>
+
+
+    </el-table>
     <canvas id="draw" style="border: 1px solid black;color:black;background: transparent">berrrrrrrrr</canvas>
     {{test}}<br>{{myArr}}
     <!--        <sticky :sticky-top="200">-->
@@ -58,6 +72,7 @@
 
 <script>
     import {mapState, mapActions, mapGetters} from 'vuex'
+    import store from "@/store";
     // import Sticky from '@/components/Widget/index.vue'
     export default {
         name: "mytest",
@@ -120,6 +135,8 @@
             },
         },
         mounted() {
+          store.state.userName='sdf'
+          console.log(store.state.userName)
             setTimeout(() => {
                 this.myArr[0].a = 'changed'
             }, 5000)
