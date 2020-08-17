@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {Message} from 'element-ui'
 
 Vue.use(Vuex)
 
@@ -9,8 +10,12 @@ export default new Vuex.Store({
     vuexTest:''
   },
   mutations: {
-    changeUserName (d){
-      this.state.userName=d
+    changeUserName (state,d){
+      if(d===state.userName){
+        Message.error('该参数与之前相同，已返回')
+        return
+      }
+      state.userName=d
       }
     },
   getters:{
@@ -20,6 +25,7 @@ export default new Vuex.Store({
   },
   actions: {
     changeUserName({commit},val){
+      console.log(val)
       commit('changeUserName',val)
     }
   },

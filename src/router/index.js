@@ -33,6 +33,11 @@ const routes = [
       },
     ]
   },
+  {
+    path: '/test2',
+    name: 'test2',
+    component: getComponent('components/mytest.vue'),
+  },
 
 ]
 

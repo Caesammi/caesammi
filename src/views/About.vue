@@ -10,7 +10,6 @@
 <script>
 //代理模式
 import store from "@/store";
-
 console.log(store.state.userName)
         let Flower = function() {
 

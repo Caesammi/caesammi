@@ -46,7 +46,7 @@
 
       </el-aside>
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
-        <headerA :menuList="menuList" style="height: 20px;position:fixed;"></headerA>
+        <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 9999"></headerA>
 <!--        <template>-->
 <!--          <el-backtop target=".myBacktop"></el-backtop>-->
 <!--        </template>-->
@@ -109,7 +109,10 @@
     mounted(){
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
+      console.log('---路由路径---')
       console.log(this.defaultOpen)
+      console.log('---路由路径---')
+
       this.$router.afterEach(() => {
         this.defaultOpen = this.$route.path
         console.log('当前路径' + this.defaultOpen)
