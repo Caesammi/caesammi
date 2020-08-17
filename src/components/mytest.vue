@@ -31,7 +31,7 @@ export default {
             enabled: true,
             alpha: 4,
             beta: 8,
-            depth: 50,
+            depth:50,
             viewDistance: 25
           },
           spacing:[10,10,10,10]
