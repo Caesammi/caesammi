@@ -5,7 +5,7 @@
     <!--顶部动态工具栏封装-->
     <el-header class=" myFlex myBorderBottom bigHeader">
       <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
-      <div style="font-weight:700;color: #5d5d5d">中国石化胜利中心三号平台工程</div>
+      <div style="font-weight:600;">中国石化胜利中心三号平台工程</div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 0;">
@@ -188,6 +188,7 @@
 }
 .bigHeader{
   /*background: linear-gradient(to bottom, #002b58, #68b3ff);*/
+  background: url('../../assets/TOP.png') no-repeat;
   color: white;
   font-size: 22px;
   font-weight: lighter;
