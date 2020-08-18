@@ -38,12 +38,12 @@ export default {
     HighCharts.setOptions({
       chart: {
         type: 'solidgauge',
-        height:200
+        height:150
       },
       title: null,
       pane: {
         center: ['50%', '85%'],
-        size: '100%',
+        size: '120%',
         startAngle: -90,
         endAngle: 90,
         background: {

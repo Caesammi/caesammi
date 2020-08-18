@@ -454,22 +454,22 @@ export default {
           min: 0,
           max: 200,
           title: {
-            text: '速度'
+            text: ''
           }
         },
         credits: {
           enabled: false
         },
         series: [{
-          name: '速度',
-          data: [80],
+          name: '',
+          data: [180],
           dataLabels: {
             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                '<span style="font-size:12px;color:silver">km/h</span></div>'
+                '<span style="font-size:12px;color:silver">   </span></div>'
           },
           tooltip: {
-            valueSuffix: ' km/h'
+            valueSuffix: '    '
           }
         }]
       },
@@ -484,22 +484,22 @@ export default {
           min: 0,
           max: 200,
           title: {
-            text: '速度'
+            text: ''
           }
         },
         credits: {
           enabled: false
         },
         series: [{
-          name: '速度',
+          name: '',
           data: [80],
           dataLabels: {
             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                '<span style="font-size:12px;color:silver">km/h</span></div>'
+                '<span style="font-size:12px;color:silver">  </span></div>'
           },
           tooltip: {
-            valueSuffix: ' km/h'
+            valueSuffix: '   '
           }
         }]
       },
