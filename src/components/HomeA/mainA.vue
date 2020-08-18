@@ -67,6 +67,7 @@
       },
     },
     mounted(){
+      this.$router.push('mytest')
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
       console.log('---路由路径---')
@@ -187,7 +188,7 @@
 
 }
 .bigHeader{
-  background: linear-gradient(to bottom, #002b58, #68b3ff);
+  /*background: linear-gradient(to bottom, #002b58, #68b3ff);*/
   color: white;
   font-size: 22px;
   font-weight: lighter;

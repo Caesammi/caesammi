@@ -4,7 +4,7 @@
       <el-col class="midContainer" :span="8">
         <el-col>
           <el-col class="smallTitle">
-            <label style="font-size: 12px"> &nbsp >></label>  项目基本信息
+            <label style="font-size: 12px"> >></label>  项目基本信息
           </el-col>
           <el-col class="paddingAllTen">
             测试测试测试测试 <br>
@@ -25,7 +25,7 @@
         </el-col>
         <el-col>
           <el-col class="smallTitle">
-            <label style="font-size: 12px"> &nbsp >></label>  HES与质量
+            <label style="font-size: 12px">   >></label>  HES与质量
           </el-col>
           <el-col>
             <el-col :span="8">
@@ -41,7 +41,7 @@
         </el-col>
         <el-col>
           <el-col class="smallTitle">
-            <label style="font-size: 12px"> &nbsp >></label>  里程碑完成情况  </el-col>
+            <label style="font-size: 12px">   >></label>  里程碑完成情况  </el-col>
           <el-col>
 
             <el-col>
@@ -67,7 +67,7 @@
         <el-col :span="12">
           <el-col>
             <el-col class="smallTitle">
-              <label style="font-size: 12px"> &nbsp >></label>  项目要闻
+              <label style="font-size: 12px">   >></label>  项目要闻
             </el-col>
             <el-col class="paddingAllTen dottedUnderLine" v-for="(item,index) in 4" :span="12" :key="index">
               <el-tooltip placement="top">
@@ -88,7 +88,7 @@
         <el-col :span="12">
           <el-col>
             <el-col class="smallTitle">
-              <label style="font-size: 12px"> &nbsp >></label>  问题与重点工作
+              <label style="font-size: 12px">   >></label>  问题与重点工作
             </el-col>
             <el-col class="paddingAllTen dottedUnderLine" v-for="(item,index) in 4" :span="12" :key="index">
               <el-tooltip placement="top">
@@ -130,7 +130,7 @@
           <el-col class="midContainer" :span="12">
             <el-col>
               <el-col class="smallTitle">
-                <label style="font-size: 12px"> &nbsp >></label>  投资控制
+                <label style="font-size: 12px">   >></label>  投资控制
               </el-col>
               <el-col style="margin-top: 10px;" v-for="(item,index) in 3" :span="8" :key="index+'1'">
                 测试测试测试测试{{index}}

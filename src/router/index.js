@@ -14,17 +14,18 @@ const routes = [
     component: getComponent('components/HomeA/mainA.vue'),
     children: [
       {
-        path: '/about',
-        name: 'about',
-        component: getComponent('views/About.vue'),
-        meta: {title: 'about'}
-      },
-      {
         path: '/myTest',
         name: 'myTest',
         component: getComponent('components/mytest.vue'),
         meta: {title: 'myTest'}
       },
+      {
+        path: '/about',
+        name: 'about',
+        component: getComponent('views/About.vue'),
+        meta: {title: 'about'}
+      },
+
       {
         path: '/myHome',
         name: 'home',

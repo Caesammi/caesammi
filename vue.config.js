@@ -1,5 +1,7 @@
 module.exports = {
-  publicPath: '/Caesammi/',
+  publicPath: process.env.NODE_ENV === 'production'
+      ? './'
+      : '/',
   outputDir: 'myBuild',
   assetsDir: 'myStatic'
 }
