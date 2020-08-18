@@ -4,28 +4,28 @@
       <el-col class="midContainer" :span="8">
         <el-col>
           <el-col class="smallTitle">
-            项目基本信息
+            <label style="font-size: 12px"> &nbsp >></label>  项目基本信息
           </el-col>
           <el-col class="paddingAllTen">
-            line1 <br>
-            line2 <br>
-            line3
+            测试测试测试测试 <br>
+            测试测试测试测试 <br>
+            测试测试测试测试
             <el-divider></el-divider>
             <el-col :span="12">
-              line1<br>
-              line2<br>
-              line3<br>
+              测试测试测试测试<br>
+              测试测试测试测试<br>
+              测试测试测试测试<br>
             </el-col>
             <el-col :span="12">
-              line1<br>
-              line2<br>
-              line3<br>
+              测试测试测试测试<br>
+              测试测试测试测试<br>
+              测试测试测试测试<br>
             </el-col>
           </el-col>
         </el-col>
         <el-col>
           <el-col class="smallTitle">
-            HES与质量
+            <label style="font-size: 12px"> &nbsp >></label>  HES与质量
           </el-col>
           <el-col>
             <el-col :span="8">
@@ -41,15 +41,15 @@
         </el-col>
         <el-col>
           <el-col class="smallTitle">
-            里程碑完成情况  </el-col>
+            <label style="font-size: 12px"> &nbsp >></label>  里程碑完成情况  </el-col>
           <el-col>
 
             <el-col>
               <dashBoard id="dash4" :option="dashOpt2"></dashBoard>
             </el-col>
             <el-col class="paddingAllTen">
-              <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
-              <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+              <el-progress :stroke-width="13" :percentage="98" color="#FAECD8"></el-progress>
+              <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="#409EFF"></el-progress>
             </el-col>
             <el-col align="center" class="paddingAllTen">
               <el-button-group>
@@ -67,20 +67,41 @@
         <el-col :span="12">
           <el-col>
             <el-col class="smallTitle">
-              项目要闻
+              <label style="font-size: 12px"> &nbsp >></label>  项目要闻
             </el-col>
-            <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
-              item{{index}}
+            <el-col class="paddingAllTen dottedUnderLine" v-for="(item,index) in 4" :span="12" :key="index">
+              <el-tooltip placement="top">
+                <div
+                    style="display: -webkit-box;-webkit-box-orient: vertical;max-width: 300px"
+                    slot="content">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试{{item}}
+                </div>
+
+                <div  style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer">
+                  ■ dd测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试{{index}}
+                </div>
+
+              </el-tooltip>
+
             </el-col>
           </el-col>
         </el-col>
         <el-col :span="12">
           <el-col>
             <el-col class="smallTitle">
-              问题与重点工作
+              <label style="font-size: 12px"> &nbsp >></label>  问题与重点工作
             </el-col>
-            <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
-              item{{index}}
+            <el-col class="paddingAllTen dottedUnderLine" v-for="(item,index) in 4" :span="12" :key="index">
+              <el-tooltip placement="top">
+                <div
+                    style="display: -webkit-box;-webkit-box-orient: vertical;max-width: 300px"
+                    slot="content">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试{{item}}
+                </div>
+
+                <div  style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;cursor: pointer">
+                  ■ dd测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试{{index}}
+                </div>
+
+              </el-tooltip>
             </el-col>
           </el-col>
         </el-col>
@@ -109,19 +130,19 @@
           <el-col class="midContainer" :span="12">
             <el-col>
               <el-col class="smallTitle">
-                投资控制
+                <label style="font-size: 12px"> &nbsp >></label>  投资控制
               </el-col>
               <el-col style="margin-top: 10px;" v-for="(item,index) in 3" :span="8" :key="index+'1'">
-                item{{index}}
+                测试测试测试测试{{index}}
               </el-col>
              <el-col class="paddingAllTen">
-               <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
-               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+               <el-progress :stroke-width="13" :percentage="98" color="#FAECD8"></el-progress>
+               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="#409EFF"></el-progress>
                <el-col v-for="(item,index) in 3" :span="8" :key="index">
-                 item{{index}}
+                 测试测试测试测试{{index}}
                </el-col>
-               <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
-               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+               <el-progress :stroke-width="13" :percentage="98" color="#FAECD8"></el-progress>
+               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="#409EFF"></el-progress>
              </el-col>
 
             </el-col>
@@ -130,9 +151,6 @@
             <el-col>
               <el-col class="smallTitle commonFlexStart">
                 变更管理 <div style="right: 80px" class="titleButton">数据</div><div style="right: 50px" class="titleButton">饼图</div><div style="right: 20px" class="titleButton">详情</div>
-              </el-col>
-              <el-col align="center" v-for="(item,index) in 2" :span="12" :key="index+'2'">
-                item{{index}}
               </el-col>
               <el-col :span="12">
                 <Pie :id="idP1" :option="optionP1"></Pie>
@@ -189,10 +207,10 @@ export default {
         },colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
           '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
         title: {
-          text: '交互性3D柱状图'
+          text: '3D柱状图'
         },
         subtitle: {
-          text: '可通过滑动下方滑块测试'
+          text: 'test'
         },
         plotOptions: {
           column: {
@@ -528,6 +546,7 @@ export default {
 
 <style scoped>
 #myMain{
+  color: #909399;
   width: 100%;
 }
 .midContainer{
@@ -535,15 +554,14 @@ export default {
   border-bottom-right-radius:15px ;
 }
 .smallTitle{
+  padding-left: 10px;
   font-weight: bold;
   color: white;
   line-height: 1.8;
   background: linear-gradient(to right, #99ceff, #2991ff);
   text-shadow:0px 2px 2px #000000;
 }
-.sss {
-  color: aliceblue;
-}
+
 .titleButton{
 
   position: absolute;
@@ -561,5 +579,9 @@ export default {
 }
 .paddingAllTen{
   padding:10px 10px 10px 10px
+}
+.dottedUnderLine{
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 </style>

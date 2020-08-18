@@ -11,7 +11,8 @@
 
             <div style="text-overflow: ellipsis;
                               overflow: hidden;
-                              word-space:nowrap;cursor:pointer;line-height: 3">
+                              word-space:nowrap;
+                              cursor:pointer;">
               <el-link type="info"> {{'■'+item}} </el-link>
             </div>
 
