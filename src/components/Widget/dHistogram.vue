@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div :id="id" :option="option"></div>
+    <div :id="id" :option="option" :style="{height:height}"></div>
   </div>
 </template>
 
@@ -15,10 +15,13 @@ export default {
     id: {
       type: String
     },
+    height:{
+      type:String
+    },
     //option 是图表的配置数据
     option: {
       type: Object
-    }
+    },
   },
   // components: { Sticky },
   computed: {},
@@ -31,6 +34,7 @@ export default {
   methods: {
   },
   mounted() {
+    console.log('height',this.height)
     HighCharts.chart(this.id, this.option)
   },
   watch: {
