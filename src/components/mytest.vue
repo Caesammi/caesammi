@@ -6,7 +6,7 @@
           <el-col class="smallTitle">
             项目基本信息
           </el-col>
-          <el-col>
+          <el-col class="paddingAllTen">
             line1 <br>
             line2 <br>
             line3
@@ -28,21 +28,48 @@
             HES与质量
           </el-col>
           <el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <dashBoard id="dash1" :option="dashOpt1"></dashBoard>
+            </el-col>
+            <el-col :span="8">
+              <dashBoard id="dash2" :option="dashOpt1"></dashBoard>
+            </el-col>
+            <el-col :span="8">
+              <dashBoard id="dash3" :option="dashOpt1"></dashBoard>
             </el-col>
           </el-col>
         </el-col>
-        我是左边
+        <el-col>
+          <el-col class="smallTitle">
+            里程碑完成情况  </el-col>
+          <el-col>
+
+            <el-col>
+              <dashBoard id="dash4" :option="dashOpt2"></dashBoard>
+            </el-col>
+            <el-col class="paddingAllTen">
+              <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
+              <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+            </el-col>
+            <el-col align="center" class="paddingAllTen">
+              <el-button-group>
+                <el-button size="mini" type="ghost">图示</el-button>
+                <el-button size="mini" type="ghost">图示</el-button>
+                <el-button size="mini" type="ghost">图示</el-button>
+                <el-button size="mini" type="ghost">图示</el-button>
+              </el-button-group>
+            </el-col>
+          </el-col>
+        </el-col>
 
       </el-col>
-      <el-col class="midContainer" :span="16">
+      <el-col :span="16">
         <el-col :span="12">
           <el-col>
             <el-col class="smallTitle">
               项目要闻
             </el-col>
-            <el-col v-for="(item,index) in 4" :span="12" :key="index">
+            <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
               item{{index}}
             </el-col>
           </el-col>
@@ -52,7 +79,7 @@
             <el-col class="smallTitle">
               问题与重点工作
             </el-col>
-            <el-col v-for="(item,index) in 4" :span="12" :key="index">
+            <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
               item{{index}}
             </el-col>
           </el-col>
@@ -79,30 +106,29 @@
               <histogram :id="item.id" :option="optionH2" height="166px"></histogram>
             </el-col>
           </el-col>
-          <el-col :span="12">
+          <el-col class="midContainer" :span="12">
             <el-col>
               <el-col class="smallTitle">
                 投资控制
               </el-col>
-              <el-col v-for="(item,index) in 3" :span="8" :key="index+'1'">
+              <el-col style="margin-top: 10px;" v-for="(item,index) in 3" :span="8" :key="index+'1'">
                 item{{index}}
               </el-col>
-              <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
-              <el-progress :stroke-width="13" :percentage="50" color="blue"></el-progress>
-              <el-col v-for="(item,index) in 3" :span="8" :key="index">
-                item{{index}}
-              </el-col>
-              <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
-              <el-progress :stroke-width="13" :percentage="50" color="blue"></el-progress>
+             <el-col class="paddingAllTen">
+               <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
+               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+               <el-col v-for="(item,index) in 3" :span="8" :key="index">
+                 item{{index}}
+               </el-col>
+               <el-progress :stroke-width="13" :percentage="98" color="yellow"></el-progress>
+               <el-progress style="margin-top: 10px;" :stroke-width="13" :percentage="50" color="blue"></el-progress>
+             </el-col>
 
             </el-col>
           </el-col>
-          <el-col :span="12">
+          <el-col class="midContainer" :span="12">
             <el-col>
-              <el-col style="    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;" class="smallTitle">
+              <el-col class="smallTitle commonFlexStart">
                 变更管理 <div style="right: 80px" class="titleButton">数据</div><div style="right: 50px" class="titleButton">饼图</div><div style="right: 20px" class="titleButton">详情</div>
               </el-col>
               <el-col align="center" v-for="(item,index) in 2" :span="12" :key="index+'2'">
@@ -111,14 +137,13 @@
               <el-col :span="12">
                 <Pie :id="idP1" :option="optionP1"></Pie>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="12" style="padding-right: 10px">
                 <Pie :id="idP2" :option="optionP2"></Pie>
               </el-col>
             </el-col>
           </el-col>
         </el-col>
 
-        我是右边
       </el-col>
     </el-row>
 
@@ -432,6 +457,36 @@ export default {
           }
         }]
       },
+      dashOpt2:{
+        chart: {
+          height:250
+        },
+        pane: {
+          size:'140%'
+        },
+        yAxis: {
+          min: 0,
+          max: 200,
+          title: {
+            text: '速度'
+          }
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: '速度',
+          data: [80],
+          dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                '<span style="font-size:12px;color:silver">km/h</span></div>'
+          },
+          tooltip: {
+            valueSuffix: ' km/h'
+          }
+        }]
+      },
       activeIndex:'总体进度曲线',
       menuList:[
         {
@@ -497,5 +552,14 @@ export default {
   float: right;
   cursor: pointer;
   border-radius: 3px;
+}
+.commonFlexStart{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.paddingAllTen{
+  padding:10px 10px 10px 10px
 }
 </style>

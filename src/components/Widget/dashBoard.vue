@@ -37,8 +37,8 @@ export default {
   mounted() {
     HighCharts.setOptions({
       chart: {
-        height:200,
-        type: 'solidgauge'
+        type: 'solidgauge',
+        height:200
       },
       title: null,
       pane: {
