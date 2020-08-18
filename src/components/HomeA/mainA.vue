@@ -3,50 +3,12 @@
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
-    <el-header class=" myFlex myBorderBottom">
-      <div style="font-weight:bolder">CAESAMMI</div>
+    <el-header class=" myFlex myBorderBottom bigHeader">
       <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
+      <div style="font-weight:bolder">中国石化胜利中心三号平台工程</div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
-      <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
-<!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
-        <el-container style="height: 100%">
-          <el-menu class="el-menu-vertical-demo"
-                   :collapse="isCollapse"
-                   mode="vertical"
-                   :unique-opened="true"
-                   :router="menuRouter"
-                   :default-active="defaultOpen">
-            <el-submenu v-for="(item,index) in menuList" :key="index" :index="index + ''">
-              <template slot="title">
-                <i :class="item.icon"></i>
-                <span slot="title">{{item.header}}</span>
-              </template>
-              <el-menu-item-group style="text-align: left">
-                <el-menu-item v-for="(children,i) in item.childrens" @click="handleClick(children.path)" :key="i"
-                              :index="children.path">
-                  {{children.name}}
-                </el-menu-item>
-              </el-menu-item-group>
-              <el-submenu v-for="(center,icenter) in item.center" :key="icenter" :index="icenter + 'center'">
-                <template slot="title">
-                  <i :class="center.icon"></i>
-                  <span slot="title">{{center.header}}</span>
-                </template>
-                <el-menu-item v-for="(kids, ikid) in center.kids" @click="handleClick(kids.path)" :key="ikid"
-                              :index="kids.path + ''">
-                  {{kids.name}}
-                </el-menu-item>
-              </el-submenu>
-            </el-submenu> </el-menu>
-          <div class="bookmark" id="arrow" @click="cc">
-            <i :class="[arrow?'el-icon-caret-left Aback':'el-icon-caret-left Afront']"></i>
-          </div>
-        </el-container>
-
-      </el-aside>
-      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
-        <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 9999"></headerA>
+      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 0;">
 <!--        <template>-->
 <!--          <el-backtop target=".myBacktop"></el-backtop>-->
 <!--        </template>-->
@@ -55,8 +17,7 @@
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
-          <router-view style="margin-top:20px"></router-view>
-          <footerA style="height: auto;"></footerA>
+          <router-view></router-view>
         </el-main>
 <!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
 
@@ -77,8 +38,7 @@
   export default {
     name: "mainA",
     components: {
-      headerA,
-        footerA
+
     },
     data() {
       return {
@@ -225,6 +185,12 @@
     flex-wrap: wrap;
     align-items: center;
 
+}
+.bigHeader{
+  background: linear-gradient(to bottom, #002b58, #68b3ff);
+  color: white;
+  font-size: 22px;
+  font-weight: lighter;
 }
 
 

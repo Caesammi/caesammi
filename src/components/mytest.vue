@@ -1,7 +1,75 @@
 <template>
   <div id="myMain">
-    <Pie :id="idP1" :option="optionP1"></Pie>
-    <histogram :id="idH1" :option="optionH1"></histogram>
+    <el-row>
+      <el-col class="midContainer" :span="8">
+        <el-col>
+          <el-col class="smallTitle">
+            项目基本信息
+          </el-col>
+          <el-col>
+            line1 <br>
+            line2 <br>
+            line3
+            <el-divider></el-divider>
+            <el-col :span="12">
+              line1<br>
+              line2<br>
+              line3<br>
+            </el-col>
+            <el-col :span="12">
+              line1<br>
+              line2<br>
+              line3<br>
+            </el-col>
+          </el-col>
+        </el-col>
+        我是左边
+      </el-col>
+      <el-col class="midContainer" :span="16">
+        <el-col :span="12">
+          <el-col>
+            <el-col class="smallTitle">
+              项目要闻
+            </el-col>
+            <el-col v-for="(item,index) in 4" :span="12" :key="index">
+              item{{index}}
+            </el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="12">
+          <el-col>
+            <el-col class="smallTitle">
+              问题与重点工作
+            </el-col>
+            <el-col v-for="(item,index) in 4" :span="12" :key="index">
+              item{{index}}
+            </el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="24">
+          <el-menu
+              :default-active="activeIndex"
+              class="el-menu-demo"
+              mode="horizontal"
+              @select="handleSelect"
+             >
+<!--            background-color="#545c64"-->
+<!--            text-color="#fff"-->
+<!--            active-text-color="#ffd04b"-->
+            <el-menu-item v-for="(item, index) in menuList" :index="item.name" :key="index">
+              {{item.name}}
+            </el-menu-item>
+          </el-menu>
+          <el-col :span="24">
+                <histogram :id="idH1" :option="optionH1"></histogram>
+<!--                <Pie :id="idP1" :option="optionP1"></Pie>-->
+          </el-col>
+        </el-col>
+        我是右边
+      </el-col>
+    </el-row>
+
+
   </div>
 </template>
 
@@ -13,7 +81,7 @@ import histogram from './Widget/dHistogram'
 
 export default {
   name: "mytest",
-  components: { histogram, Pie },
+  components: { histogram },
   store:store,
   computed: {},
   data() {
@@ -117,10 +185,34 @@ export default {
             ['Others',   0.7]
           ]
         }]
-      }
+      },
+      activeIndex:'总体进度曲线',
+      menuList:[
+        {
+          name:'总体进度曲线'
+        },
+        {
+          name:'设计进度情况'
+        },
+        {
+          name:'采购进度情况'
+        },
+        {
+          name:'施工进度情况'
+        },
+        {
+          name:'生产准备情况'
+        },
+        {
+          name:'进度百分比明细'
+        }
+      ],   //导航菜单
     }
   },
   methods: {
+    handleSelect(key,keyPath){
+      console.log(key,keyPath)
+    },
   },
   mounted() {
 
@@ -134,6 +226,19 @@ export default {
 </script>
 
 <style scoped>
+#myMain{
+  width: 100%;
+}
+.midContainer{
+  border: 1px solid #adb2b8;
+  border-bottom-right-radius:15px ;
+}
+.smallTitle{
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #99ceff, #2991ff);
+  text-shadow:0px 2px 2px #000000;
+}
 .sss {
   color: aliceblue;
 }
