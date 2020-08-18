@@ -23,6 +23,16 @@
             </el-col>
           </el-col>
         </el-col>
+        <el-col>
+          <el-col class="smallTitle">
+            HES与质量
+          </el-col>
+          <el-col>
+            <el-col :span="12">
+              <dashBoard id="dash1" :option="dashOpt1"></dashBoard>
+            </el-col>
+          </el-col>
+        </el-col>
         我是左边
 
       </el-col>
@@ -121,10 +131,11 @@ import store from "@/store";
 import Highcharts from 'highcharts'
 import Pie from './Widget/dPie'
 import histogram from './Widget/dHistogram'
+import dashBoard from './Widget/dashBoard'
 
 export default {
   name: "mytest",
-  components: { histogram, Pie },
+  components: { histogram, Pie, dashBoard },
   store:store,
   computed: {},
   data() {
@@ -395,6 +406,30 @@ export default {
             ['Opera',     6.2],
             ['Others',   0.7]
           ]
+        }]
+      },
+      dashOpt1:{
+        yAxis: {
+          min: 0,
+          max: 200,
+          title: {
+            text: '速度'
+          }
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: '速度',
+          data: [80],
+          dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                '<span style="font-size:12px;color:silver">km/h</span></div>'
+          },
+          tooltip: {
+            valueSuffix: ' km/h'
+          }
         }]
       },
       activeIndex:'总体进度曲线',
