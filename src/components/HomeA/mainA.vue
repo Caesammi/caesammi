@@ -4,8 +4,9 @@
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
     <el-header class=" myFlex myBorderBottom bigHeader">
-      <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
-      <div style="font-weight:600;">中国石化胜利中心三号平台工程</div>
+      <div class="mainLogo"></div>
+<!--      <img alt style="width: 135px;height: 100%" src="../../assets/logo.png">-->
+      <div style="font-weight:600;margin-left: 20px;text-shadow: 0px 2px 2px #7e7e7e;">中国石化胜利中心三号平台工程</div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 0;">
@@ -190,8 +191,18 @@
   /*background: linear-gradient(to bottom, #002b58, #68b3ff);*/
   background: url('../../assets/TOP.png') no-repeat;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
+  border-bottom: none;
   font-weight: lighter;
+  -moz-box-shadow:0px 3px 15px -3px #696969;
+  -webkit-box-shadow:0px 3px 15px -3px #696969;
+  box-shadow:0px 3px 15px -3px #696969;
+}
+.mainLogo{
+  height: 70%;
+  width: 130px;
+  background: url('../../assets/logo1.png') no-repeat;
+  background-size: 100% 100%
 }
 
 

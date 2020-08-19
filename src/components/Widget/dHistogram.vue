@@ -24,7 +24,7 @@ export default {
     },
   },
   // components: { Sticky },
-  computed: {},
+
   data() {
     return {
       chartOptions: {
@@ -32,15 +32,28 @@ export default {
     }
   },
   methods: {
+    draw(){
+      HighCharts.chart(this.id, this.option)
+    }
   },
   mounted() {
     console.log('height',this.height)
     HighCharts.chart(this.id, this.option)
   },
-  watch: {
-    myArr: {
+  computed: {
+    getTitle:function () {
+      return this.option.title.text
     }
-
+  },
+  watch: {
+    getTitle:function (val) {
+      console.log(val)
+      HighCharts.chart(this.id, this.option).update({
+        title:{
+          text:val
+        }
+      })
+    }
   }
 }
 </script>
