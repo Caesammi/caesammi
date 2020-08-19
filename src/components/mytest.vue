@@ -86,7 +86,7 @@
                       slot="content">方向副主任和殷明汉总共分别出席活动方向副主任和殷明汉总共分别等等方向副主任和殷明汉总共分别等等{{item}}
                   </div>
 
-                  <div  style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;border-bottom: 1px solid #909399">
+                  <div  style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;border-bottom: 1px solid #727272">
                     ● 方向副主任和殷明汉总共分别出席活动方向副主任和殷明汉总共分别等等方向副主任和殷明汉总共分别等等{{index}}
                   </div>
 
@@ -109,7 +109,7 @@
                      slot="content">陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻{{item}}
                  </div>
 
-                 <div  style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;border-bottom: 1px solid #909399">
+                 <div  style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;border-bottom: 1px solid #727272">
                    ● 陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻{{index}}
                  </div>
 
@@ -239,7 +239,11 @@ export default {
         colors: ['#058DC7', '#50B432','#DDDF00', '#ED561B',
           '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
         title: {
-          text: '总体进度曲线'
+          text: '总体进度曲线',
+          style:{
+            color:'#727272'
+          },
+          margin:-10
         },
         yAxis: {
           title: {
@@ -330,7 +334,12 @@ export default {
         },colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
           '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
         title: {
-          text: ''
+          text: '总体进度曲线',
+          style:{
+            fontSize:'13px',
+            color:'#727272'
+          },
+          margin:10
         },
         plotOptions: {
           column: {
@@ -781,6 +790,7 @@ export default {
   watch: {
     activeName:function (){
       this.optionH1.title.text=this.activeName
+      this.optionH2.title.text=this.activeName
     }
 
   }
@@ -789,7 +799,7 @@ export default {
 
 <style scoped>
 #myMain{
-  color: #909399;
+  color: #727272;
   width: 100%;
 }
 .midContainer{
