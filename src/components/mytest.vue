@@ -6,20 +6,20 @@
           <el-col class="smallTitle">
             <label style="font-size: 12px">  </label>  项目基本信息
           </el-col>
-          <el-col class="paddingAllTen midContainer">
-            测试测试测试测试 <br>
-            测试测试测试测试 <br>
-            测试测试测试测试
+          <el-col style="font-size: 16px" class="paddingAllTen midContainer">
+            测试测试测试测试,测试测试测试测试 <br>
+            测试测试测试测试,测试测试测试测试 <br>
+            测试测试测试测试,测试测试测试测试
             <el-divider></el-divider>
             <el-col :span="12">
-              测试测试测试测试<br>
-              测试测试测试测试<br>
-              测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
             </el-col>
             <el-col :span="12">
-              测试测试测试测试<br>
-              测试测试测试测试<br>
-              测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
+              测试测试测试测试,测试测试测试测试<br>
             </el-col>
           </el-col>
         </el-col>
@@ -251,15 +251,15 @@ export default {
           },
         },{
           categories: [
-            '2015年', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '2016年', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '2016年'
+            '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年',
           ],
           gridLineWidth: 0,
-          // minTickInterval: 12,
+          minTickInterval: 12,
           labels: {
             whiteSpace: 'nowrap',
             textOverflow: 'none',
-            step: 12,
-            x: 0,
+            step: 1,
+            x: -200,
             y: 0,
           },
         },
@@ -267,7 +267,7 @@ export default {
         series: [{
           name: '温度',
           type: 'spline',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,],
           tooltip: {
             valueSuffix: ' °C'
           },
@@ -354,14 +354,14 @@ export default {
         },
           {
           categories: [
-            '2015年', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '2016年', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '2016年'
+            '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年',
           ],
           gridLineWidth: 0,
-          // minTickInterval: 5,
+          minTickInterval: 12,
           labels: {whiteSpace: 'nowrap',
             textOverflow: 'none',
-            step: 12,
-            x: 0,
+            step: 1,
+            x: -80,
             y: 0,
           },
         },
@@ -489,6 +489,9 @@ export default {
         }]
       },
       dashOpt1:{
+        chart: {
+          width:170,
+        },
         yAxis: {
           min: 0,
           max: 200,
@@ -597,7 +600,7 @@ export default {
   color: white;
   line-height: 1.8;
   background: url('../assets/xz.png') no-repeat;
-  background-color: white;
+  /*background-color: white;*/
   /*background: linear-gradient(to right, #99ceff, #2991ff);*/
   text-shadow:0px 2px 2px #484848;
 }
