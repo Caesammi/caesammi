@@ -6,7 +6,7 @@
           <el-col class="smallTitle">
             <label style="font-size: 12px">  </label>  项目基本信息
           </el-col>
-          <el-col style="font-size: 16px" class="paddingAllTen midContainer">
+          <el-col style="font-size: 16px;padding-bottom: 15px" class="paddingAllTen midContainer">
             ● 总投资:4.3亿元 <br>
             ● 开工日期: 2013年3月23日 <br>
             ● 计划投科日期: 2013年4月2日
@@ -78,7 +78,7 @@
               <label style="font-size: 12px">    </label>  项目要闻
             </el-col>
 
-            <el-col class="midContainer">
+            <el-col class="midContainer" style="padding-bottom: 10px">
               <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
                 <el-tooltip placement="top">
                   <div
@@ -101,7 +101,7 @@
             <el-col class="smallTitle">
               <label style="font-size: 12px">    </label>  问题与重点工作
             </el-col>
-           <el-col class="midContainer">
+           <el-col class="midContainer" style="padding-bottom: 10px">
              <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
                <el-tooltip placement="top">
                  <div
@@ -119,7 +119,7 @@
           </el-col>
         </el-col>
         <el-col :span="24">
-          <el-tabs style="margin-left: 10px;" v-model="activeName" @tab-click="handleClick">
+          <el-tabs style="margin-left: 10px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name" :name="item.name"></el-tab-pane>
           </el-tabs>
           <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;">
