@@ -6,7 +6,7 @@
     <el-header class=" myFlex myBorderBottom bigHeader">
       <div class="mainLogo"></div>
 <!--      <img alt style="width: 135px;height: 100%" src="../../assets/logo.png">-->
-      <div style="font-weight:600;margin-left: 20px;text-shadow: 0px 2px 2px #7e7e7e;">中国石化胜利中心三号平台工程</div>
+      <div style="font-weight:600;margin-left: 20px;text-shadow: 0 2px 2px #7e7e7e;">中国石化胜利中心三号平台工程</div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 0;">
@@ -190,13 +190,14 @@
 .bigHeader{
   /*background: linear-gradient(to bottom, #002b58, #68b3ff);*/
   background: url('../../assets/TOP.png') no-repeat;
+  background-size:cover;
   color: white;
   font-size: 20px;
   border-bottom: none;
   font-weight: lighter;
-  -moz-box-shadow:0px 3px 15px -3px #696969;
-  -webkit-box-shadow:0px 3px 15px -3px #696969;
-  box-shadow:0px 3px 15px -3px #696969;
+  -moz-box-shadow:0 3px 15px -3px #696969;
+  -webkit-box-shadow:0 3px 15px -3px #696969;
+  box-shadow:0 3px 15px -3px #696969;
 }
 .mainLogo{
   height: 70%;
