@@ -1,49 +1,43 @@
 <template>
-
-
-      <div class="about" style="width:3000px;height:3000px;background:black;border-right:1px red solid;textAlign:right">
-    This is an about page
+  <div id="app"
+       v-loading.fullscreen.lock="loading2"
+       element-loading-text="拼命加载中"
+       element-loading-spinner="el-icon-loading"
+       element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="amap-wrapper">
+      <el-amap :zoom="zoom" class="amap-box" :vid="'amap-vue'">
+        <!--        <el-amap-marker v-for="marker in markers" :events="marker.events"  :position="marker.position" :template="marker.template">-->
+        <!--        </el-amap-marker>-->
+      </el-amap>
+    </div>
   </div>
-
-
 </template>
+
 <script>
-//代理模式
-import store from "@/store";
-console.log(store.state.userName)
-        let Flower = function() {
+export default {
+  name: "mapA",
+  data(){
+    return{
+      zoom:1,
+      msg:'我的第一个mapapp',
+      loading2:true,
+      markers: [],
+    }
+  },
+  methods:{
+  },
+  mounted(){
+    setTimeout(()=>{
+      this.loading2 = false
+    },200)
+  }
 
-        }
-        let xiaoMing = {
-            //将花给B
-            sendFlower: function(target) {
-                let flower = new Flower()
-                target.receiveFlower(flower)
-            }
-        }
-        let B = {
-            //将花给A
-            receiveFlower: function(flower) {
-                //监听A的心情，给A的listenGoodMood方法传入方法，在合适的时间执行
-                A.listenGoodMood(function() {
-                    A.receiveFlower(flower)
-                })
-            }
-        }
-        let A = {
-            receiveFlower: function(flower) {
-                console.log('收到花'+ JSON.stringify(flower))
-            },
-            listenGoodMood: function(fn) {
-                setTimeout(function() {
-                    fn()
-                }, 1000)
-            }
-        }
-        //启动送花的方法
-        xiaoMing.sendFlower(B)
-
+}
 </script>
-<style scope>
-</style>
 
+<style scoped>
+.amap-wrapper {
+  width: 100%;
+  height: 100%;
+}
+</style>
