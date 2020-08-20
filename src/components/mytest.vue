@@ -4,9 +4,12 @@
       <el-col :span="8">
         <el-col class="marginTopTen">
           <el-col class="smallTitle">
-            <label style="font-size: 12px">  </label>  项目基本信息
+            <el-col>
+              <label style="font-size: 12px">  </label>  项目基本信息
+              <div class="moreButton">more</div>
+            </el-col>
           </el-col>
-          <el-col style="font-size: 16px;padding-bottom: 15px" class="paddingAllTen midContainer">
+          <el-col style="font-size: 16px;padding-bottom: 15px;position: relative" class="paddingAllTen midContainer">
             ● 总投资:4.3亿元 <br>
             ● 开工日期: 2013年3月23日 <br>
             ● 计划投科日期: 2013年4月2日
@@ -75,7 +78,10 @@
         <el-col class="marginTopTen" :span="12">
           <el-col>
             <el-col class="smallTitle">
-              <label style="font-size: 12px">    </label>  项目要闻
+              <el-col>
+                <label style="font-size: 12px">  </label>  项目要闻
+                <div class="moreButton">more</div>
+              </el-col>
             </el-col>
 
             <el-col class="midContainer" style="padding-bottom: 10px">
@@ -99,7 +105,10 @@
         <el-col class="marginTopTen" :span="12">
           <el-col>
             <el-col class="smallTitle">
-              <label style="font-size: 12px">    </label>  问题与重点工作
+              <el-col>
+                <label style="font-size: 12px">  </label>  问题与重点工作
+                <div class="moreButton">more</div>
+              </el-col>
             </el-col>
            <el-col class="midContainer" style="padding-bottom: 10px">
              <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
@@ -125,12 +134,12 @@
           <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;">
                 <histogram :id="idH1" :option="optionH1" height="500px"></histogram>
           </el-col>
-          <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;">
+          <el-col  :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;">
             <el-col  v-for="(item,index) in idH" :key="index">
               <histogram :id="item.id" :option="optionH2" height="166px"></histogram>
             </el-col>
           </el-col>
-          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 9999;transform: skewX(-5deg) rotate(2deg) scaleX(0.8) translateX(26px);" :span="16">
+          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 99;transform: skewX(-5deg) rotate(2deg) scaleX(0.8) translateX(26px);" :span="16">
             <el-col :span="6">2015年</el-col>
             <el-col :span="6">2016年</el-col>
             <el-col :span="6">2017年</el-col>
@@ -238,7 +247,7 @@ export default {
             enabled: true,
             alpha: 10,
             beta: 8,
-            depth:50,
+            depth:100,
             viewDistance: 25
           },
         },
@@ -256,7 +265,7 @@ export default {
             text: null
           },
           labels: {
-            format: '{value} %'
+            format: '{value} m'
           }
         },
         tooltip: {
@@ -306,7 +315,7 @@ export default {
         series: [{
           name: '图示',
           type: 'spline',
-          data: [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,160,170,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470],
+          data: [100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570],
           tooltip: {
             valueSuffix: ' °C'
           },
@@ -315,7 +324,7 @@ export default {
           {
             name: '图示',
             type: 'spline',
-            data: [20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490],
+            data: [110,131,154,179,206,235,266,299,334,371,410,451,494,539,586,635,686,739,794,851,910,971,1034,1099,1166,1235,1306,1379,1454,1531,1610,1691,1774,1859,1946,2035,2126,2219,2314,2411,2510,2611,2714,2819,2926,3035,3146,3259],
             tooltip: {
               valueSuffix: ' °C'
             },
@@ -324,12 +333,12 @@ export default {
             name:'图示',
             type: 'column',
             // xAxis: 1,//第二个X轴
-            data: [1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+            data: [0,1,4,9,16,25,36,49,64,81,100,121,144,169,196,225,256,289,324,361,400,441,484,529,576,625,676,729,784,841,900,961,1024,1089,1156,1225,1296,1369,1444,1521,1600,1681,1764,1849,1936,2025,2116,2209],
             stack: 1
           },{
             name:'图示',
             type: 'column',
-            data: [1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+            data: [100,121,144,169,196,225,256,289,324,361,400,441,484,529,576,625,676,729,784,841,900,961,1024,1089,1156,1225,1296,1369,1444,1521,1600,1681,1764,1849,1936,2025,2116,2209],
             stack: 1
           },]
       },
@@ -793,20 +802,21 @@ export default {
   },
   methods: {
     handleClick(tab,event){
+
       console.log(tab,event)
     },
   },
   mounted() {
-    let outPut = []
-    for(let i = 0 ; i<48;i++){
-      outPut.push(i*10+20)
-    }
-    console.log(JSON.stringify(outPut))
+    // let outPut = []
+    // for(let i = 10 ; i<58;i++){
+    //   outPut.push(Math.log2((i*10000)))
+    // }
+    // console.log(JSON.stringify(outPut))
   },
   watch: {
     activeName:function (){
-      this.optionH1.title.text=this.activeName
-      this.optionH2.title.text=this.activeName
+        this.optionH1.title.text=this.activeName
+        this.optionH2.title.text=this.activeName
     }
 
   }
@@ -842,6 +852,16 @@ export default {
   border: 1px solid #b2ceff;
   float: right;
   cursor: pointer;
+  border-radius: 3px;
+}
+.moreButton{
+  padding: 0 3px 0 3px;
+  font-size: 13px;
+  float: right;
+  color: #63A6D1;
+  cursor: pointer;
+  text-shadow: none;
+  margin-top: 3px;
   border-radius: 3px;
 }
 .commonFlexStart{
