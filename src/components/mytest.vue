@@ -45,7 +45,7 @@
             </el-col>
           </el-col>
         </el-col>
-        <el-col class="marginTopTen" style="background: white;box-shadow:4px 10px 15px -5px #CCCCCC;border-bottom-right-radius: 15px;border-bottom-left-radius: 15px">
+        <el-col class="marginTopTen" style="background: white;box-shadow:4px 10px 8px -5px #e1e1e1;border-bottom-right-radius: 15px;border-bottom-left-radius: 15px">
           <el-col class="smallTitle">
             <label style="font-size: 12px">    </label>  里程碑完成情况  </el-col>
           <el-col class="paddingAllTen">
@@ -58,7 +58,7 @@
         <el-col style="margin-top: 10px;border-radius: 15px;margin-bottom: 15px " align="center" class="paddingAllTen midContainer">
           <el-col  style="margin-top: 20px;background: white" class="paddingAllTen">
             <el-col>
-              <el-col align="right" :span="5">按期完成率:</el-col><el-col :span="18"><el-progress :stroke-width="13" :percentage="98" color="#FAECD8"></el-progress></el-col>
+              <el-col align="right" :span="5">按期完成率:</el-col><el-col :span="18"><el-progress :stroke-width="13" :percentage="98" color="#FF9131"></el-progress></el-col>
             </el-col>
            <el-col style="margin-top: 10px">
              <el-col align="right" :span="5">平均滞后天数:</el-col><el-col :span="18"><el-progress :stroke-width="13" :percentage="50" color="#409EFF"></el-progress></el-col>
@@ -830,7 +830,7 @@ export default {
 }
 .midContainer{
   background: white;
-  box-shadow:4px 10px 15px -5px #CCCCCC;
+  box-shadow:4px 10px 8px -5px #e1e1e1;
   border-bottom-right-radius:15px ;
 }
 .smallTitle{
@@ -845,10 +845,11 @@ export default {
 }
 
 .titleButton{
-  background: #a8cdfc;
+  background: #5FA4D0;
   padding: 0 3px 0 3px;
+  margin-top: 5px;
   position: absolute;
-  font-size: 13px;
+  font-size: 12px;
   border: 1px solid #b2ceff;
   float: right;
   cursor: pointer;
