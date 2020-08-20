@@ -27,18 +27,18 @@
           <el-col class="smallTitle">
             <label style="font-size: 12px">    </label>  HES与质量
           </el-col>
-          <el-col class="midContainer">
+          <el-col style="padding-bottom: 20px;" class="midContainer">
             <el-col :span="8">
               <dashBoard id="dash1" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col class="dashBoardTitle" :span="20" align="center">HES情况</el-col>
+              <el-col align="center">HES情况</el-col>
             </el-col>
             <el-col :span="8">
               <dashBoard id="dash2" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col class="dashBoardTitle" :span="20" align="center">质量情况</el-col>
+              <el-col align="center">质量情况</el-col>
             </el-col>
             <el-col :span="8">
               <dashBoard id="dash3" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col class="dashBoardTitle" :span="20" align="center">风险管理情况</el-col>
+              <el-col align="center">风险管理情况</el-col>
             </el-col>
           </el-col>
         </el-col>
@@ -129,6 +129,12 @@
             <el-col  v-for="(item,index) in idH" :key="index">
               <histogram :id="item.id" :option="optionH2" height="166px"></histogram>
             </el-col>
+          </el-col>
+          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 9999;transform: skewX(-5deg) rotate(2deg) scaleX(0.8) translateX(26px);" :span="16">
+            <el-col :span="6">2015年</el-col>
+            <el-col :span="6">2016年</el-col>
+            <el-col :span="6">2017年</el-col>
+            <el-col :span="6">2018年</el-col>
           </el-col>
           <el-col :span="12" style="margin-top: 10px">
             <el-col>
@@ -273,16 +279,25 @@ export default {
             // grouping: false,
             groupZPadding: 1
           },
-        },	xAxis: [{
+        },
+        xAxis: [{
+          // minorGridLineWidth: 1,
+          // minorTickInterval: 'auto',
+          // minorTickWidth: 5,
+          // minorTickLength:100,
           crosshair: true,
           categories: [
             '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12','1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12'
           ],
           // gridLineWidth: 0,
+          // minTickInterval: 0,
+          lineWidth: 1,
           tickWidth: 1,
           tickLength: 30,
           labels: {
-            align: 'left',
+            textOverflow: 'none',
+            step: 1,
+            align: 'center',
             x: 0,
             y: 25,
           },
@@ -308,6 +323,7 @@ export default {
           },{
             name:'图示',
             type: 'column',
+            // xAxis: 1,//第二个X轴
             data: [1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
             stack: 1
           },{
@@ -622,7 +638,7 @@ export default {
             //仪表盘详情，用于显示数据。
             detail: {
               show: true,
-              offsetCenter: [0, "-40%"],
+              offsetCenter: [0, "-30%"],
               color: "#ffffff",
               textStyle: {
                 fontSize: 15,
@@ -640,7 +656,7 @@ export default {
         series: [{
           name: "刻度",
           type: "gauge",
-          center: ["50%", "80%"],
+          center: ["50%", "87%"],
           radius: '110%',
           min: 0, //最小刻度
           max: 100, //最大刻度
@@ -687,7 +703,7 @@ export default {
           {
             type: "gauge",
             radius: '100%',
-            center: ["50%", "80%"],
+            center: ["50%", "87%"],
             splitNumber: 0, //刻度数量
             startAngle: 180,
             endAngle: 0,
@@ -733,16 +749,16 @@ export default {
               textStyle: {
                 fontWeight: "bold",
                 color: "#0ab7ff",
-                fontSize: 30,
+                fontSize: 20,
               },
             },
             //仪表盘详情，用于显示数据。
             detail: {
               show: true,
-              offsetCenter: [0, "-40%"],
+              offsetCenter: [0, "-30%"],
               color: "#ffffff",
               textStyle: {
-                fontSize: 60,
+                fontSize: 40,
                 color: "#4aca96"
               },
             },
@@ -839,8 +855,5 @@ export default {
 }
 .marginTopTen{
   margin-top: 10px;
-}
-.dashBoardTitle{
-  margin-bottom: 20px;
 }
 </style>
