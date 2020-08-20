@@ -14,10 +14,10 @@ const routes = [
     component: getComponent('components/HomeA/mainA.vue'),
     children: [
       {
-        path: '/myTest',
-        name: 'myTest',
-        component: getComponent('components/mytest.vue'),
-        meta: {title: 'myTest'}
+        path: '/shengLiHome',
+        name: 'shengLiHome',
+        component: getComponent('components/ShengLiHome.vue'),
+        meta: {title: '中国石化胜利中心三号工程平台'}
       },
       {
         path: '/about',
@@ -37,7 +37,7 @@ const routes = [
   {
     path: '/test2',
     name: 'test2',
-    component: getComponent('components/mytest.vue'),
+    component: getComponent('components/ShengLiHome.vue'),
   },
 
 ]

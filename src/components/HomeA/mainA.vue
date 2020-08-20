@@ -68,7 +68,7 @@
       },
     },
     mounted(){
-      this.$router.push('mytest')
+      this.$router.push('shengLiHome')
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
       console.log('---路由路径---')

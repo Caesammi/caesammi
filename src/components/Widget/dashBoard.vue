@@ -36,15 +36,16 @@ export default {
       let getID = document.getElementById(this.id)
       let myChart = echarts.init(getID)
       myChart.setOption(this.option)
-      window.onresize = () => {
-        echarts.init(document.getElementById(this.id)).resize();
-      }
+
 
     }
   },
   mounted() {
     console.log(this.option)
     this.draw()
+    window.onresize = () => {
+      echarts.init(document.getElementById(this.id)).resize();
+    }
   },
   watch: {
     myArr: {
