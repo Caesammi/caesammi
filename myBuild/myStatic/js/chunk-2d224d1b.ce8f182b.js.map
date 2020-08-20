@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/components/HomeA/img/deyee.jpg"],"names":["module","exports"],"mappings":"mGAAAA,EAAOC,QAAU,IAA0B","file":"myStatic/js/chunk-2d224d1b.ce8f182b.js","sourcesContent":["module.exports = __webpack_public_path__ + \"myStatic/img/deyee.8fc7a78c.jpg\";"],"sourceRoot":""}

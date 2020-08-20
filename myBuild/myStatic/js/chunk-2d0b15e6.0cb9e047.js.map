@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/assets/shihuaLogo.jpg"],"names":["module","exports"],"mappings":"qGAAAA,EAAOC,QAAU,IAA0B","file":"myStatic/js/chunk-2d0b15e6.0cb9e047.js","sourcesContent":["module.exports = __webpack_public_path__ + \"myStatic/img/shihuaLogo.714f2788.jpg\";"],"sourceRoot":""}

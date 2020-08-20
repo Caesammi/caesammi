@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d22269e"],{cf05:function(n,o,p){n.exports=p.p+"myStatic/img/logo.340dd9dd.png"}}]);
-//# sourceMappingURL=chunk-2d22269e.5d82c707.js.map

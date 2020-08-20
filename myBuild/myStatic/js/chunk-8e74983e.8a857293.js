@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-8e74983e"],{ab94:function(t,c,e){"use strict";var n=e("cc9b"),o=e.n(n);o.a},b810:function(t,c,e){"use strict";e.r(c);var n=function(){var t=this,c=t.$createElement,e=t._self._c||c;return e("el-footer",{attrs:{id:"footer"}},[t._v(" 我是copyright@ ")])},o=[],r={name:"footerA"},a=r,u=(e("ab94"),e("2877")),i=Object(u["a"])(a,n,o,!1,null,"0424c3cc",null);c["default"]=i.exports},cc9b:function(t,c,e){}}]);
-//# sourceMappingURL=chunk-8e74983e.8a857293.js.map

@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b9c15"],{"33fe":function(n,p,c){n.exports=c.p+"myStatic/img/WechatIMG23.68fa7f82.png"}}]);
-//# sourceMappingURL=chunk-2d0b9c15.a45274d2.js.map
