@@ -339,7 +339,7 @@ export default {
           yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'rgb(50, 150, 250)'},
+              color:'rgba(50, 150, 250,0.7)'},
           },
           data: rateData
         },
@@ -353,7 +353,7 @@ export default {
             yAxisIndex: 1,
             itemStyle: {
               normal: {
-                color:'rgb(80, 180, 50)'},
+                color:'rgba(80, 180, 50, 0.7)'},
             },
             data: rateData.map(alItem=>alItem*2)
           },
@@ -361,7 +361,7 @@ export default {
           {
             name: '已贯通',
             type: 'bar',
-            barWidth: 10,
+            barWidth: 8,
             itemStyle: {
               normal: {
                 barBorderRadius: 5,
@@ -381,7 +381,7 @@ export default {
             name: '计划贯通',
             type: 'bar',
             // barGap: '-100%',
-            barWidth: 10,
+            barWidth: 8,
             itemStyle: {
               normal: {
                 barBorderRadius: 5,
@@ -483,7 +483,7 @@ export default {
           yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'rgb(50, 150, 250)'},
+              color:'rgba(50, 150, 250, 0.5)'},
           },
           data: rateData
         },
@@ -497,7 +497,7 @@ export default {
             yAxisIndex: 1,
             itemStyle: {
               normal: {
-                color:'rgb(80, 180, 50)'},
+                color:'rgba(80, 180, 50, 0.5)'},
             },
             data: rateData.map(alItem=>alItem*2)
           },
