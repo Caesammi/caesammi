@@ -1,30 +1,29 @@
 <template>
   <div class="container">
-    <div :id="id" :option="option" :style="{height:height}"></div>
+    <div :style="{width:'100%',height: height}" :id="id"></div>
   </div>
 </template>
 
 <script>
 import store from "@/store";
-import HighCharts from 'highcharts'
-
+import echarts from 'echarts'
 export default {
-  name: "dHistogram",
+  name: "dashBoard",
   store:store,
   props: {
     id: {
       type: String
     },
-    height:{
-      type:String
-    },
     //option 是图表的配置数据
     option: {
       type: Object
     },
+    height:{
+      type: String
+    }
   },
   // components: { Sticky },
-
+  computed: {},
   data() {
     return {
       chartOptions: {
@@ -33,27 +32,27 @@ export default {
   },
   methods: {
     draw(){
-      HighCharts.chart(this.id, this.option)
+      // let id = this.id
+      let getID = document.getElementById(this.id)
+      let myChart = echarts.init(getID)
+      myChart.setOption(this.option)
+
+
     }
   },
   mounted() {
-    console.log('height',this.height)
-    HighCharts.chart(this.id, this.option)
-  },
-  computed: {
-    getTitle:function () {
-      return this.option.title.text
+
+
+    console.log(this.option)
+    this.draw()
+    window.onresize = () => {
+      echarts.init(document.getElementById(this.id)).resize();
     }
   },
   watch: {
-    getTitle:function (val) {
-      console.log(val)
-      HighCharts.chart(this.id, this.option).update({
-        title:{
-          text:val
-        }
-      })
+    myArr: {
     }
+
   }
 }
 </script>

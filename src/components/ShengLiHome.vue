@@ -204,7 +204,26 @@ import echarts from 'echarts'
 import Pie from './Widget/dPie'
 import histogram from './Widget/dHistogram'
 import dashBoard from './Widget/dashBoard'
-
+var category = ['市区','万州','江北','南岸','北碚','綦南','长寿','永川','璧山','江津','城口','大足','垫江','丰都','奉节','合川','江津区','开州','南川','彭水','黔江','石柱','铜梁','潼南','巫山','巫溪','武隆','秀山','酉阳','云阳','忠县','川东','检修'];
+var dottedBase = [];
+var lineData = [18092,20728,24045,28348,32808
+  ,36097,39867,44715,48444,50415
+  ,56061,62677,59521,67560,18092,20728,24045,28348,32808
+  ,36097,39867,44715,48444,50415,36097,39867,44715,48444,50415
+  ,50061,32677,49521,32808];
+var barData = [4600,5000,5500,6500,7500
+  ,8500,9900,12500,14000,21500
+  ,23200,24450,25250,33300,4600,5000,5500,6500,7500
+  ,8500,9900,22500,14000,21500,8500,9900,12500,14000,21500
+  ,23200,24450,25250,7500];
+var rateData = [];
+32808
+for (var i = 0; i < 33; i++) {
+  // var date = i+2001;
+  // category.push(date)
+  var rate=barData[i]/lineData[i];
+  rateData[i] = rate.toFixed(2);
+}
 export default {
   name: "mytest",
   components: { histogram, Pie, dashBoard },
@@ -212,6 +231,7 @@ export default {
   computed: {},
   data() {
     return {
+
       touZiList:[
         {
           content:'年度完成情况',
@@ -237,216 +257,265 @@ export default {
       ],
       idH1: 'testH',
       optionH1: {
-        chart: {
-          renderTo: 'container',
-          type: 'column',
-          marginRight: 30,
-          height: 500,
-          spacing:[10,10,10,10],
-          options3d: {
-            enabled: true,
-            alpha: 10,
-            beta: 8,
-            depth:100,
-            viewDistance: 25
-          },
-        },
-        colors: ['#058DC7', '#50B432','#DDDF00', '#ED561B',
-          '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
         title: {
-          text: '总体进度曲线',
-          style:{
-            color:'#727272'
+          text: '增量设备贯通情况-单位',
+          x: 'center',
+          y: 0,
+          textStyle:{
+            color:'#B4B4B4',
+            fontSize:16,
+            fontWeight:'normal',
           },
-          margin:-10
+
         },
-        yAxis: {
-          title: {
-            text: null
-          },
-          labels: {
-            format: '{value} m'
+        backgroundColor: '#fff',
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor:'rgba(255,255,255,0.1)',
+          axisPointer: {
+            type: 'shadow',
+            label: {
+              show: true,
+              backgroundColor: '#7B7DDC'
+            }
           }
         },
-        tooltip: {
-          // head + 每个 point + footer 拼接成完整的 table
-          headerFormat: '',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} m</b></td></tr>',
-          footerFormat: '</table>',
-          // shared: true,
-          useHTML: true
+        legend: {
+          data: ['已贯通', '计划贯通','贯通率',],
+          textStyle: {
+            color: '#B4B4B4'
+          },
+          top:'7%',
         },
-        subtitle: {
-          text: ''
+        grid:{
+          x:'12%',
+          width:'82%',
+          y:'12%',
         },
-        plotOptions: {
-          column: {
-            depth: 30,
-            opacity:0.8,
-            // stacking: 'normal',
-            // grouping: false,
-            groupZPadding: 1
+        xAxis: {
+          data: category,
+          axisLine: {
+            lineStyle: {
+              color: '#B4B4B4'
+            }
+          },
+          axisTick:{
+            show:false,
           },
         },
-        xAxis: [{
-          // minorGridLineWidth: 1,
-          // minorTickInterval: 'auto',
-          // minorTickWidth: 5,
-          // minorTickLength:100,
-          crosshair: true,
-          categories: [
-            '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12','1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12'
-          ],
-          // gridLineWidth: 0,
-          // minTickInterval: 0,
-          lineWidth: 1,
-          tickWidth: 1,
-          tickLength: 30,
-          labels: {
-            textOverflow: 'none',
-            step: 1,
-            align: 'center',
-            x: 0,
-            y: 25,
+        yAxis: [{
+
+          splitLine: {show: false},
+          axisLine: {
+            lineStyle: {
+              color: '#B4B4B4',
+            }
           },
-        },
-        ],
-        series: [{
-          name: '图示',
-          type: 'spline',
-          data: [100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570],
-          tooltip: {
-            valueSuffix: ' °C'
-          },
-          stack: 0
+
+          axisLabel:{
+            formatter:'{value} ',
+          }
         },
           {
-            name: '图示',
-            type: 'spline',
-            data: [110,131,154,179,206,235,266,299,334,371,410,451,494,539,586,635,686,739,794,851,910,971,1034,1099,1166,1235,1306,1379,1454,1531,1610,1691,1774,1859,1946,2035,2126,2219,2314,2411,2510,2611,2714,2819,2926,3035,3146,3259],
-            tooltip: {
-              valueSuffix: ' °C'
+
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
             },
-            stack: 0
-          },{
-            name:'图示',
-            type: 'column',
-            // xAxis: 1,//第二个X轴
-            data: [0,1,4,9,16,25,36,49,64,81,100,121,144,169,196,225,256,289,324,361,400,441,484,529,576,625,676,729,784,841,900,961,1024,1089,1156,1225,1296,1369,1444,1521,1600,1681,1764,1849,1936,2025,2116,2209],
-            stack: 1
-          },{
-            name:'图示',
-            type: 'column',
-            data: [100,121,144,169,196,225,256,289,324,361,400,441,484,529,576,625,676,729,784,841,900,961,1024,1089,1156,1225,1296,1369,1444,1521,1600,1681,1764,1849,1936,2025,2116,2209],
-            stack: 1
-          },]
+            axisLabel:{
+              formatter:'{value} ',
+            }
+          }],
+
+        series: [{
+          name: '贯通率',
+          type: 'line',
+          smooth: true,
+          showAllSymbol: true,
+          symbol: 'emptyCircle',
+          symbolSize: 8,
+          yAxisIndex: 1,
+          itemStyle: {
+            normal: {
+              color:'#F02FC2'},
+          },
+          data: rateData
+        },
+          {
+            name: '已贯通',
+            type: 'bar',
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      {offset: 0, color: '#956FD4'},
+                      {offset: 1, color: '#3EACE5'}
+                    ]
+                )
+              }
+            },
+            data: barData
+          },
+
+          {
+            name: '计划贯通',
+            type: 'bar',
+            // barGap: '-100%',
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      {offset: 0, color: 'rgba(156,107,211,0.5)'},
+                      {offset: 0.2, color: 'rgba(156,107,211,0.3)'},
+                      {offset: 1, color: 'rgba(226, 212, 242, 0.7)'}
+                    ]
+                )
+              }
+            },
+            z: -12,
+
+            data: lineData
+          },
+        ]
       },
       optionH2: {
-        chart: {
-          renderTo: 'container',
-          type: 'column',
-          marginRight: 30,
-          height: 166,
-          options3d: {
-            enabled: true,
-            alpha: 4,
-            beta: 8,
-            depth:50,
-            viewDistance: 25
-          },
-          spacing:[10,10,10,10]
-        },colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00',
-          '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
         title: {
-          text: '总体进度曲线',
-          style:{
-            fontSize:'13px',
-            color:'#727272'
+          text: '增量设备贯通情况-单位',
+          x: 'center',
+          y: 0,
+          textStyle:{
+            color:'#B4B4B4',
+            fontSize:16,
+            fontWeight:'normal',
           },
-          margin:10
+
         },
-        plotOptions: {
-          column: {
-            depth: 30,
-            opacity:0.8,
-            stacking: 'normal',
-            grouping: false,
-            groupZPadding: 1
-          },
-        },
+        backgroundColor: '#fff',
         tooltip: {
-          // head + 每个 point + footer 拼接成完整的 table
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} m</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true
-        },
-        yAxis: {
-          title: {
-            text: null
-          },
-          labels: {
-            format: '{value} m'
+          trigger: 'axis',
+          backgroundColor:'rgba(255,255,255,0.1)',
+          axisPointer: {
+            type: 'shadow',
+            label: {
+              show: true,
+              backgroundColor: '#7B7DDC'
+            }
           }
         },
-        xAxis: [{
-          categories: [
-            '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12', '1', '2', '3', '4', '5','6', '7', '8', '9', '10','11', '12'
-          ],
-          gridLineWidth: 0,
-          tickWidth: 2,
-          tickLength: 10,
-          labels: {
-            align: 'left',
-            x: 0,
-            y: 25,
+        legend: {
+          data: ['已贯通', '计划贯通','贯通率',],
+          textStyle: {
+            color: '#B4B4B4'
           },
+          top:'7%',
+        },
+        grid:{
+          x:'12%',
+          width:'82%',
+          y:'12%',
+        },
+        xAxis: {
+          data: category,
+          axisLine: {
+            lineStyle: {
+              color: '#B4B4B4'
+            }
+          },
+          axisTick:{
+            show:false,
+          },
+        },
+        yAxis: [{
+
+          splitLine: {show: false},
+          axisLine: {
+            lineStyle: {
+              color: '#B4B4B4',
+            }
+          },
+
+          axisLabel:{
+            formatter:'{value} ',
+          }
         },
           {
-          categories: [
-            '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2015年', '2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年','2016年',
-          ],
-          gridLineWidth: 0,
-          minTickInterval: 12,
-          labels: {whiteSpace: 'nowrap',
-            textOverflow: 'none',
-            step: 1,
-            x: -80,
-            y: 0,
-          },
-        },
-        ],
-        series: [{
-          name: '图示',
-          type: 'spline',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-          tooltip: {
-            valueSuffix: ' °C'
-          },
-          stack: 0
-        },
-          {
-            name: '图示',
-            type: 'spline',
-            data:  [8.0, 116.9, 449.5, 514.5, 218.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,8.0, 116.9, 449.5, 514.5, 218.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-            tooltip: {
-              valueSuffix: ' °C'
+
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
             },
-            stack: 0
-          },{
-            name:'图示',
-            type: 'column',
-            data: [1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-            stack: 1
-          },{
-            name:'图示',
-            type: 'column',
-            data: [1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,1.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-            stack: 1
-          },]
+            axisLabel:{
+              formatter:'{value} ',
+            }
+          }],
+
+        series: [{
+          name: '贯通率',
+          type: 'line',
+          smooth: true,
+          showAllSymbol: true,
+          symbol: 'emptyCircle',
+          symbolSize: 5,
+          yAxisIndex: 1,
+          itemStyle: {
+            normal: {
+              color:'#F02FC2'},
+          },
+          data: rateData
+        },
+
+          {
+            name: '已贯通',
+            type: 'bar',
+            barWidth: 2,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      {offset: 0, color: '#956FD4'},
+                      {offset: 1, color: '#3EACE5'}
+                    ]
+                )
+              }
+            },
+            data: barData
+          },
+
+          {
+            name: '计划贯通',
+            type: 'bar',
+            // barGap: '-100%',
+            barWidth: 2,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      {offset: 0, color: 'rgba(156,107,211,0.5)'},
+                      {offset: 0.2, color: 'rgba(156,107,211,0.3)'},
+                      {offset: 1, color: 'rgba(226, 212, 242, 0.7)'}
+                    ]
+                )
+              }
+            },
+            z: -12,
+
+            data: lineData
+          },
+        ]
       },
       idP1:'testP',
       optionP1:{
@@ -805,8 +874,32 @@ export default {
 
       console.log(tab,event)
     },
+    setHistoData(){
+      var category = ['市区','万州','江北','南岸','北碚','綦南','长寿','永川','璧山','江津','城口','大足','垫江','丰都','奉节','合川','江津区','开州','南川','彭水','黔江','石柱','铜梁','潼南','巫山','巫溪','武隆','秀山','酉阳','云阳','忠县','川东','检修'];
+      var dottedBase = [];
+      var lineData = [18092,20728,24045,28348,32808
+        ,36097,39867,44715,48444,50415
+        ,56061,62677,59521,67560,18092,20728,24045,28348,32808
+        ,36097,39867,44715,48444,50415,36097,39867,44715,48444,50415
+        ,50061,32677,49521,32808];
+      var barData = [4600,5000,5500,6500,7500
+        ,8500,9900,12500,14000,21500
+        ,23200,24450,25250,33300,4600,5000,5500,6500,7500
+        ,8500,9900,22500,14000,21500,8500,9900,12500,14000,21500
+        ,23200,24450,25250,7500];
+      var rateData = [];
+      32808
+      for (var i = 0; i < 33; i++) {
+        // var date = i+2001;
+        // category.push(date)
+        var rate=barData[i]/lineData[i];
+        rateData[i] = rate.toFixed(2);
+      }
+    }
   },
   mounted() {
+    this.setHistoData()
+
     // let outPut = []
     // for(let i = 10 ; i<58;i++){
     //   outPut.push(Math.log2((i*10000)))
