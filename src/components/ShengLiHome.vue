@@ -139,7 +139,7 @@
               <histogram :id="item.id" :option="optionH2" height="166px"></histogram>
             </el-col>
           </el-col>
-          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 99;transform: skewX(-5deg) rotate(2deg) scaleX(0.8) translateX(26px);" :span="16">
+          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 99;transform: skewX(-5deg) rotate(1deg) scaleX(0.8) translateX(26px);" :span="16">
             <el-col :span="6">2015年</el-col>
             <el-col :span="6">2016年</el-col>
             <el-col :span="6">2017年</el-col>
@@ -245,9 +245,9 @@ export default {
           spacing:[10,10,10,10],
           options3d: {
             enabled: true,
-            alpha: 10,
-            beta: 8,
-            depth:100,
+            alpha: 6,
+            beta: 2,
+            depth:30,
             viewDistance: 25
           },
         },
