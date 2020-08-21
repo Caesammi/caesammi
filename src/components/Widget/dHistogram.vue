@@ -8,7 +8,7 @@
 import store from "@/store";
 import echarts from 'echarts'
 export default {
-  name: "dashBoard",
+  name: "dHistogram",
   store:store,
   props: {
     id: {

@@ -1,15 +1,14 @@
 <template>
   <div class="container">
-    <div :id="id" :option="option"></div>
+    <div :style="{width:'100%',height: height}" :id="id"></div>
   </div>
 </template>
 
 <script>
 import store from "@/store";
-import HighCharts from 'highcharts'
-
+import echarts from 'echarts'
 export default {
-  name: "dPie",
+  name: "dHistogram",
   store:store,
   props: {
     id: {
@@ -18,6 +17,9 @@ export default {
     //option 是图表的配置数据
     option: {
       type: Object
+    },
+    height:{
+      type: String
     }
   },
   // components: { Sticky },
@@ -29,9 +31,23 @@ export default {
     }
   },
   methods: {
+    draw(){
+      // let id = this.id
+      let getID = document.getElementById(this.id)
+      let myChart = echarts.init(getID)
+      myChart.setOption(this.option)
+
+
+    }
   },
   mounted() {
-    HighCharts.chart(this.id, this.option)
+
+
+    console.log(this.option)
+    this.draw()
+    window.onresize = () => {
+      echarts.init(document.getElementById(this.id)).resize();
+    }
   },
   watch: {
     myArr: {
