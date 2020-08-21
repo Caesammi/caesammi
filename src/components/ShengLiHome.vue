@@ -268,7 +268,7 @@ export default {
           },
 
         },
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         tooltip: {
           trigger: 'axis',
           backgroundColor:'rgba(255,255,255,0.1)',
@@ -339,10 +339,25 @@ export default {
           yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'#F02FC2'},
+              color:'rgb(50, 150, 250)'},
           },
           data: rateData
         },
+          {
+            name: '贯通率',
+            type: 'line',
+            smooth: true,
+            showAllSymbol: true,
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color:'rgb(80, 180, 50)'},
+            },
+            data: rateData.map(alItem=>alItem*2)
+          },
+
           {
             name: '已贯通',
             type: 'bar',
@@ -353,8 +368,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: '#956FD4'},
-                      {offset: 1, color: '#3EACE5'}
+                      {offset: 0, color: 'rgba(217, 218, 92,0.7)'},
+                      {offset: 1, color: 'rgba(217, 218, 92,0.3)'}
                     ]
                 )
               }
@@ -373,9 +388,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(156,107,211,0.5)'},
-                      {offset: 0.2, color: 'rgba(156,107,211,0.3)'},
-                      {offset: 1, color: 'rgba(226, 212, 242, 0.7)'}
+                      {offset: 0, color: 'rgba(228, 131, 93,0.5)'},
+                      {offset: 1, color: 'rgba(228, 131, 93, 0.3)'}
                     ]
                 )
               }
@@ -398,7 +412,7 @@ export default {
           },
 
         },
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         tooltip: {
           trigger: 'axis',
           backgroundColor:'rgba(255,255,255,0.1)',
@@ -465,14 +479,28 @@ export default {
           smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
-          symbolSize: 5,
+          symbolSize: 4,
           yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'#F02FC2'},
+              color:'rgb(50, 150, 250)'},
           },
           data: rateData
         },
+          {
+            name: '贯通率',
+            type: 'line',
+            smooth: true,
+            showAllSymbol: true,
+            symbol: 'emptyCircle',
+            symbolSize: 4,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color:'rgb(80, 180, 50)'},
+            },
+            data: rateData.map(alItem=>alItem*2)
+          },
 
           {
             name: '已贯通',
@@ -484,8 +512,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: '#956FD4'},
-                      {offset: 1, color: '#3EACE5'}
+                      {offset: 0, color: 'rgba(217, 218, 92,0.7)'},
+                      {offset: 1, color: 'rgba(217, 218, 92,0.3)'}
                     ]
                 )
               }
@@ -504,9 +532,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(156,107,211,0.5)'},
-                      {offset: 0.2, color: 'rgba(156,107,211,0.3)'},
-                      {offset: 1, color: 'rgba(226, 212, 242, 0.7)'}
+                      {offset: 0, color: 'rgba(228, 131, 93,0.5)'},
+                      {offset: 1, color: 'rgba(228, 131, 93, 0.3)'}
                     ]
                 )
               }
