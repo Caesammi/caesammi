@@ -32,16 +32,16 @@
           </el-col>
           <el-col style="padding-bottom: 20px;" class="midContainer">
             <el-col :span="8">
-              <dashBoard id="dash1" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col align="center">HES情况</el-col>
+              <dashBoard id="dash1" :option="dashOpt1" height="146px"></dashBoard>
+              <el-col align="center"><div class="mySubTitle">HES情况</div></el-col>
             </el-col>
             <el-col :span="8">
-              <dashBoard id="dash2" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col align="center">质量情况</el-col>
+              <dashBoard id="dash2" :option="dashOpt1" height="146px"></dashBoard>
+              <el-col align="center"><div class="mySubTitle">质量情况</div></el-col>
             </el-col>
             <el-col :span="8">
-              <dashBoard id="dash3" :option="dashOpt1" height="166px"></dashBoard>
-              <el-col align="center">风险管理情况</el-col>
+              <dashBoard id="dash3" :option="dashOpt1" height="146px"></dashBoard>
+              <el-col align="center"><div class="mySubTitle">风险管理情况</div></el-col>
             </el-col>
           </el-col>
         </el-col>
@@ -50,8 +50,8 @@
             <label style="font-size: 12px">    </label>  里程碑完成情况  </el-col>
           <el-col class="paddingAllTen">
             <el-col>
-              <dashBoard id="dash4" :option="dashOpt2" height="180px"></dashBoard>
-              <el-col class="dashBoardTitle" align="center">总体状况</el-col>
+              <dashBoard id="dash4" :option="dashOpt2" height="200px"></dashBoard>
+              <el-col style="margin-top: -15px;" class="dashBoardTitle" align="center"><div style="width: 35%" class="mySubTitle">总体状况</div></el-col>
             </el-col>
           </el-col>
         </el-col>
@@ -678,8 +678,8 @@ export default {
           axisLabel: {
             show: true,
             color: "#4b695e",
-            fontSize: 9,
-            distance: -20,
+            fontSize: 8,
+            distance: -15,
             formatter: function(v) {
               return v;
             },
@@ -692,11 +692,11 @@ export default {
               width: 1,
               // length:10
             },
-            length: -10,
+            length: -7,
           }, //刻度样式
           splitLine: {
             show: true,
-            length: -10,
+            length: -7,
             lineStyle: {
               color: "#4aca96",
               width: 2
@@ -809,11 +809,11 @@ export default {
               width: 1,
               // length:10
             },
-            length: -20,
+            length: -10,
           }, //刻度样式
           splitLine: {
             show: true,
-            length: -20,
+            length: -10,
             lineStyle: {
               color: "#4aca96",
               width: 2
@@ -830,7 +830,7 @@ export default {
             axisLine: {
               show: true,
               lineStyle: {
-                width: 50,
+                width: 30,
                 color: [
                   [
                     1, new echarts.graphic.LinearGradient(
@@ -878,7 +878,7 @@ export default {
               offsetCenter: [0, "-30%"],
               color: "#ffffff",
               textStyle: {
-                fontSize: 30,
+                fontSize: 25,
                 color: "#4aca96"
               },
             },
@@ -1011,5 +1011,11 @@ export default {
 }
 .marginTopTen{
   margin-top: 10px;
+}
+.mySubTitle{
+  width: 61%;
+  background: rgb(225, 236, 252);
+  border: 1px solid #9898ff33;
+  border-radius: 5px;
 }
 </style>
