@@ -50,7 +50,7 @@
             <label style="font-size: 12px">    </label>  里程碑完成情况  </el-col>
           <el-col class="paddingAllTen">
             <el-col>
-              <dashBoard id="dash4" :option="dashOpt2" height="290px"></dashBoard>
+              <dashBoard id="dash4" :option="dashOpt2" height="180px"></dashBoard>
               <el-col class="dashBoardTitle" align="center">总体状况</el-col>
             </el-col>
           </el-col>
@@ -60,12 +60,12 @@
             <el-col>
               <el-col align="right" :span="5">按期完成率:</el-col><el-col :span="18"><el-progress :stroke-width="13" :percentage="98" color="#FF9131"></el-progress></el-col>
             </el-col>
-           <el-col style="margin-top: 10px">
+           <el-col style="margin-top: 20px">
              <el-col align="right" :span="5">平均滞后天数:</el-col><el-col :span="18"><el-progress :stroke-width="13" :percentage="50" color="#409EFF"></el-progress></el-col>
            </el-col>
 
           </el-col>
-          <el-button-group>
+          <el-button-group style="margin-top: 20px;margin-bottom: 20px">
             <el-button size="mini" type="ghost"><i style="color: #295f00" class="el-icon-s-marketing"></i> 图示</el-button>
             <el-button size="mini" type="ghost"><i style="color: #24c400" class="el-icon-s-marketing"></i> 图示</el-button>
             <el-button size="mini" type="ghost"><i style="color: #ff7400" class="el-icon-s-marketing"></i> 图示</el-button>
@@ -139,7 +139,7 @@
               <histogram :id="item.id" :option="optionH2" height="166px"></histogram>
             </el-col>
           </el-col>
-          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -65px;position: relative;z-index: 99;transform: skewX(-5deg) rotate(2deg) scaleX(0.8) translateX(26px);" :span="16">
+          <el-col align="center" style="font-size: 13px;background: rgba(149, 188, 243, 0.28);margin-top: -35px;position: relative;z-index: 99;transform: scaleX(0.8) translateX(35px)" :span="16">
             <el-col :span="6">2015年</el-col>
             <el-col :span="6">2016年</el-col>
             <el-col :span="6">2017年</el-col>
@@ -262,7 +262,7 @@ export default {
           x: 'center',
           y: 0,
           textStyle:{
-            color:'#B4B4B4',
+            color:'#727272',
             fontSize:16,
             fontWeight:'normal',
           },
@@ -271,7 +271,10 @@ export default {
         backgroundColor: 'white',
         tooltip: {
           trigger: 'axis',
-          backgroundColor:'rgba(255,255,255,0.1)',
+          textStyle:{
+            color:'black',
+          },
+          backgroundColor:'rgba(255,255,255,0.85)',
           axisPointer: {
             type: 'shadow',
             label: {
@@ -283,7 +286,7 @@ export default {
         legend: {
           data: ['已贯通', '计划贯通','贯通率',],
           textStyle: {
-            color: '#B4B4B4'
+            color: '#7e7e7e'
           },
           top:'7%',
         },
@@ -296,7 +299,7 @@ export default {
           data: category,
           axisLine: {
             lineStyle: {
-              color: '#B4B4B4'
+              color: '#727272'
             }
           },
           axisTick:{
@@ -304,24 +307,21 @@ export default {
           },
         },
         yAxis: [{
-
           splitLine: {show: false},
           axisLine: {
             lineStyle: {
-              color: '#B4B4B4',
+              color: '#727272',
             }
           },
-
           axisLabel:{
             formatter:'{value} ',
           }
         },
           {
-
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
-                color: '#B4B4B4',
+                color: '#727272',
               }
             },
             axisLabel:{
@@ -353,7 +353,7 @@ export default {
             yAxisIndex: 1,
             itemStyle: {
               normal: {
-                color:'rgba(80, 180, 50, 0.7)'},
+                color:'rgb(255,111,215)'},
             },
             data: rateData.map(alItem=>alItem*2)
           },
@@ -368,8 +368,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(217, 218, 92,0.7)'},
-                      {offset: 1, color: 'rgba(217, 218, 92,0.3)'}
+                      {offset: 0, color: '#4aca96'},
+                      {offset: 1, color: '#7dcdab'}
                     ]
                 )
               }
@@ -388,8 +388,8 @@ export default {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(228, 131, 93,0.5)'},
-                      {offset: 1, color: 'rgba(228, 131, 93, 0.3)'}
+                      {offset: 0, color: 'rgb(255, 145, 49)'},
+                      {offset: 1, color: 'rgba(255, 145, 49, 0.6)'}
                     ]
                 )
               }
@@ -406,11 +406,10 @@ export default {
           x: 'center',
           y: 0,
           textStyle:{
-            color:'#B4B4B4',
-            fontSize:16,
+            color:'#727272',
+            fontSize:13,
             fontWeight:'normal',
           },
-
         },
         backgroundColor: 'white',
         tooltip: {
@@ -427,20 +426,22 @@ export default {
         legend: {
           data: ['已贯通', '计划贯通','贯通率',],
           textStyle: {
-            color: '#B4B4B4'
+            color: '#7e7e7e',
+            fontSize:'13px'
           },
-          top:'7%',
+          itemHeight: 7,
+          top:'10%',
         },
         grid:{
           x:'12%',
           width:'82%',
-          y:'12%',
+          y:'22%',
         },
         xAxis: {
           data: category,
           axisLine: {
             lineStyle: {
-              color: '#B4B4B4'
+              color: '#727272'
             }
           },
           axisTick:{
@@ -452,7 +453,7 @@ export default {
           splitLine: {show: false},
           axisLine: {
             lineStyle: {
-              color: '#B4B4B4',
+              color: '#727272',
             }
           },
 
@@ -465,7 +466,7 @@ export default {
             splitLine: {show: false},
             axisLine: {
               lineStyle: {
-                color: '#B4B4B4',
+                color: '#727272',
               }
             },
             axisLabel:{
@@ -479,11 +480,11 @@ export default {
           smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
-          symbolSize: 4,
+          symbolSize: 5,
           yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'rgba(50, 150, 250, 0.5)'},
+              color:'rgba(50, 150, 250,0.7)'},
           },
           data: rateData
         },
@@ -493,11 +494,11 @@ export default {
             smooth: true,
             showAllSymbol: true,
             symbol: 'emptyCircle',
-            symbolSize: 4,
+            symbolSize: 5,
             yAxisIndex: 1,
             itemStyle: {
               normal: {
-                color:'rgba(80, 180, 50, 0.5)'},
+                color:'rgb(255,111,215)'},
             },
             data: rateData.map(alItem=>alItem*2)
           },
@@ -505,15 +506,15 @@ export default {
           {
             name: '已贯通',
             type: 'bar',
-            barWidth: 2,
+            barWidth: 4,
             itemStyle: {
               normal: {
                 barBorderRadius: 5,
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(217, 218, 92,0.7)'},
-                      {offset: 1, color: 'rgba(217, 218, 92,0.3)'}
+                      {offset: 0, color: '#4aca96'},
+                      {offset: 1, color: '#7dcdab'}
                     ]
                 )
               }
@@ -525,15 +526,15 @@ export default {
             name: '计划贯通',
             type: 'bar',
             // barGap: '-100%',
-            barWidth: 2,
+            barWidth: 4,
             itemStyle: {
               normal: {
                 barBorderRadius: 5,
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      {offset: 0, color: 'rgba(228, 131, 93,0.5)'},
-                      {offset: 1, color: 'rgba(228, 131, 93, 0.3)'}
+                      {offset: 0, color: 'rgb(255, 145, 49)'},
+                      {offset: 1, color: 'rgba(255, 145, 49, 0.6)'}
                     ]
                 )
               }
@@ -580,8 +581,15 @@ export default {
           type: 'pie',
           name: '浏览器占比',
           data: [
-            ['设计变更',   45.0],
             {
+              color:'rgb(255,190,28)',
+              name: '设计变更',
+              y: 45.8,
+              sliced: true,
+              selected: true
+            },
+            {
+              color:'rgb(141,107,214)',
               name: '业主变更',
               y: 12.8,
               sliced: true,
@@ -626,10 +634,17 @@ export default {
         },
         series: [{
           type: 'pie',
-          name: '',
+          name: '浏览器占比',
           data: [
-            ['设计变更',   45.0],
             {
+              color:'rgb(255,190,28)',
+              name: '设计变更',
+              y: 45.8,
+              sliced: true,
+              selected: true
+            },
+            {
+              color:'rgb(141,107,214)',
               name: '业主变更',
               y: 12.8,
               sliced: true,
@@ -663,7 +678,7 @@ export default {
           axisLabel: {
             show: true,
             color: "#4b695e",
-            fontSize: 13,
+            fontSize: 9,
             distance: -20,
             formatter: function(v) {
               return v;
@@ -761,7 +776,7 @@ export default {
         series: [{
           name: "刻度",
           type: "gauge",
-          center: ["50%", "87%"],
+          center: ["50%", "77%"],
           radius: '110%',
           min: 0, //最小刻度
           max: 100, //最大刻度
@@ -780,8 +795,8 @@ export default {
           axisLabel: {
             show: true,
             color: "#4b695e",
-            fontSize: 15,
-            distance: -50,
+            fontSize: 10,
+            distance: -20,
             formatter: function(v) {
               return v;
             },
@@ -808,7 +823,7 @@ export default {
           {
             type: "gauge",
             radius: '100%',
-            center: ["50%", "87%"],
+            center: ["50%", "77%"],
             splitNumber: 0, //刻度数量
             startAngle: 180,
             endAngle: 0,
@@ -849,7 +864,7 @@ export default {
               width: "2%",
             },
             title: {
-              show: true,
+              show: false,
               offsetCenter: [0, "60%"], // x, y，单位px
               textStyle: {
                 fontWeight: "bold",
@@ -863,7 +878,7 @@ export default {
               offsetCenter: [0, "-30%"],
               color: "#ffffff",
               textStyle: {
-                fontSize: 40,
+                fontSize: 30,
                 color: "#4aca96"
               },
             },
