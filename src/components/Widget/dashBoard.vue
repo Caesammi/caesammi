@@ -7,7 +7,10 @@
 <script>
 import store from "@/store";
 import echarts from 'echarts'
+import resize from './relyOn/myResize/resize'
+
 export default {
+  mixins: [resize],
   name: "dashBoard",
   store:store,
   props: {
@@ -27,15 +30,16 @@ export default {
   data() {
     return {
       chartOptions: {
-      }
+      },
+      chart: null,
     }
   },
   methods: {
     draw(){
       // let id = this.id
       let getID = document.getElementById(this.id)
-      let myChart = echarts.init(getID)
-      myChart.setOption(this.option)
+      this.chart = echarts.init(getID)
+      this.chart.setOption(this.option)
 
 
     }
@@ -43,9 +47,6 @@ export default {
   mounted() {
     console.log(this.option)
     this.draw()
-    window.onresize = () => {
-      echarts.init(document.getElementById(this.id)).resize();
-    }
   },
   watch: {
     myArr: {

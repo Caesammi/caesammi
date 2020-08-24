@@ -49,7 +49,7 @@
           <el-col class="smallTitle">
             <label style="font-size: 12px">    </label>  里程碑完成情况  </el-col>
 
-          <el-col style="background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255)" >
+          <el-col style="background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255);margin-top:5px">
             <el-col>
               <dashBoard id="dash4" :option="dashOpt2" height="280px"></dashBoard>
               <el-col style="margin-top: -15px;margin-bottom: 15px;" class="dashBoardTitle" align="center"><div style="width: 35%" class="mySubTitle">总体状况</div></el-col>
@@ -135,7 +135,7 @@
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name" :name="item.name"></el-tab-pane>
           </el-tabs>
           <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;">
-                <histogram :id="idH1" :option="optionH1" height="500px"></histogram>
+                <histogram :id="idH1" :option="optionH1" width="100%" height="500px"></histogram>
           </el-col>
           <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;margin-top: -5px;">
             <el-col v-for="(item,index) in idH" :key="index" style="margin-top: 5px;">
@@ -556,7 +556,7 @@ export default {
               value: 1
             }],
             label: {
-              show:  false,
+              show:  true,
               position: 'inside',
               formatter: '{b}',
               offset: [0, 10],
@@ -581,7 +581,7 @@ export default {
               value: 1
             }],
             label: {
-              show:  false,
+              show:  true,
               position: 'inside',
               formatter: '{b}',
               offset: [0, 10],
@@ -605,7 +605,7 @@ export default {
               value: 1
             }],
             label: {
-              show:  false,
+              show:  true,
               position: 'inside',
               formatter: '{b}',
               offset: [0, 10],
@@ -629,7 +629,7 @@ export default {
               value: 1
             }],
             label: {
-              show: false,
+              show: true,
               position: 'inside',
               formatter: '{b}',
               offset: [0, 10],
@@ -665,7 +665,7 @@ export default {
 
         },
         title: {
-          show:false,
+          show:true,
           text: '总体进度',
           x: 'left',
           y: 0,
@@ -686,7 +686,7 @@ export default {
           {
             left: '10%',
             right: 40,
-            top: 20,
+            top: 30 ,
             bottom: 41
           },
           {

@@ -1,13 +1,16 @@
 <template>
-  <div class="container">
-    <div :style="{width:'100%',height: height}" :id="id"></div>
-  </div>
+
+    <div :style="{width: width, height: height}" :id="id"></div>
+
 </template>
 
 <script>
-import store from "@/store";
+import store from "@/store"
 import echarts from 'echarts'
+import resize from './relyOn/myResize/resize'
+
 export default {
+  mixins: [resize],
   name: "dHistogram",
   store:store,
   props: {
@@ -20,6 +23,9 @@ export default {
     },
     height:{
       type: String
+    },
+    width:{
+      type: String
     }
   },
   // components: { Sticky },
@@ -27,27 +33,28 @@ export default {
   data() {
     return {
       chartOptions: {
-      }
+      },
+      chart: null
     }
   },
   methods: {
     draw(){
       // let id = this.id
       let getID = document.getElementById(this.id)
-      let myChart = echarts.init(getID)
-      myChart.setOption(this.option)
-
-
+      this.chart = echarts.init(getID)
+      this.chart.setOption(this.option)
     }
   },
   mounted() {
-
-
     console.log(this.option)
     this.draw()
-    window.onresize = () => {
-      echarts.init(document.getElementById(this.id)).resize();
+  },
+  beforeDestroy() {
+    if (!this.chart) {
+      return
     }
+    this.chart.dispose()
+    this.chart = null
   },
   watch: {
     myArr: {
