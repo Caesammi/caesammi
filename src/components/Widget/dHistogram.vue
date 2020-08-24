@@ -46,7 +46,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.option)
     this.draw()
   },
   beforeDestroy() {

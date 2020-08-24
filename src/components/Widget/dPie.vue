@@ -45,9 +45,6 @@ export default {
     }
   },
   mounted() {
-
-
-    console.log(this.option)
     this.draw()
     window.onresize = () => {
       echarts.init(document.getElementById(this.id)).resize();

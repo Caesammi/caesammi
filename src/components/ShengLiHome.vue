@@ -175,7 +175,7 @@
               <el-col class="smallTitle commonFlexStart">
                 变更管理 <div style="right: 100px" class="titleButton">数据</div><div style="right: 65px" class="titleButton">饼图</div><div style="right: 30px" class="titleButton">详情</div>
               </el-col>
-              <el-col class="midContainer">
+              <el-col class="midContainer" style="padding-top:20px;padding-bottom: 20px">
                 <el-col :span="12">
                   <Pie :id="idP1" :option="optionP1" height="220px"></Pie>
                 </el-col>
@@ -401,6 +401,7 @@ export default {
 
         }, {
           type: 'inside',
+          // xAxisIndex: [0, 1],
           show: true,
           height: 15,
           start: 1,
@@ -574,10 +575,11 @@ export default {
               }
             },
             xAxisIndex: 1,
-            yAxisIndex: 1
+            yAxisIndex: 1,
+
           },{
             data: [{
-              name: '2015年',
+              name: '2016年',
               value: 1
             }],
             label: {
@@ -601,7 +603,7 @@ export default {
             yAxisIndex: 1
           },{
             data: [{
-              name: '2015年',
+              name: '2017年',
               value: 1
             }],
             label: {
@@ -625,7 +627,7 @@ export default {
             yAxisIndex: 1
           },{
             data: [{
-              name: '2015年',
+              name: '2018年',
               value: 1
             }],
             label: {
@@ -670,8 +672,8 @@ export default {
           x: 'left',
           y: 0,
           textStyle:{
-            color:'#606266',
-            fontSize:16,
+            color:'#4a4c4e',
+            fontSize:13,
             fontWeight:'normal',
           },
 
@@ -1061,7 +1063,7 @@ export default {
           },
           type: 'pie',
           roseType: 'radius',
-          radius: ['20%', '80%'],
+          radius: ['30%', '90%'],
           center: ["50%", "60%"],
           data: [{
             value: 220,
@@ -1406,7 +1408,8 @@ export default {
           coordinateSystem: 'polar',
           roundCap: true,
           barWidth: 30,
-        }, {
+        },
+          {
           type: 'gauge',
           radius: '88%',
           min: 0,
@@ -1420,7 +1423,22 @@ export default {
             fontSize: 13
           },
           itemStyle: {
-            color: '#8f8f8f'
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1, [
+                  {
+                    offset: 0.1,
+                    color: "#ff6a6a"
+                  },
+                  {
+                    offset: 0.6,
+                    color: "#FFC600"
+                  },
+                  {
+                    offset: 1,
+                    color: "#30D27C"
+                  }
+                ]
+            )
           },
           pointer: {
             show: true,
