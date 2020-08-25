@@ -81,7 +81,7 @@ export default {
           {
             left: '6%',
             right: 10,
-            top: 20,
+            top: 50,
             bottom: 71
           },
           {
@@ -123,7 +123,7 @@ export default {
               padding:[0,0,0,70],
               align:'left',
               interval:11,
-              margin:-10,
+              margin:-18,
               show:true,
             },
             axisLine: {
@@ -405,7 +405,7 @@ export default {
 
         },
         title: {
-          show: true,
+          show: false,
           text: '总体进度',
           x: 'left',
           y: 0,
@@ -426,7 +426,7 @@ export default {
           {
             left: '10%',
             right: 40,
-            top: 30,
+            top: 40,
             bottom: 41
           },
           {
@@ -773,6 +773,34 @@ export default {
             xAxisIndex: 1,
             yAxisIndex: 1
           }]
+      },
+      errorOption:{
+        backgroundColor: 'white',
+        title: {
+          show: true,
+          text: '暂无数据',
+          x: 'center',
+          y: '50%',
+          textStyle: {
+            color: '#4a4c4e',
+            fontSize: 40,
+            fontWeight: '500',
+          },
+        },
+        grid: [
+          {
+            left: '6%',
+            right: 10,
+            top: 40,
+            bottom: 71
+          },
+          {
+            left: '6%',
+            right: 10,
+            height: 60,
+            bottom: 10
+          }
+        ],
       },
       chart: null
     }
