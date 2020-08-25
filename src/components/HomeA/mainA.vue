@@ -19,8 +19,12 @@
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
           <router-view></router-view>
+          <div class="main-footer">
+            <div class="footerLogo"></div>
+            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司　　 Petro-CyberWorks Information Technology Co.,Ltd.</span>
+          </div>
         </el-main>
-<!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
+
 
 
       </el-main>
@@ -205,7 +209,28 @@
   background: url('../../assets/logo1.png') no-repeat;
   background-size: 100% 100%
 }
+.main-footer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #666666;
+  font-size: 12px;
+  background: #fff;
 
-
+}
+.footerLogo{
+  margin-left: 10px;
+  height: 20px;
+  width: 45px;
+  background: url('../../assets/logo2.png') no-repeat;
+  background-size: 100% 100%
+}
 </style>
 
