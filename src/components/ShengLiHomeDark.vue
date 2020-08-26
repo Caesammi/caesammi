@@ -10,7 +10,7 @@
             </el-col>
           </el-col>
           <el-col style="font-size: 14px;padding-bottom: 15px;padding-left: 10px;padding-right: 10px;position: relative"
-                  class="paddingAllTen midContainer">
+                  class="paddingAllTen midContainer DarkTheme">
             ● 总投资:4.3亿元 <br>
             ● 开工日期: 2013年3月23日 <br>
             ● 计划投科日期: 2013年4月2日
@@ -31,44 +31,44 @@
           <el-col class="smallTitle">
             <label style="font-size: 12px"> </label> HES与质量
           </el-col>
-          <el-col style="padding-bottom: 20px;" class="midContainer">
+          <el-col style="padding-bottom: 20px;" class="midContainer DarkTheme">
             <el-col :span="8">
               <dashBoard id="dash1" :option="optionDash2" bom="mini" height="136px"></dashBoard>
               <el-col align="center">
-                <div class="mySubTitle">HES情况</div>
+                <div class="mySubTitleDark">HES情况</div>
               </el-col>
             </el-col>
             <el-col :span="8">
               <dashBoard id="dash2" :option="optionDash2" bom="mini" height="136px"></dashBoard>
               <el-col align="center">
-                <div class="mySubTitle">质量情况</div>
+                <div class="mySubTitleDark">质量情况</div>
               </el-col>
             </el-col>
             <el-col :span="8">
               <dashBoard id="dash3" :option="optionDash2" bom="mini" height="136px"></dashBoard>
               <el-col align="center">
-                <div class="mySubTitle">风险管理情况</div>
+                <div class="mySubTitleDark">风险管理情况</div>
               </el-col>
             </el-col>
           </el-col>
         </el-col>
-        <el-col class="marginTopTen"
-                style="background: #2A3446;border-bottom-right-radius: 15px;border-bottom-left-radius: 15px">
+        <el-col class="marginTopTen DarkTheme DarkShadow"
+                style="border-bottom-right-radius: 15px;border-bottom-left-radius: 15px;padding-bottom: 5px">
           <el-col class="smallTitle">
             <label style="font-size: 12px"> </label> 里程碑完成情况
           </el-col>
 
           <el-col
-              style="background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255);margin-top:5px">
+              class="DarkCover">
             <el-col>
               <dashBoard id="dash4" :option="optionDash1" bom="big" height="270px"></dashBoard>
               <el-col style="margin-top: -15px;margin-bottom: 15px;" class="dashBoardTitle" align="center">
-                <div style="width: 35%" class="mySubTitle">总体状况</div>
+                <div style="width: 35%" class="mySubTitleDark">总体状况</div>
               </el-col>
             </el-col>
           </el-col>
           <el-col
-              style="margin-top: 10px;border-radius: 15px;margin-bottom: 10px;background: rgba(225,236,252,0.3);border:1px solid rgb(195,219,255)"
+              class="DarkCover"
               align="center">
             <el-col style="margin-top: 20px;background: transparent" class="paddingAllTen">
               <el-col style="line-height: 1">
@@ -110,7 +110,7 @@
               </el-col>
             </el-col>
 
-            <el-col class="midContainer" style="padding-bottom: 10px">
+            <el-col class="midContainer DarkTheme" style="padding-bottom: 10px">
               <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
                 <el-tooltip placement="top">
                   <div
@@ -138,7 +138,7 @@
                 <div class="moreButton">more</div>
               </el-col>
             </el-col>
-            <el-col class="midContainer" style="padding-bottom: 10px">
+            <el-col class="midContainer DarkTheme" style="padding-bottom: 10px">
               <el-col class="paddingAllTen" v-for="(item,index) in 4" :span="12" :key="index">
                 <el-tooltip placement="top">
                   <div
@@ -161,13 +161,13 @@
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
           </el-tabs>
-          <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;position: relative">
+          <el-col :span="16" class="DarkTheme" style=" box-shadow:4px 8px 5px -5px #CCCCCC;position: relative;">
             <div class="echartsLabelBig">总体进度曲线</div>
             <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
 
           </el-col>
-          <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;margin-top: -5px;">
-            <el-col v-for="(item,index) in idH" :key="index" style="margin-top: 5px;position: relative">
+          <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;margin-top: -5px;padding-left: 5px;">
+            <el-col v-for="(item,index) in idH" :key="index" class="DarkTheme" style="margin-top: 5px;position: relative;">
               <div class="echartsLabelMini">{{ item.name }}</div>
               <histogram :id="item.id" :option="optionH2" bom="mini" height="163px"></histogram>
             </el-col>
@@ -177,7 +177,7 @@
               <el-col class="smallTitle">
                 <label style="font-size: 12px"> </label> 投资控制
               </el-col>
-              <el-col class="midContainer" style="padding-left: 10px">
+              <el-col class="midContainer DarkTheme" style="padding-left: 10px">
                 <el-col style="margin-top: 20px;" v-for="(item,index) in touZiList" :span="8" :key="index+'1'">
                   <i v-if="index!==0" :style="{color:item.color}" class="el-icon-s-marketing"></i>
                   <i v-else class="el-icon-caret-right"></i>
@@ -210,7 +210,7 @@
                 <div style="right: 65px" class="titleButton">饼图</div>
                 <div style="right: 20px" class="titleButton">详情</div>
               </el-col>
-              <el-col class="midContainer" style="padding-top:20px;padding-bottom: 20px">
+              <el-col class="midContainer DarkTheme" style="padding-top:20px;padding-bottom: 20px">
                 <el-col :span="12">
                   <Pie :id="idP1" :option="optionP1" height="220px"></Pie>
                 </el-col>
@@ -230,7 +230,6 @@
 </template>
 
 <script>
-import '../assets/css/common.css'
 import store from "@/store";
 import echarts from 'echarts'
 import Pie from './Widget/dPie'
@@ -300,51 +299,51 @@ export default {
       ],   //导航菜单
     }
   },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event)
-      },
-      makeYear(){
-        let pre2=[]
-        for(let i = 0; i<49; i++){
-          if(i<=12&&i>0){
-            pre2.push('2015年')
-          }
-          if(i<=24&&i>12){
-            pre2.push('2016年')
-          }
-          if(i<=36&&i>24){
-            pre2.push('2017年')
-          }
-          if(i<=49&&i>36){
-            pre2.push('2018年')
-          }
-        }
-        console.log(pre2.length);
-        console.log(JSON.stringify(pre2))
-      },
-    }
-  ,
-    mounted() {
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event)
     },
-    watch: {
-      activeName:function () {
-        this.optionH1.title.text = this.activeName
-        this.optionH2.title.text = this.activeName
+    makeYear(){
+      let pre2=[]
+      for(let i = 0; i<49; i++){
+        if(i<=12&&i>0){
+          pre2.push('2015年')
+        }
+        if(i<=24&&i>12){
+          pre2.push('2016年')
+        }
+        if(i<=36&&i>24){
+          pre2.push('2017年')
+        }
+        if(i<=49&&i>36){
+          pre2.push('2018年')
+        }
       }
+      console.log(pre2.length);
+      console.log(JSON.stringify(pre2))
+    },
+  }
+  ,
+  mounted() {
+  },
+  watch: {
+    activeName:function () {
+      this.optionH1.title.text = this.activeName
+      this.optionH2.title.text = this.activeName
     }
   }
+}
 </script>
 
 <style scoped>
 #myMain {
+  background: #354259;
   color: #606266;
   width: 100%;
 }
 
 .midContainer {
-  background: #2A3446;
-   
+  background: white;
   border-bottom-right-radius: 15px;
 }
 
@@ -397,13 +396,23 @@ export default {
   margin-top: 10px;
 }
 
-.mySubTitle {
+.mySubTitleLight {
   padding: 5px;
   position: relative;
   z-index: 2;
   font-size: 14px;
   width: 55%;
   background: rgb(225, 236, 252);
+  border: 1px solid #9898ff33;
+  border-radius: 5px;
+}
+.mySubTitleDark {
+  padding: 5px;
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  width: 55%;
+  background: rgba(225, 236, 252, 0.1);
   border: 1px solid #9898ff33;
   border-radius: 5px;
 }
@@ -424,5 +433,24 @@ export default {
   padding-top: 10px;
   font-size: 13px;
   color: #303133;
+}
+.lightTheme{
+  background: white;
+}
+.DarkTheme{
+  background: #2a3446;
+  color: white;
+}
+.lightShadow{
+  box-shadow:4px 10px 8px -5px #e1e1e1;
+}
+.DarkShadow{
+  box-shadow: 4px 10px 8px -5px #323232;
+}
+.lightCover{
+  background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255);margin-top:5px
+}
+.DarkCover{
+  background: rgba(225,236,252,0.1);border-radius: 15px;border:1px solid rgba(195,219,255,0.1);margin-top:5px
 }
 </style>
