@@ -34,7 +34,7 @@ export default {
       chart: null,
       pieOption:{
         color: ['#9e69ff', '#2F8DF4', '#ffe156'],
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         title: {
           show: true,
           text: '发生变更占投资完成比例',
@@ -110,7 +110,7 @@ export default {
         }]
       },
       errorOption:{
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         title: {
           show: true,
           text: '暂无数据',

@@ -2,12 +2,16 @@
   <div class="master">
 
     <!--      回到顶部-->
-    <!--顶部动态工具栏封装-->
-    <el-header class=" myFlex myBorderBottom bigHeader">
+    <!--顶部动态工具栏封装  bigHeader-->
+    <el-header class="myFlex myBorderBottom bigHeader">
       <div class="mainLogo"></div>
-<!--      <img alt style="width: 135px;height: 100%" src="../../assets/logo.png">-->
-      <div style="font-weight:600;margin-left: 20px;text-shadow: 0 2px 2px #7e7e7e;">中国石化胜利中心三号平台工程</div>
+      <div class="pageTitle">中国石化胜利中心三号平台工程</div>
     </el-header>
+    <el-header v-if="false"  class=" myFlex myBorderBottom bigHeaderDark">
+      <div class="mainLogo"></div>
+      <div class="pageTitleDark">中国石化胜利中心三号平台工程</div>
+    </el-header>
+
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 0;">
 <!--        <template>-->
@@ -21,7 +25,7 @@
           <router-view></router-view>
           <div class="main-footer">
             <div class="footerLogo"></div>
-            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司　　 Petro-CyberWorks Information Technology Co.,Ltd.</span>
+            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司Petro-CyberWorks Information Technology Co.,Ltd.</span>
           </div>
         </el-main>
 
@@ -173,12 +177,12 @@
     border-image: -moz-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1;
     border-image: linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 标准的必须写在最后 */
   }
-  .myBorderBottom{
-    border-bottom: 1px solid;
-    border-image: -webkit-linear-gradient(to right, white, #bdbdbd, white) 1 8 1; /* 控制边框颜色渐变 */
-    border-image: -moz-linear-gradient(   to right, white, #bdbdbd, white) 1 10 1;
-    border-image: linear-gradient(        to right, white, #bdbdbd, white) 1 10 1; /* 标准的必须写在最后 */
-  }
+  /*.myBorderBottom{*/
+  /*  border-bottom: 1px solid;*/
+  /*  border-image: -webkit-linear-gradient(to right, white, #bdbdbd, white) 1 8 1; !* 控制边框颜色渐变 *!*/
+  /*  border-image: -moz-linear-gradient(   to right, white, #bdbdbd, white) 1 10 1;*/
+  /*  border-image: linear-gradient(        to right, white, #bdbdbd, white) 1 10 1; !* 标准的必须写在最后 *!*/
+  /*}*/
   .noFocus:focus{
     background: none;
   }
@@ -203,6 +207,23 @@
   -webkit-box-shadow:0 3px 15px -3px #696969;
   box-shadow:0 3px 15px -3px #696969;
 }
+.bigHeaderDark{
+  background: #2a3446;
+  background-size:cover;
+  color: white;
+  font-size: 20px;
+  /*border-bottom: none;*/
+  font-weight: lighter;
+  /*-moz-box-shadow:0 3px 15px -3px #696969;*/
+  /*-webkit-box-shadow:0 3px 15px -3px #696969;*/
+  /*box-shadow:0 3px 15px -3px #696969;*/
+}
+.pageTitle{
+  font-weight:600;margin-left: 20px;text-shadow: 0 2px 2px #7e7e7e;
+}
+  .pageTitleDark{
+    font-weight:600;margin-left: 20px;
+  }
 .mainLogo{
   height: 70%;
   width: 130px;

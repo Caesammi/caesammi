@@ -53,7 +53,7 @@
           </el-col>
         </el-col>
         <el-col class="marginTopTen"
-                style="background: white;box-shadow:4px 10px 8px -5px #e1e1e1;border-bottom-right-radius: 15px;border-bottom-left-radius: 15px">
+                style="background: #2A3446;border-bottom-right-radius: 15px;border-bottom-left-radius: 15px">
           <el-col class="smallTitle">
             <label style="font-size: 12px"> </label> 里程碑完成情况
           </el-col>
@@ -161,13 +161,13 @@
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
           </el-tabs>
-          <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;position: relative;background: white">
+          <el-col :span="16" style=" box-shadow:4px 8px 5px -5px #CCCCCC;position: relative">
             <div class="echartsLabelBig">总体进度曲线</div>
             <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
 
           </el-col>
-          <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;margin-top: -5px;padding-left: 5px;">
-            <el-col v-for="(item,index) in idH" :key="index" style="margin-top: 5px;position: relative;background: white">
+          <el-col :span="8" style=" box-shadow:4px 8px 5px -5px #CCCCCC;margin-top: -5px;">
+            <el-col v-for="(item,index) in idH" :key="index" style="margin-top: 5px;position: relative">
               <div class="echartsLabelMini">{{ item.name }}</div>
               <histogram :id="item.id" :option="optionH2" bom="mini" height="163px"></histogram>
             </el-col>
@@ -230,6 +230,7 @@
 </template>
 
 <script>
+import '../assets/css/common.css'
 import store from "@/store";
 import echarts from 'echarts'
 import Pie from './Widget/dPie'
@@ -342,8 +343,8 @@ export default {
 }
 
 .midContainer {
-  background: white;
-  box-shadow: 4px 10px 8px -5px #e1e1e1;
+  background: #2A3446;
+   
   border-bottom-right-radius: 15px;
 }
 

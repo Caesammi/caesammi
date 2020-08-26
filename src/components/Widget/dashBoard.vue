@@ -166,7 +166,7 @@ export default {
           }]
       },
       miniOption: {
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         tooltip: {
           formatter: "{a} <br/>值 : {c}",
           backgroundColor: 'rgba(255,255,255,0.8)',//通过设置rgba调节背景颜色与透明度
@@ -271,7 +271,7 @@ export default {
         ]
       },
       errorOption:{
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         title: {
           show: true,
           text: '暂无数据',
