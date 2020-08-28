@@ -305,7 +305,6 @@ export default {
       // let id = this.id
       let getID = document.getElementById(this.id)
       let filterOption = `${this.bom}Option`
-      console.log('filterO', filterOption)
       this.chart = echarts.init(getID)
       this.chart.setOption(this[filterOption])
 

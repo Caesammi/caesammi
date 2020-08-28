@@ -42,7 +42,7 @@ export default {
           top: '3%',
           textStyle: {
             fontSize: 12,
-            color: '#727272',
+            color: '#c1c1c1',
             fontWeight: 'normal'
           }
         },

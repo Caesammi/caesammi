@@ -68,12 +68,12 @@
             </el-col>
           </el-col>
           <el-col
-              class="DarkCover"
+              class="DarkCover dark"
               align="center">
             <el-col style="margin-top: 20px;background: transparent" class="paddingAllTen">
               <el-col style="line-height: 1">
                 <el-col align="right" :span="5">按期完成率：</el-col>
-                <el-col :span="18">
+                <el-col class="dark" :span="18">
                   <el-progress :stroke-width="13" :percentage="98" color="#FF9131"></el-progress>
                 </el-col>
               </el-col>
@@ -156,13 +156,13 @@
             </el-col>
           </el-col>
         </el-col>
-        <el-col :span="24">
+        <el-col class="dark" :span="24">
           <el-tabs style="margin-left: 3px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
           </el-tabs>
           <el-col :span="16" class="DarkTheme" style="box-shadow:0 6px 7px -5px #1c1c1c;position: relative;">
-            <div class="echartsLabelBig">总体进度曲线</div>
+            <div :style="myFontColorData" class="echartsLabelBig">总体进度曲线</div>
             <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
 
           </el-col>
@@ -183,7 +183,7 @@
                   <i v-else class="el-icon-caret-right"></i>
                   {{ item.content }}
                 </el-col>
-                <el-col style="margin-top: 10px;" class="paddingAllTen">
+                <el-col style="margin-top: 10px;" class="paddingAllTen dark">
                   <el-progress :stroke-width="13" :percentage="98" color="#ff9131"></el-progress>
                   <el-progress style="margin-top: 20px;" :stroke-width="13" :percentage="50"
                                color="#409EFF"></el-progress>
@@ -235,7 +235,8 @@ import echarts from 'echarts'
 import Pie from './Widget/dPie'
 import histogram from './Widget/dHistogram'
 import dashBoard from './Widget/dashBoard'
-// import '../assets/css/DarkTheme.css'
+import '../assets/css/DarkTheme.css'
+
 
 
 export default {
@@ -245,6 +246,7 @@ export default {
   computed: {},
   data() {
     return {
+      myFontColorData:'',
       touZiList: [
         {
           content: '年度完成情况',
@@ -301,6 +303,7 @@ export default {
     }
   },
   methods: {
+
     handleClick(tab, event) {
       console.log(tab, event)
     },
@@ -326,6 +329,7 @@ export default {
   }
   ,
   mounted() {
+    this.myFontColorData = `fontColor:${store.state.theme==='light' ? '#606266' : 'white'}`
   },
   watch: {
     activeName:function () {
@@ -426,7 +430,6 @@ export default {
   padding-left: 1%;
   padding-top: 10px;
   font-size: 20px;
-  color: #303133;
 }
 .echartsLabelMini{
   font-weight: 500;
@@ -435,7 +438,6 @@ export default {
   padding-left: 1%;
   padding-top: 10px;
   font-size: 13px;
-  color: #303133;
 }
 .lightTheme{
   background: #F4F4F5;

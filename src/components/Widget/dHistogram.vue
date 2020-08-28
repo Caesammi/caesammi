@@ -14,6 +14,7 @@ let echartsData= {
       yData: [10, 15, 18, 25, 23, 32, 33, 36, 57, 72, 45, 45, 10, 15, 18, 25, 23, 32, 33, 36, 57, 72, 45, 45, 10, 15, 18, 25, 23, 32, 33, 36, 57, 72, 45, 45, 10, 15, 18, 25, 23, 32, 33, 36, 57, 72, 45, 45],
       y1Data: [20, 50, 80, 50, 30, 50, 60, 60, 70, 90, 50, 50, 20, 50, 80, 50, 30, 50, 60, 60, 70, 90, 50, 50, 20, 50, 80, 50, 30, 50, 60, 60, 70, 90, 50, 50, 20, 50, 80, 50, 30, 50, 60, 60, 70, 90, 50, 50]
     }
+    let fontColor=''
 
 export default {
   mixins: [resize],
@@ -43,7 +44,6 @@ export default {
     return {
       chartOptions: {
       },
-  
       bigOption:{
         backgroundColor: 'transparent',
         tooltip: {
@@ -65,7 +65,7 @@ export default {
           x: 'left',
           y: 0,
           textStyle: {
-            color: '#606266',
+            color: fontColor,
             fontSize: 16,
             fontWeight: 'normal',
           },
@@ -410,7 +410,7 @@ export default {
           x: 'left',
           y: 0,
           textStyle: {
-            color: '#4a4c4e',
+            color: fontColor,
             fontSize: 13,
             fontWeight: 'normal',
           },
@@ -782,7 +782,7 @@ export default {
           x: 'center',
           y: '50%',
           textStyle: {
-            color: '#4a4c4e',
+            color: fontColor,
             fontSize: 40,
             fontWeight: '500',
           },
@@ -810,13 +810,16 @@ export default {
       // let id = this.id
       let getID = document.getElementById(this.id)
       let filterOption = `${this.bom}Option`
-      console.log('filterO', filterOption)
       this.chart = echarts.init(getID)
+
+      console.log(fontColor)
       this.chart.setOption(this[filterOption])
     }
   },
+  created() {
+    fontColor = store.state.theme==='light' ? '#606266' : 'white'
+  },
   mounted() {
-    console.log(this.bom)
     this.draw()
   },
   beforeDestroy() {
