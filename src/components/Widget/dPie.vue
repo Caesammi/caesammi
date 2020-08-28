@@ -79,10 +79,11 @@ export default {
           ],
           label: {
             normal: {
+              show:false,
               formatter: '{font|{c}}\n{hr|}\n{font|{d}%}',
               rich: {
                 font: {
-                  fontSize: 20,
+                  fontSize: 1,
                   padding: [5, 0],
                   color: '#fff'
                 },

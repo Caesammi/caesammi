@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from "@/store";
 
 Vue.use(VueRouter)
 
@@ -49,6 +50,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title || '默认'
+  console.log('我是routerindex',to)
+  if(to.fullPath==='/shengLiHomedark'){
+    store.commit('changeTheme','dark')
+
+    console.log('切换黑色主题')
+  }else{
+    store.commit('changeTheme','light')
+    console.log('切换白色主题')
+  }
   next()
 })
 const routerPush = VueRouter.prototype.push

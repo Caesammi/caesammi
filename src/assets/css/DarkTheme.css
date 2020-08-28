@@ -1,3 +1,21 @@
+.el-tabs__item{
+    color: white;
+}
+.el-tabs__nav{
+    border-bottom: none !important;
+}
+.el-button-group .el-button--info:not(:first-child):not(:last-child){
+    border-color:rgba(255,255,255,0.3)
+}
+.el-button-group .el-button--info:last-child {
+    border-left-color: rgba(255, 255, 255, 0.3);
+}
+.el-button--info:hover, .el-button--info:focus{
+    color: #FFFFFF;
+    background-color: #3e4f66;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 .maintest{
     background: #465775;
 }

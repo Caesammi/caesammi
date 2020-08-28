@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userName:'我是原始值',
-    vuexTest:''
+    vuexTest:'',
+    theme:'',
   },
   mutations: {
     changeUserName (state,d){
@@ -16,7 +17,11 @@ export default new Vuex.Store({
         return
       }
       state.userName=d
-      }
+      },
+
+    changeTheme (state,d){
+      state.theme=d
+    }
     },
   getters:{
     getUserName(state){

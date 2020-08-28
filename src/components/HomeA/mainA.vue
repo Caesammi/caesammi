@@ -3,11 +3,11 @@
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装  bigHeader-->
-    <el-header class="myFlex myBorderBottom bigHeader">
+    <el-header v-if="$store.state.theme==='light'" class="myFlex myBorderBottom bigHeader">
       <div class="mainLogo"></div>
       <div class="pageTitle">中国石化胜利中心三号平台工程</div>
     </el-header>
-    <el-header v-if="false"  class=" myFlex myBorderBottom bigHeaderDark">
+    <el-header v-if="$store.state.theme==='dark'" class=" myFlex myBorderBottom bigHeaderDark">
       <div class="mainLogo"></div>
       <div class="pageTitleDark">中国石化胜利中心三号平台工程</div>
     </el-header>
@@ -23,10 +23,10 @@
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
           <router-view></router-view>
-          <div class="main-footer">
-            <div class="footerLogo"></div>
-            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司Petro-CyberWorks Information Technology Co.,Ltd.</span>
-          </div>
+<!--          <div class="main-footer">-->
+<!--            <div class="footerLogo"></div>-->
+<!--            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司Petro-CyberWorks Information Technology Co.,Ltd.</span>-->
+<!--          </div>-->
         </el-main>
 
 
@@ -43,6 +43,7 @@
   import power from './power'
   import headerA from "./headerA"
   import footerA from './footerA'
+  import store from "@/store";
 
   export default {
     name: "mainA",
@@ -56,6 +57,7 @@
         isCollapse : false,
         menuRouter: true,
         defaultOpen: '',
+        theme:store.state.theme
 
 
       }

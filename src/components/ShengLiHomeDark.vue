@@ -86,13 +86,13 @@
 
             </el-col>
             <el-button-group style="margin-top: 20px;margin-bottom: 20px">
-              <el-button size="mini" type="ghost"><i style="color: #295f00" class="el-icon-s-marketing"></i> 图示
+              <el-button size="mini" type="info"><i style="color: #295f00" class="el-icon-s-marketing"></i> 图示
               </el-button>
-              <el-button size="mini" type="ghost"><i style="color: #24c400" class="el-icon-s-marketing"></i> 图示
+              <el-button size="mini" type="info"><i style="color: #24c400" class="el-icon-s-marketing"></i> 图示
               </el-button>
-              <el-button size="mini" type="ghost"><i style="color: #ff7400" class="el-icon-s-marketing"></i> 图示
+              <el-button size="mini" type="info"><i style="color: #ff7400" class="el-icon-s-marketing"></i> 图示
               </el-button>
-              <el-button size="mini" type="ghost"><i style="color: #ff0000" class="el-icon-s-marketing"></i> 图示
+              <el-button size="mini" type="info"><i style="color: #ff0000" class="el-icon-s-marketing"></i> 图示
               </el-button>
             </el-button-group>
           </el-col>
@@ -119,7 +119,7 @@
                   </div>
                   <div style="padding:0 10px;">
                     <div
-                        style="font-size: 14px;border-bottom: 1px solid #606266;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;">
+                        style="font-size: 14px;border-bottom: 1px solid #606266;overflow: hidden;#F4F4F5-space: nowrap;text-overflow: ellipsis;cursor: pointer;">
                       ● 方向副主任和殷明汉总共分别出席活动方向副主任和殷明汉总共分别等等方向副主任和殷明汉总共分别等等{{ index }}
                     </div>
                   </div>
@@ -147,7 +147,7 @@
                   </div>
                   <div style="padding:0 10px;">
                     <div
-                        style="font-size: 14px;border-bottom: 1px solid #606266;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;cursor: pointer;">
+                        style="font-size: 14px;border-bottom: 1px solid #606266;overflow: hidden;#F4F4F5-space: nowrap;text-overflow: ellipsis;cursor: pointer;">
                       ● 陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻陈刚主任出席ISO第9次理事要闻{{ index }}
                     </div>
                   </div>
@@ -157,11 +157,11 @@
           </el-col>
         </el-col>
         <el-col :span="24">
-          <el-tabs style="margin-left: 10px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
+          <el-tabs style="margin-left: 3px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
           </el-tabs>
-          <el-col :span="16" class="DarkTheme" style=" box-shadow:4px 8px 5px -5px #CCCCCC;position: relative;">
+          <el-col :span="16" class="DarkTheme" style="box-shadow:0 6px 7px -5px #1c1c1c;position: relative;">
             <div class="echartsLabelBig">总体进度曲线</div>
             <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
 
@@ -235,6 +235,7 @@ import echarts from 'echarts'
 import Pie from './Widget/dPie'
 import histogram from './Widget/dHistogram'
 import dashBoard from './Widget/dashBoard'
+// import '../assets/css/DarkTheme.css'
 
 
 export default {
@@ -343,17 +344,19 @@ export default {
 }
 
 .midContainer {
-  background: white;
+  background: #F4F4F5;
   border-bottom-right-radius: 15px;
 }
 
 .smallTitle {
   padding-left: 20px !important;
   font-weight: bold;
-  color: white;
+  color: #F4F4F5;
   line-height: 1.8;
-  background: url('../assets/xz.png') no-repeat;
-  background-color: white;
+  background: #3e4c6a;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 6px 7px -5px #1c1c1c;
   /*background: linear-gradient(to right, #99ceff, #2991ff);*/
   text-shadow: 0px 2px 2px #484848;
 }
@@ -435,11 +438,11 @@ export default {
   color: #303133;
 }
 .lightTheme{
-  background: white;
+  background: #F4F4F5;
 }
 .DarkTheme{
   background: #2a3446;
-  color: white;
+  color: #F4F4F5;
 }
 .lightShadow{
   box-shadow:4px 10px 8px -5px #e1e1e1;
