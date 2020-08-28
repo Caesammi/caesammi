@@ -9,6 +9,7 @@ export default new Vuex.Store({
     userName:'我是原始值',
     vuexTest:'',
     theme:'',
+    fontColor:''
   },
   mutations: {
     changeUserName (state,d){
@@ -18,9 +19,16 @@ export default new Vuex.Store({
       }
       state.userName=d
       },
-
     changeTheme (state,d){
+      if(d==='Light'){
+        state.fontColor='#606266'
+      }else{
+        state.fontColor='white'
+      }
+      console.log('---------------------------------')
+      console.log(state.fontColor)
       state.theme=d
+
     }
     },
   getters:{

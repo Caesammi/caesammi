@@ -151,6 +151,7 @@ export default {
     }
   },
   mounted() {
+    this.pieOption.title.textStyle.color=store.state.fontColor
     this.draw()
   },
   watch: {

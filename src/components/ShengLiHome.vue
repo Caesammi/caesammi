@@ -156,7 +156,7 @@
             </el-col>
           </el-col>
         </el-col>
-        <el-col :span="24">
+        <el-col :class="`${themeStatus}`" :span="24">
           <el-tabs style="margin-left: 10px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
@@ -166,7 +166,7 @@
             <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
 
           </el-col>
-          <el-col :span="8" style="margin-top: -5px;padding-left: 5px;">
+          <el-col :span="8" :class="`${themeStatus}Shadow`" style="margin-top: -5px;padding-left: 5px;">
             <el-col v-for="(item,index) in idH" :key="index" :class="`${themeStatus}Theme`" style="margin-top: 5px;position: relative;">
               <div class="echartsLabelMini">{{ item.name }}</div>
               <histogram :id="item.id" :option="optionH2" bom="mini" height="163px"></histogram>
@@ -206,9 +206,9 @@
             <el-col>
               <el-col :class="`commonFlexStart smallTitle${themeStatus}`">
                 变更管理
-                <div style="right: 110px" class="titleButton">数据</div>
-                <div style="right: 65px" class="titleButton">饼图</div>
-                <div style="right: 20px" class="titleButton">详情</div>
+                <div style="right: 110px" :class="`titleButton${themeStatus}`">数据</div>
+                <div style="right: 65px" :class="`titleButton${themeStatus}`">饼图</div>
+                <div style="right: 20px" :class="`titleButton${themeStatus}`">详情</div>
               </el-col>
               <el-col :class="`midContainer${themeStatus} ${themeStatus}Theme`" style="padding-top:20px;padding-bottom: 20px">
                 <el-col :span="12">
@@ -335,11 +335,13 @@ export default {
         console.log(pre2.length);
         console.log(JSON.stringify(pre2))
       },
-    }
-  ,
-    mounted() {
+    },
+  created() {
+    store.commit('changeTheme','Dark')
+  },
+  mounted() {
     console.log('胜利主页面打印开始')
-      store.commit('changeTheme','Dark')
+
       console.log(store.state.theme)
       console.log('胜利主页面打印结束')
       this.themeStatus = store.state.theme

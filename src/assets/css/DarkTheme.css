@@ -73,13 +73,24 @@
     text-shadow: 0 2px 2px #484848;
 }
 
-.titleButton {
+.titleButtonLight {
     background: #5FA4D0;
     padding: 0 3px 0 3px;
-    margin-top: 5px;
+    margin-top: 3px;
     position: absolute;
     font-size: 12px;
     border: 1px solid #b2ceff;
+    float: right;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.titleButtonDark {
+    background: #2a3446;
+    padding: 0 3px 0 3px;
+    margin-top: 3px;
+    position: absolute;
+    font-size: 12px;
+    border: 1px solid #6a717e;
     float: right;
     cursor: pointer;
     border-radius: 3px;

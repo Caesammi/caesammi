@@ -97,12 +97,12 @@ export default {
             data: echartsData.xData,
             gridIndex: 0,
             axisLabel: {
-              color: '#333',
+              color: fontColor,
               interval: 0
             },
             axisLine: {
               lineStyle: {
-                color: '#606266'
+                color: fontColor
               }
             },
             axisTick: {
@@ -441,13 +441,13 @@ export default {
           data: echartsData.xData,
           gridIndex: 0,
           axisLabel: {
-            color: '#333',
+            color: fontColor,
             fontSize: 6,
             interval: 0,
           },
           axisLine: {
             lineStyle: {
-              color: '#ccc'
+              color: fontColor
             }
           },
           axisTick: {
@@ -811,13 +811,20 @@ export default {
       let getID = document.getElementById(this.id)
       let filterOption = `${this.bom}Option`
       this.chart = echarts.init(getID)
-
-      console.log(fontColor)
       this.chart.setOption(this[filterOption])
     }
   },
   created() {
-    fontColor = store.state.theme==='light' ? '#606266' : 'white'
+    console.log('-------------dhistorage---------')
+    fontColor=store.state.fontColor
+    this.bigOption.xAxis[0].axisLabel.color=store.state.fontColor
+    this.bigOption.xAxis[1].axisLabel.color=store.state.fontColor
+    // if(this.id==='testH'){
+    //   this.bigOption.xAxis[0].axisLabel.color=store.state.fontColor
+    //   console.log(this.bigOption.xAxis)
+    // }
+
+    // fontColor = store.state.theme==='light' ? '#606266' : 'white'
   },
   mounted() {
     this.draw()
