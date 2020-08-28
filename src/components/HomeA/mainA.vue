@@ -3,11 +3,11 @@
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装  bigHeader-->
-    <el-header v-if="$store.state.theme==='light'" class="myFlex myBorderBottom bigHeader">
+    <el-header v-if="$store.state.theme==='Light'" class="myFlex myBorderBottom bigHeader">
       <div class="mainLogo"></div>
       <div class="pageTitle">中国石化胜利中心三号平台工程</div>
     </el-header>
-    <el-header v-if="$store.state.theme==='dark'" class=" myFlex myBorderBottom bigHeaderDark">
+    <el-header v-if="$store.state.theme==='Dark'" class=" myFlex myBorderBottom bigHeaderDark">
       <div class="mainLogo"></div>
       <div class="pageTitleDark">中国石化胜利中心三号平台工程</div>
     </el-header>

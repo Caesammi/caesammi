@@ -10,6 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/eleTheme.scss'
+import './assets/css/common.css'
+import './assets/css/DarkTheme.css'
 
 import * as myApi from '@/request/api'
 

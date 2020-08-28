@@ -1,24 +1,169 @@
-.dark .el-tabs__item{
+.Dark .el-tabs__item{
     color: white;
 }
-.dark .el-tabs__nav{
+.Dark .el-tabs__nav{
     border-bottom: none !important;
 }
-.dark .el-button-group .el-button--info:not(:first-child):not(:last-child){
+.Dark .el-button-group .el-button--info:not(:first-child):not(:last-child){
     border-color:rgba(255,255,255,0.3)
 }
-.dark .el-button-group .el-button--info:last-child {
+.Dark .el-button-group .el-button--info:last-child {
     border-left-color: rgba(255, 255, 255, 0.3);
 }
-.dark .el-button--info{
+.Dark .el-button--info{
     background: #2a3446;
     border-color: rgba(255, 255, 255, 0.3);;
 }
-.dark .el-button--info:hover, .el-button--info:focus{
+.Dark .el-button--info:hover, .el-button--info:focus{
     color: #FFFFFF;
     background-color: #3e4f66;
     border-color: rgba(255, 255, 255, 0.3);
 }
-.dark .el-progress__text{
+.Dark .el-progress__text{
     color: #f4f4f5;
 }
+.myBorderBottom{
+    border-bottom: 1px solid;
+    border-image: -webkit-linear-gradient(to right, #2a3446, rgb(160, 207, 255), #2a3446) 1 8 1; /* 控制边框颜色渐变 */
+    border-image: -moz-linear-gradient(to right, #2a3446, rgb(160, 207, 255), #2a3446) 1 10 1;
+    border-image: linear-gradient(to right, #2a3446, rgb(160, 207, 255), #2a3446) 1 10 1; /* 标准的必须写在最后 */
+}
+/*胜利主页*/
+.myMainLight {
+    color: #606266;
+    width: 100%;
+}
+
+.myMainDark {
+    background: #354259;
+    color: #606266;
+    width: 100%;
+}
+
+.midContainerLight {
+    background: white;
+    box-shadow: 4px 10px 8px -5px #e1e1e1;
+    border-bottom-right-radius: 15px;
+}
+
+.midContainerDark {
+    background: #F4F4F5;
+    border-bottom-right-radius: 15px;
+}
+.smallTitleLight {
+    padding-left: 20px !important;
+    font-weight: bold;
+    color: white;
+    line-height: 1.8;
+    background: url('../xz.png') no-repeat;
+    background-color: white;
+    /*background: linear-gradient(to right, #99ceff, #2991ff);*/
+    text-shadow: 0px 2px 2px #484848;
+}
+.smallTitleDark {
+    padding-left: 20px !important;
+    font-weight: bold;
+    color: #F4F4F5;
+    line-height: 1.8;
+    background: #3e4c6a;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 6px 7px -5px #1c1c1c;
+    /*background: linear-gradient(to right, #99ceff, #2991ff);*/
+    text-shadow: 0 2px 2px #484848;
+}
+
+.titleButton {
+    background: #5FA4D0;
+    padding: 0 3px 0 3px;
+    margin-top: 5px;
+    position: absolute;
+    font-size: 12px;
+    border: 1px solid #b2ceff;
+    float: right;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.moreButton {
+    padding: 0 3px 0 3px;
+    font-size: 13px;
+    float: right;
+    color: #63A6D1;
+    cursor: pointer;
+    text-shadow: none;
+    margin-top: 3px;
+    border-radius: 3px;
+}
+
+.commonFlexStart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.paddingAllTen {
+    padding: 10px 10px 10px 10px
+}
+
+.marginTopTen {
+    margin-top: 10px;
+}
+
+.mySubTitleLight {
+    padding: 5px;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    width: 55%;
+    background: rgb(225, 236, 252);
+    border: 1px solid #9898ff33;
+    border-radius: 5px;
+}
+.mySubTitleDark {
+    padding: 5px;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    width: 55%;
+    background: rgba(225, 236, 252, 0.1);
+    border: 1px solid #9898ff33;
+    border-radius: 5px;
+}
+.echartsLabelBig{
+    font-weight: 500;
+    position: absolute;
+    z-index: 2;
+    padding-left: 1%;
+    padding-top: 10px;
+    font-size: 20px;
+}
+.echartsLabelMini{
+    font-weight: 500;
+    position: absolute;
+    z-index: 2;
+    padding-left: 1%;
+    padding-top: 10px;
+    font-size: 13px;
+}
+.LightTheme{
+    background: white;
+}
+.DarkTheme{
+    background: #2a3446;
+    color: #F4F4F5;
+}
+.LightShadow{
+    box-shadow:4px 10px 8px -5px #e1e1e1;
+}
+.DarkShadow{
+    box-shadow: 4px 10px 8px -5px #323232;
+}
+.LightCover{
+    background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255);margin-top:5px
+}
+.DarkCover{
+    background: rgba(225,236,252,0.1);border-radius: 15px;border:1px solid rgba(195,219,255,0.1);margin-top:5px
+}
+/*胜利主页结束*/

@@ -50,15 +50,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title || '默认'
-  console.log('我是routerindex',to)
-  if(to.fullPath==='/shengLiHomedark'){
-    store.commit('changeTheme','dark')
-
-    console.log('切换黑色主题')
-  }else{
-    store.commit('changeTheme','light')
-    console.log('切换白色主题')
-  }
   next()
 })
 const routerPush = VueRouter.prototype.push
