@@ -162,7 +162,7 @@
           </el-tabs>
           <el-col :span="16" :class="`${themeStatus}Theme ${themeStatus}Shadow`" style="position: relative;">
             <div :class="`echartsLabelBig`">总体进度曲线</div>
-            <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="500px"></histogram>
+            <histogram :id="idH1" :option="optionH1" bom="big" width="100%" height="503px"></histogram>
 
           </el-col>
           <el-col :span="8" :class="`${themeStatus}Shadow`" style="margin-top: -5px;padding-left: 5px;">
