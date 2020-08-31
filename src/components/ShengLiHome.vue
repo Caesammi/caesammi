@@ -155,7 +155,7 @@
             </el-col>
           </el-col>
         </el-col>
-        <el-col :class="`${themeStatus}`" :span="24">
+        <el-col :class="`${themeStatus}`" :span="24" style="padding-left: 10px">
           <el-tabs style="margin-left: 10px;margin-top: 5px" v-model="activeName" @tab-click="handleClick">
             <el-tab-pane v-for="(item, index) in menuList" :key="index" :label="item.name"
                          :name="item.name"></el-tab-pane>
@@ -171,8 +171,8 @@
               <histogram :id="item.id" :option="optionH2" bom="mini" height="163px"></histogram>
             </el-col>
           </el-col>
-          <el-col :span="12" style="margin-top: 10px">
-            <el-col>
+          <el-col :span="12" style="margin-top: 10px;padding: 0">
+            <el-col style="padding: 0">
               <el-col :class="`smallTitle${themeStatus}`">
                 <label style="font-size: 12px"> </label> 投资控制
               </el-col>
@@ -201,7 +201,7 @@
 
             </el-col>
           </el-col>
-          <el-col :span="12" style="margin-top: 10px">
+          <el-col :span="12" style="margin-top: 10px;padding-right: 0;padding-left: 10px">
             <el-col>
               <el-col :class="`commonFlexStart smallTitle${themeStatus}`">
                 变更管理
