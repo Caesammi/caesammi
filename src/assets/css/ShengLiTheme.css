@@ -11,7 +11,7 @@
     border-left-color: rgba(255, 255, 255, 0.3);
 }
 .Dark .el-button--info{
-    background: #2a3446;
+    background:  rgba(225,236,252,0.1);
     border-color: rgba(255, 255, 255, 0.3);;
 }
 .Dark .el-button--info:hover, .el-button--info:focus{
@@ -28,14 +28,14 @@
     border-image: -moz-linear-gradient(to right, #2a3446, rgb(160, 207, 255), #2a3446) 1 10 1;
     border-image: linear-gradient(to right, #2a3446, rgb(160, 207, 255), #2a3446) 1 10 1; /* 标准的必须写在最后 */
 }
-/*胜利主页*/
+/*---------------------------胜利主页---------------------------*/
 .myMainLight {
     color: #606266;
     width: 100%;
 }
 
+/*主框架*/
 .myMainDark {
-    background: #354259;
     color: #606266;
     width: 100%;
 }
@@ -65,7 +65,9 @@
     font-weight: bold;
     color: #F4F4F5;
     line-height: 1.8;
-    background: #3e4c6a;
+    /*background: #3e4c6a;*/
+    border: 1px solid rgba(195,219,255,0.1);
+    background: rgba(225, 236, 252, 0.26);
     position: relative;
     z-index: 3;
     box-shadow: 0 6px 7px -5px #1c1c1c;
@@ -162,14 +164,15 @@
     background: white;
 }
 .DarkTheme{
-    background: #2a3446;
+    border: 1px solid rgba(195,219,255,0.1);
+    background: rgba(225,236,252,0.1);
     color: #F4F4F5;
 }
 .LightShadow{
     box-shadow:4px 10px 8px -5px #e1e1e1;
 }
 .DarkShadow{
-    box-shadow: 4px 10px 8px -5px #323232;
+    box-shadow: 4px 10px 8px -5px rgba(225,236,252,0.1);
 }
 .LightCover{
     background: rgba(225,236,252,0.3);border-radius: 15px;border:1px solid rgb(195,219,255);margin-top:5px
@@ -177,4 +180,17 @@
 .DarkCover{
     background: rgba(225,236,252,0.1);border-radius: 15px;border:1px solid rgba(195,219,255,0.1);margin-top:5px
 }
-/*胜利主页结束*/
+/*里程碑面板*/
+.LightLicheng{
+    border-bottom-right-radius: 15px;border-bottom-left-radius: 15px;padding-bottom: 5px
+}
+.DarkLicheng{
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-bottom: 5px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+/*里程碑面板结束*/
+/*---------------------------胜利主页结束---------------------------*/

@@ -138,7 +138,8 @@ export default {
             },
             zlevel: 1
           }],
-        yAxis: [{
+        yAxis: [
+            {
           type: 'value',
           gridIndex: 0,
           max: 100,
@@ -161,7 +162,8 @@ export default {
               color: '#ccc'
             }
           }
-        }, {
+        },
+          {
           type: 'value',
           gridIndex: 1,
           axisLabel: {
@@ -222,14 +224,14 @@ export default {
             symbolSize: 8,
             lineStyle: {
               color: '#3275FB',
-              width: 3,
+              width: 2,
               shadowColor: 'rgba(0, 0, 0, 0.3)', //设置折线阴影
               shadowBlur: 10,
               shadowOffsetY: 10,
             },
             itemStyle: {
               normal: {
-                color: 'rgba(50, 150, 250,0.7)'
+                color: '#fff'
               },
             },
             areaStyle: {
@@ -263,7 +265,7 @@ export default {
             symbolSize: 8,
             lineStyle: {
               color: '#7dcdab',
-              width: 3,
+              width: 2,
               shadowColor: 'rgba(0, 0, 0, 0.3)', //设置折线阴影
               shadowBlur: 10,
 
@@ -299,7 +301,6 @@ export default {
           {
             name: '均值',
             data: echartsData.yData,
-
             type: 'bar',
             label: {
               show: false,
@@ -481,11 +482,12 @@ export default {
             }
           },
           axisLabel: {
+            color:fontColor,
             formatter: '{value}%',
           },
           axisTick: {
             lineStyle: {
-              color: '#ccc'
+              color: fontColor
             }
           }
         }, {
@@ -540,7 +542,7 @@ export default {
             symbolSize: 8,
             lineStyle: {
               color: '#3275FB',
-              width: 3,
+              width: 2,
               shadowColor: 'rgba(0, 0, 0, 0.3)', //设置折线阴影
               shadowBlur: 10,
               shadowOffsetY: 10,
@@ -583,7 +585,7 @@ export default {
             symbolSize: 8,
             lineStyle: {
               color: '#7dcdab',
-              width: 3,
+              width: 2,
               shadowColor: 'rgba(0, 0, 0, 0.3)', //设置折线阴影
               shadowBlur: 10,
               shadowOffsetY: 10,
@@ -759,7 +761,7 @@ export default {
               formatter: '{b}',
               offset: [0, 10],
               textStyle: {
-                color: '#606266'
+                color: fontColor
               }
             },
             type: 'bar',
@@ -819,6 +821,63 @@ export default {
     fontColor=store.state.fontColor
     this.bigOption.xAxis[0].axisLabel.color=store.state.fontColor
     this.bigOption.xAxis[1].axisLabel.color=store.state.fontColor
+    this.bigOption.yAxis[0].axisLabel.color=store.state.fontColor
+    this.bigOption.yAxis[1].axisLabel.color=store.state.fontColor
+
+    if(store.state.theme!=='Light'){
+      this.miniOption.series[0].lineStyle.color = this.bigOption.series[0].lineStyle.color='#28ffb3'
+      this.miniOption.series[1].lineStyle.color = this.bigOption.series[1].lineStyle.color = '#F02FC2'
+      this.miniOption.series[0].areaStyle.normal = this.bigOption.series[0].areaStyle.normal ={
+        //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgba(0,154,120,1)'
+        },
+          {
+            offset: 1,
+            color: 'rgba(0,0,0, 0)'
+          }
+        ], false),
+        shadowColor: 'rgba(53,142,215, 0.9)', //阴影颜色
+        shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+      }
+      this.miniOption.series[1].areaStyle.normal = this.bigOption.series[1].areaStyle.normal ={
+        //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgb(240,47,194)'
+        },
+          {
+            offset: 1,
+            color: 'rgba(0,0,0, 0)'
+          }
+        ], false),
+        shadowColor: 'rgba(53,142,215, 0.9)', //阴影颜色
+        shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+      }
+      this.miniOption.series[2].itemStyle.normal.color = this.bigOption.series[2].itemStyle.normal.color=new echarts.graphic.LinearGradient(
+          0, 0, 0, 1,
+          [{
+            offset: 0,
+            color: '#8bd46e'
+          }, {
+            offset: 1,
+            color: '#09bcb7'
+          }]
+      )
+      this.miniOption.series[3].itemStyle.normal.color = this.bigOption.series[3].itemStyle.normal.color=new echarts.graphic.LinearGradient(
+          0, 0, 0, 1,
+          [{
+            offset: 0,
+            color: '#00b0ff'
+          }, {
+            offset: 0.8,
+            color: '#7052f4'
+          }]
+      )
+
+    }
+
     // if(this.id==='testH'){
     //   this.bigOption.xAxis[0].axisLabel.color=store.state.fontColor
     //   console.log(this.bigOption.xAxis)

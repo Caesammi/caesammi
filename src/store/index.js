@@ -25,8 +25,6 @@ export default new Vuex.Store({
       }else{
         state.fontColor='white'
       }
-      console.log('---------------------------------')
-      console.log(state.fontColor)
       state.theme=d
 
     }

@@ -52,8 +52,7 @@
             </el-col>
           </el-col>
         </el-col>
-        <el-col :class="`marginTopTen ${themeStatus}Theme ${themeStatus}Shadow`"
-                style="border-bottom-right-radius: 15px;border-bottom-left-radius: 15px;padding-bottom: 5px">
+        <el-col :class="`marginTopTen ${themeStatus}Theme ${themeStatus}Shadow ${themeStatus}Licheng`">
           <el-col :class="`smallTitle${themeStatus}`">
             <label style="font-size: 12px"> </label> 里程碑完成情况
           </el-col>

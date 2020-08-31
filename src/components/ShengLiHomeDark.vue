@@ -235,7 +235,7 @@ import echarts from 'echarts'
 import Pie from './Widget/dPie'
 import histogram from './Widget/dHistogram'
 import dashBoard from './Widget/dashBoard'
-import '../assets/css/DarkTheme.css'
+import '../assets/css/ShengLiTheme.css'
 
 
 

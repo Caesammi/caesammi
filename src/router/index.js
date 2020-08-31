@@ -21,12 +21,6 @@ const routes = [
         meta: {title: '中国石化胜利中心三号工程平台'}
       },
       {
-        path: '/shengLiHomeDark',
-        name: 'shengLiHomeDark',
-        component: getComponent('components/ShengLiHomeDark.vue'),
-        meta: {title: '中国石化胜利中心三号工程平台'}
-      },
-      {
         path: '/about',
         name: 'about',
         component: getComponent('views/About.vue'),

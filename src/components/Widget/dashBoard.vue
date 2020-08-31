@@ -125,6 +125,7 @@ export default {
               show: false,
             },
             axisLabel: {
+
               color: '#999999',
               fontSize: 13
             },
@@ -159,6 +160,7 @@ export default {
               show: false
             },
             detail: {
+              show:false,
               color: '#333333',
               fontSize: 30
             },

@@ -1,5 +1,5 @@
 <template>
-  <div class="master">
+  <div class="master" :style="$store.state.theme==='Light'?'background:#EFEFEF':'background:#011647'">
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装  bigHeader-->
@@ -210,7 +210,7 @@
   box-shadow:0 3px 15px -3px #696969;
 }
 .bigHeaderDark{
-  background: #2a3446;
+  background: rgba(226, 236, 252, 0.1);
   background-size:cover;
   color: white;
   font-size: 20px;
