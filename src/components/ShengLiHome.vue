@@ -336,7 +336,7 @@ export default {
       },
     },
   created() {
-    store.commit('changeTheme','Dark')
+    store.commit('changeTheme','Light')
   },
   mounted() {
     console.log('胜利主页面打印开始')

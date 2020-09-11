@@ -1,49 +1,66 @@
 <template>
+  <div>
+    <el-row>
+      <div class="block">
+        <span class="demonstration">默认 Hover 指示器触发</span>
+        <el-carousel height="150px">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small" align="center">{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+    </el-row>
 
 
-      <div class="about" style="width:3000px;height:3000px;background:black;border-right:1px red solid;textAlign:right">
-    This is an about page
   </div>
-
-
 </template>
+
 <script>
-//代理模式
 import store from "@/store";
-console.log(store.state.userName)
-        let Flower = function() {
 
-        }
-        let xiaoMing = {
-            //将花给B
-            sendFlower: function(target) {
-                let flower = new Flower()
-                target.receiveFlower(flower)
-            }
-        }
-        let B = {
-            //将花给A
-            receiveFlower: function(flower) {
-                //监听A的心情，给A的listenGoodMood方法传入方法，在合适的时间执行
-                A.listenGoodMood(function() {
-                    A.receiveFlower(flower)
-                })
-            }
-        }
-        let A = {
-            receiveFlower: function(flower) {
-                console.log('收到花'+ JSON.stringify(flower))
-            },
-            listenGoodMood: function(fn) {
-                setTimeout(function() {
-                    fn()
-                }, 1000)
-            }
-        }
-        //启动送花的方法
-        xiaoMing.sendFlower(B)
 
+export default {
+  name: "about",
+  store: store,
+  computed: {
+  },
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  },
+  created() {
+    store.commit('changeTheme','Light')
+  },
+  mounted() {
+
+  },
+  watch: {
+
+  }
+}
 </script>
-<style scope>
-</style>
 
+<style  scoped>
+.block{
+  width: 500px;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+</style>

@@ -3,7 +3,7 @@
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装  bigHeader-->
-    <el-header v-if="$store.state.theme==='Light'" class="myFlex myBorderBottom bigHeader">
+    <el-header v-if="$store.state.theme==='Light'" class="myFlex myBorderBottom bigHeaderLight">
       <div class="mainLogo"></div>
       <div class="pageTitle">中国石化胜利中心三号平台工程</div>
     </el-header>
@@ -22,7 +22,9 @@
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
-          <router-view></router-view>
+         <transition name="fade-transform" mode="out-in">
+           <router-view></router-view>
+         </transition>
 <!--          <div class="main-footer">-->
 <!--            <div class="footerLogo"></div>-->
 <!--            <span style="padding-left: 10px">版权所有：石化盈科信息技术有限责任公司Petro-CyberWorks Information Technology Co.,Ltd.</span>-->
@@ -78,7 +80,7 @@
       },
     },
     mounted(){
-      this.$router.push('shengLiHome')
+      // this.$router.push('shengLiHome')
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
       console.log('---路由路径---')
@@ -195,9 +197,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
 }
-.bigHeader{
+.bigHeaderLight{
   /*background: linear-gradient(to bottom, #002b58, #68b3ff);*/
   background: url('../../assets/TOP.png') no-repeat;
   background-size:cover;
@@ -255,5 +256,19 @@
   background: url('../../assets/logo2.png') no-repeat;
   background-size: 100% 100%
 }
+  .fade-transform-leave-active,
+  .fade-transform-enter-active {
+    transition: all .5s;
+  }
+
+  .fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 </style>
 

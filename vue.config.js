@@ -3,5 +3,8 @@ module.exports = {
       ? './'
       : '/',
   outputDir: 'myBuild',
-  assetsDir: 'myStatic'
+  assetsDir: 'myStatic',
+  devServer: {
+    open:true
+  }
 }
