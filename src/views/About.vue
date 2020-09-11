@@ -27,6 +27,8 @@ export default {
   methods:{
   },
   mounted(){
+    this.$store.dispatch('set_sessionTest','test')
+    console.log(this.$store.state.sessionTest)
     setTimeout(()=>{
       this.loading2 = false
     },200)
