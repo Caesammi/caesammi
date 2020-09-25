@@ -19,7 +19,7 @@
     "file-saver": "^2.0.2",
     "fingerprintjs2": "^2.1.0",
     "js-md5": "^0.7.3",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.14.1",
     "qs": "^6.9.1",
     "sass-loader": "^8.0.2",
     "stylus": "^0.54.5",
