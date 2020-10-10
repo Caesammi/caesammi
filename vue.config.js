@@ -1,8 +1,9 @@
 module.exports = {
-  publicPath: '/Caesammi/',
+  publicPath: '/gcgl/',
   outputDir: 'myBuild',
-  assetsDir: 'myStatic',
+  assetsDir: 'gcglassets',
   devServer:{
     open:true
-  }
+  },
+  lintOnSave:false
 }

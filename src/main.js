@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/eleTheme.scss'
+import './tools/dialogDrag'
 
 import * as myApi from '@/request/api'
 

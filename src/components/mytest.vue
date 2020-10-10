@@ -4,6 +4,13 @@
 <template>
 
   <div>
+    <el-button @click="openDialog">dragDialogTest</el-button>
+    <el-dialog v-dialogDrag :title="title" :visible.sync="dialogVisible" width="90%" style="border-radius: 10px">
+      test
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+      </div>
+    </el-dialog>
     <el-table
         size="mini"
         class="table1"
@@ -81,6 +88,7 @@ export default {
   computed: {},
   data() {
     return {
+      dialogVisible:false,
       test: {},
       myArr: [{a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}],
       myArr2: [{a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}],
@@ -89,6 +97,9 @@ export default {
     }
   },
   methods: {
+    openDialog(){
+      this.dialogVisible=true
+    },
     myPro() {
       return new Promise((resolve, reject) => {
         let myNumber = 100
