@@ -46,7 +46,7 @@
 
       </el-aside>
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
-        <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 9999"></headerA>
+        <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
 <!--        <template>-->
 <!--          <el-backtop target=".myBacktop"></el-backtop>-->
 <!--        </template>-->

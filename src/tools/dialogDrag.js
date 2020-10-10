@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 /*
 
@@ -18,311 +18,300 @@ import Vue from 'vue';
 
 Vue.directive('dialogDrag', {
 
-    bind(el, binding, vnode, oldVnode) {
+  bind(el, binding, vnode, oldVnode) {
 
-        //弹框可拉伸最小宽高
+    //弹框可拉伸最小宽高
 
-        let minWidth = 400;
+    let minWidth = 400
+    let minHeight = 300
 
-        let minHeight = 300;
+    //初始非全屏
 
-        //初始非全屏
+    let isFullScreen = false
 
-        let isFullScreen = false;
+    //当前宽
+    let nowWidth = 0
 
-        //当前宽高
+    let nowHight = 0
 
-        let nowWidth = 0;
+    //当前顶部高度
 
-        let nowHight = 0;
+    let nowMarginTop = 0
 
-        //当前顶部高度
+    //获取弹框头部（这部分可双击全屏）
 
-        let nowMarginTop = 0;
+    const dialogHeaderEl = el.querySelector('.el-dialog__header')
 
-        //获取弹框头部（这部分可双击全屏）
+    //弹窗
 
-        const dialogHeaderEl = el.querySelector('.el-dialog__header');
+    const dragDom = el.querySelector('.el-dialog')
 
-        //弹窗
+    //给弹窗加上overflow auto；不然缩小时框内的标签可能超出dialog；
 
-        const dragDom = el.querySelector('.el-dialog');
+    dragDom.style.overflow = "auto"
 
-        //给弹窗加上overflow auto；不然缩小时框内的标签可能超出dialog；
+    //清除选择头部文字效果
 
-        dragDom.style.overflow = "auto";
+    //dialogHeaderEl.onselectstart = new Function("return false");
 
-        //清除选择头部文字效果
+    //头部加上可拖动cursor
 
-        //dialogHeaderEl.onselectstart = new Function("return false");
+    dialogHeaderEl.style.cursor = 'move'
 
-        //头部加上可拖动cursor
+    // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
 
-        dialogHeaderEl.style.cursor = 'move';
+    const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null)
 
-        // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
+    let moveDown = (e) => {
 
-        const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null);
+      // 鼠标按下，计算当前元素距离可视区的距离
 
-        let moveDown = (e) => {
+      const disX = e.clientX - dialogHeaderEl.offsetLeft;
 
-            // 鼠标按下，计算当前元素距离可视区的距离
+      const disY = e.clientY - dialogHeaderEl.offsetTop;
 
-            const disX = e.clientX - dialogHeaderEl.offsetLeft;
+      // 获取到的值带px 正则匹配替换
 
-            const disY = e.clientY - dialogHeaderEl.offsetTop;
+      let styL, styT
 
-            // 获取到的值带px 正则匹配替换
+      // 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
 
-            let styL, styT;
+      if (sty.left.includes('%')) {
 
-            // 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
+        styL = +document.body.clientWidth * (+sty.left.replace(/\%/g, '') / 100)
 
-            if (sty.left.includes('%')) {
+        styT = +document.body.clientHeight * (+sty.top.replace(/\%/g, '') / 100)
 
-                styL = +document.body.clientWidth * (+sty.left.replace(/\%/g, '') / 100);
+      } else {
 
-                styT = +document.body.clientHeight * (+sty.top.replace(/\%/g, '') / 100);
+        styL = +sty.left.replace(/\px/g, '')
+        styT = +sty.top.replace(/\px/g, '')
 
-            } else {
+      }
 
-                styL = +sty.left.replace(/\px/g, '');
+      document.onmousemove = function (e) {
 
-                styT = +sty.top.replace(/\px/g, '');
+        // 通过事件委托，计算移动的距离
 
-            }
-            ;
+        const l = e.clientX - disX
 
-            document.onmousemove = function (e) {
+        const t = e.clientY - disY
 
-                // 通过事件委托，计算移动的距离
+        // 移动当前元素
 
-                const l = e.clientX - disX;
+        dragDom.style.left = `${l + styL}px`
 
-                const t = e.clientY - disY;
+        dragDom.style.top = `${t + styT}px`
 
-                // 移动当前元素
+        //将此时的位置传出去
 
-                dragDom.style.left = `${l + styL}px`;
+        //binding.value({x:e.pageX,y:e.pageY})
 
-                dragDom.style.top = `${t + styT}px`;
+      };
 
-                //将此时的位置传出去
+      document.onmouseup = function (e) {
 
-                //binding.value({x:e.pageX,y:e.pageY})
+        document.onmousemove = null
 
-            };
+        document.onmouseup = null
 
-            document.onmouseup = function (e) {
+      };
 
-                document.onmousemove = null;
+    }
 
-                document.onmouseup = null;
+    dialogHeaderEl.onmousedown = moveDown;
 
-            };
+    //双击头部全屏效果
 
-        }
+    dialogHeaderEl.ondblclick = (e) => {
 
-        dialogHeaderEl.onmousedown = moveDown;
+      if (isFullScreen == false) {
 
-        //双击头部全屏效果
+        nowHight = dragDom.clientHeight
 
-        dialogHeaderEl.ondblclick = (e) => {
+        nowWidth = dragDom.clientWidth
 
-            if (isFullScreen == false) {
+        nowMarginTop = dragDom.style.marginTop
 
-                nowHight = dragDom.clientHeight;
+        dragDom.style.left = 0
 
-                nowWidth = dragDom.clientWidth;
+        dragDom.style.top = 0
 
-                nowMarginTop = dragDom.style.marginTop;
+        dragDom.style.height = "100VH"
 
-                dragDom.style.left = 0;
+        dragDom.style.width = "100VW"
 
-                dragDom.style.top = 0;
+        dragDom.style.marginTop = 0
 
-                dragDom.style.height = "100VH";
+        isFullScreen = true
 
-                dragDom.style.width = "100VW";
+        dialogHeaderEl.style.cursor = 'initial'
 
-                dragDom.style.marginTop = 0;
+        dialogHeaderEl.onmousedown = null
 
-                isFullScreen = true;
+      } else {
 
-                dialogHeaderEl.style.cursor = 'initial';
+        dragDom.style.height = "auto"
 
-                dialogHeaderEl.onmousedown = null;
+        dragDom.style.width = nowWidth + 'px'
 
-            } else {
+        dragDom.style.marginTop = nowMarginTop
 
-                dragDom.style.height = "auto";
+        isFullScreen = false
 
-                dragDom.style.width = nowWidth + 'px';
+        dialogHeaderEl.style.cursor = 'move'
 
-                dragDom.style.marginTop = nowMarginTop;
+        dialogHeaderEl.onmousedown = moveDown
 
-                isFullScreen = false;
+      }
 
-                dialogHeaderEl.style.cursor = 'move';
+    }
 
-                dialogHeaderEl.onmousedown = moveDown;
+    dragDom.onmousemove = function (e) {
 
-            }
+      let moveE = e
 
-        }
+      if (e.clientX > dragDom.offsetLeft + dragDom.clientWidth - 10 || dragDom.offsetLeft + 10 > e.clientX) {
 
-        dragDom.onmousemove = function (e) {
+        dragDom.style.cursor = 'w-resize'
 
-            let moveE = e;
+      } else if (el.scrollTop + e.clientY > dragDom.offsetTop + dragDom.clientHeight - 10) {
 
-            if (e.clientX > dragDom.offsetLeft + dragDom.clientWidth - 10 || dragDom.offsetLeft + 10 > e.clientX) {
+        dragDom.style.cursor = 's-resize'
 
-                dragDom.style.cursor = 'w-resize';
+      } else {
 
-            } else if (el.scrollTop + e.clientY > dragDom.offsetTop + dragDom.clientHeight - 10) {
+        dragDom.style.cursor = 'default'
 
-                dragDom.style.cursor = 's-resize';
+        dragDom.onmousedown = null
 
-            } else {
+      }
 
-                dragDom.style.cursor = 'default';
+      dragDom.onmousedown = (e) => {
 
-                dragDom.onmousedown = null;
+        const clientX = e.clientX
+        const clientY = e.clientY
+        let elW = dragDom.clientWidth
+        let elH = dragDom.clientHeight
+        let EloffsetLeft = dragDom.offsetLeft
+        let EloffsetTop = dragDom.offsetTop
+        dragDom.style.userSelect = 'none'
+        let ELscrollTop = el.scrollTop
 
-            }
+        //判断点击的位置是不是为头部
 
-            dragDom.onmousedown = (e) => {
+        if (clientX > EloffsetLeft && clientX < EloffsetLeft + elW && clientY > EloffsetTop && clientY < EloffsetTop + 100) {
 
-                const clientX = e.clientX;
+          //如果是头部在此就不做任何动作，以上有绑定dialogHeaderEl.onmousedown = moveDown;
 
-                const clientY = e.clientY;
+        } else {
 
-                let elW = dragDom.clientWidth;
+          document.onmousemove = function (e) {
 
-                let elH = dragDom.clientHeight;
+            e.preventDefault() // 移动时禁用默认事件
 
-                let EloffsetLeft = dragDom.offsetLeft;
+            //左侧鼠标拖拽位置
 
-                let EloffsetTop = dragDom.offsetTop;
+            if (clientX > EloffsetLeft && clientX < EloffsetLeft + 10) {
 
-                dragDom.style.userSelect = 'none';
+              //往左拖拽
 
-                let ELscrollTop = el.scrollTop;
+              if (clientX > e.clientX) {
 
-                //判断点击的位置是不是为头部
+                dragDom.style.width = elW + (clientX - e.clientX) * 2 + 'px'
 
-                if (clientX > EloffsetLeft && clientX < EloffsetLeft + elW && clientY > EloffsetTop && clientY < EloffsetTop + 100) {
+              }
 
-                    //如果是头部在此就不做任何动作，以上有绑定dialogHeaderEl.onmousedown = moveDown;
+              //往右拖拽
+
+              if (clientX < e.clientX) {
+
+                if (dragDom.clientWidth < minWidth) {
 
                 } else {
 
-                    document.onmousemove = function (e) {
-
-                        e.preventDefault(); // 移动时禁用默认事件
-
-                        //左侧鼠标拖拽位置
-
-                        if (clientX > EloffsetLeft && clientX < EloffsetLeft + 10) {
-
-                            //往左拖拽
-
-                            if (clientX > e.clientX) {
-
-                                dragDom.style.width = elW + (clientX - e.clientX) * 2 + 'px';
-
-                            }
-
-                            //往右拖拽
-
-                            if (clientX < e.clientX) {
-
-                                if (dragDom.clientWidth < minWidth) {
-
-                                } else {
-
-                                    dragDom.style.width = elW - (e.clientX - clientX) * 2 + 'px';
-
-                                }
-
-                            }
-
-                        }
-
-                        //右侧鼠标拖拽位置
-
-                        if (clientX > EloffsetLeft + elW - 10 && clientX < EloffsetLeft + elW) {
-
-                            //往左拖拽
-
-                            if (clientX > e.clientX) {
-
-                                if (dragDom.clientWidth < minWidth) {
-
-                                } else {
-
-                                    dragDom.style.width = elW - (clientX - e.clientX) * 2 + 'px';
-
-                                }
-
-                            }
-
-                            //往右拖拽
-
-                            if (clientX < e.clientX) {
-
-                                dragDom.style.width = elW + (e.clientX - clientX) * 2 + 'px';
-
-                            }
-
-                        }
-
-                        //底部鼠标拖拽位置
-
-                        if (ELscrollTop + clientY > EloffsetTop + elH - 20 && ELscrollTop + clientY < EloffsetTop + elH) {
-
-                            //往上拖拽
-
-                            if (clientY > e.clientY) {
-
-                                if (dragDom.clientHeight < minHeight) {
-
-                                } else {
-
-                                    dragDom.style.height = elH - (clientY - e.clientY) * 2 + 'px';
-
-                                }
-
-                            }
-
-                            //往下拖拽
-
-                            if (clientY < e.clientY) {
-
-                                dragDom.style.height = elH + (e.clientY - clientY) * 2 + 'px';
-
-                            }
-
-                        }
-
-                    };
-
-                    //拉伸结束
-
-                    document.onmouseup = function (e) {
-
-                        document.onmousemove = null;
-
-                        document.onmouseup = null;
-
-                    };
+                  dragDom.style.width = elW - (e.clientX - clientX) * 2 + 'px'
 
                 }
 
+              }
+
             }
+
+            //右侧鼠标拖拽位置
+
+            if (clientX > EloffsetLeft + elW - 10 && clientX < EloffsetLeft + elW) {
+
+              //往左拖拽
+
+              if (clientX > e.clientX) {
+
+                if (dragDom.clientWidth < minWidth) {
+
+                } else {
+
+                  dragDom.style.width = elW - (clientX - e.clientX) * 2 + 'px'
+
+                }
+
+              }
+
+              //往右拖拽
+
+              if (clientX < e.clientX) {
+
+                dragDom.style.width = elW + (e.clientX - clientX) * 2 + 'px'
+
+              }
+
+            }
+
+            //底部鼠标拖拽位置
+
+            if (ELscrollTop + clientY > EloffsetTop + elH - 20 && ELscrollTop + clientY < EloffsetTop + elH) {
+
+              //往上拖拽
+
+              if (clientY > e.clientY) {
+
+                if (dragDom.clientHeight < minHeight) {
+
+                } else {
+
+                  dragDom.style.height = elH - (clientY - e.clientY) * 2 + 'px'
+
+                }
+
+              }
+
+              //往下拖拽
+
+              if (clientY < e.clientY) {
+
+                dragDom.style.height = elH + (e.clientY - clientY) * 2 + 'px'
+
+              }
+
+            }
+
+          };
+
+          //拉伸结束
+
+          document.onmouseup = function (e) {
+
+            document.onmousemove = null
+
+            document.onmouseup = null
+
+          };
 
         }
 
+      }
+
     }
+
+  }
 
 })

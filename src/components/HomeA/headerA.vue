@@ -13,6 +13,7 @@
         components: {
         },
         name: "headerA",
+
         data(){
             return{
                 bbb:[],
