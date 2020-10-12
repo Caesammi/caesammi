@@ -4,9 +4,16 @@
 <template>
 
   <div>
-    <el-button @click="openDialog">dragDialogTest</el-button>
-    <el-dialog v-dialogDrag title="test" :visible.sync="dialogVisible" width="90%" style="border-radius: 10px">
-      test
+    <div style="background:#d6ff76;width: 100%;height: 200px;">
+      {{computedTestFont1}}
+      {{computedTestFont2}}
+    </div>
+    <el-button @click="openDialog">notifyTest</el-button>
+    <el-dialog v-dialogDrag title="test" :visible.sync="dialogVisible" width="50%" style="border-radius: 10px">
+      <div>
+        <el-input v-model="input"></el-input>
+        test
+      </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
       </div>
@@ -85,9 +92,11 @@ export default {
   name: "mytest",
   store:store,
   // components: { Sticky },
-  computed: {},
   data() {
     return {
+      input:'',
+      computedTestFont1:'origin',
+      // computedTestFont2:'',
       dialogVisible:false,
       test: {},
       myArr: [{a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}, {a: 'create'}],
@@ -96,77 +105,31 @@ export default {
       myLoading1: true
     }
   },
-  methods: {
-    openDialog(){
-      this.dialogVisible=true
-    },
-    myPro() {
-      return new Promise((resolve, reject) => {
-        let myNumber = 100
-        for (let i = 0; i < myNumber; i++) {
-          if (i === 99) {
-            console.log(i)
-            setTimeout(() => {
-              resolve(i)
-            }, 2000)
-          }
-        }
-      })
-    },
-    myWait() {
-      this.myPro().then(res => {
-        console.log(res)
-      })
-
-    },
-    pu() {
-      let flower = function () {
-
-      }
-      let C = {
-        sendFlower: function (t) {
-          let flower = new flower()
-        }
-      }
-      let A = {
-        receiveFlower: function (flower) {
-        }
-      }
-    },
-    canvasDraw() {
-      let draw = document.getElementById('draw')
-      draw.height = 200
-      draw.width = 200
-      let context = draw.getContext('2d')
-
-      context.fillstyle = "rgba(0,0,255,0.5)"
-      context.fillRect(10, 10, 50, 50)
-      context.fillstyle = "rgba(0,0,255,0.5)"
-      context.fillRect(30, 30, 50, 50)
-      console.log(context)
-    },
-  },
   mounted() {
-    let newArray = [{
-      name: "aaa",
-      value: 0
-    },
-      {
-        name: "ddd",
-        value: 3
-      },
-      {
-        name: "bbb",
-        value: 1
-      },
-      {
-        name: "eee",
-        value: 4
-      },
-      {
-        name: "ccc",
-        value: 2
-      }];
+    setTimeout(()=>{
+      this.computedTestFont1='originChanged'
+    },5000)
+    // let newArray = [
+    //     {
+    //   name: "aaa",
+    //   value: 0
+    // },
+    //   {
+    //     name: "ddd",
+    //     value: 3
+    //   },
+    //   {
+    //     name: "bbb",
+    //     value: 1
+    //   },
+    //   {
+    //     name: "eee",
+    //     value: 4
+    //   },
+    //   {
+    //     name: "ccc",
+    //     value: 2
+    //   }];
     // function compare(value) {
     //   return function (a, b) {
     //     var value1 = a[value];
@@ -175,16 +138,16 @@ export default {
     //   }
     // }
     // console.log(newArray.sort(compare("value")))
-    let myCompare = function (value){
-      newArray.sort((a,b)=>{
-        let value1 = a[value]
-        let value2 = b[value]
-        return value1-value2
-      })
-    }
-    console.log(
-      newArray.sort(myCompare('value'))
-    )
+    // let myCompare = function (value){
+    //   newArray.sort((a,b)=>{
+    //     let value1 = a[value]
+    //     let value2 = b[value]
+    //     return value1-value2
+    //   })
+    // }
+    // console.log(
+    //     newArray.sort(myCompare('value'))
+    // )
 
     // const mapTool1 = aItem => aItem*2
     // const arrTest = [1,2,3,4,5]
@@ -513,6 +476,73 @@ export default {
 
 
   },
+  computed: {
+    computedTestFont2(){
+      let res = this.computedTestFont1
+      return res+='ddd'
+    }
+  },
+  methods: {
+    openNotify(){
+      const i = 0
+      const h = this.$createElement;
+      for(i; i<10; i++){
+        this.$notify({
+          title: '标题名称',
+          message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
+        });
+      }
+    },
+    openDialog(){
+      this.dialogVisible=true
+    },
+    myPro() {
+      return new Promise((resolve, reject) => {
+        let myNumber = 100
+        for (let i = 0; i < myNumber; i++) {
+          if (i === 99) {
+            console.log(i)
+            setTimeout(() => {
+              resolve(i)
+            }, 2000)
+          }
+        }
+      })
+    },
+    myWait() {
+      this.myPro().then(res => {
+        console.log(res)
+      })
+
+    },
+    pu() {
+      let flower = function () {
+
+      }
+      let C = {
+        sendFlower: function (t) {
+          let flower = new flower()
+        }
+      }
+      let A = {
+        receiveFlower: function (flower) {
+        }
+      }
+    },
+    canvasDraw() {
+      let draw = document.getElementById('draw')
+      draw.height = 200
+      draw.width = 200
+      let context = draw.getContext('2d')
+
+      context.fillstyle = "rgba(0,0,255,0.5)"
+      context.fillRect(10, 10, 50, 50)
+      context.fillstyle = "rgba(0,0,255,0.5)"
+      context.fillRect(30, 30, 50, 50)
+      console.log(context)
+    },
+  },
+
   watch: {
     myArr: {
       handler: function (newVal) {

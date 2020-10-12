@@ -1,7 +1,7 @@
 module.exports = {
-  publicPath: '/gcgl/',
+  publicPath: '/caesammi/',
   outputDir: 'myBuild',
-  assetsDir: 'gcglassets',
+  assetsDir: 'caesammiAssets',
   devServer:{
     open:true
   },
