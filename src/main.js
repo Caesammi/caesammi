@@ -8,6 +8,7 @@ import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/eleTheme.scss'
 import './tools/dialogDrag'
+import 'amfe-flexible'
 
 import * as myApi from '@/request/api'
 
