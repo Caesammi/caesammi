@@ -1,8 +1,8 @@
 <template>
   <el-row class="home">
     <div style="height: 5000px;font-size: 30px">
-      BinarySearch
-      <div style="width: 100%;transform: translateX(20px)">
+      <div>BinarySearch</div>
+      <el-col :span="6">
         <div style="width: 300px">
           <el-form>
             <el-form-item label-width="100px" label="最小值">
@@ -41,7 +41,13 @@
           </el-form>
          <h5> 计算时间参考：console</h5>
         </div>
-      </div>
+      </el-col>
+      <el-col :span="8">
+        <el-image
+            style="width: 500px; height: 300px"
+            :src="require('../assets/Algorithms/BinarySearch.png')"
+            fit="contain"></el-image>
+      </el-col>
     </div>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -131,7 +137,4 @@ export default {
 }
 </script>
 <style scoped>
-/*.el-input{*/
-/*  width: 200px !important;*/
-/*}*/
 </style>

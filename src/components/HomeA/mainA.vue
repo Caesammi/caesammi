@@ -5,7 +5,7 @@
     <!--顶部动态工具栏封装-->
     <el-header class=" myFlex myBorderBottom">
       <div style="font-weight:bolder">CAESAMMI</div>
-      <div><img alt style="width: 135px;height: 100%" src="../../assets/logo.png"></div>
+      <div><img alt style="width: 135px;height: 100%"></div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
