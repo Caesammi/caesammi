@@ -1,4 +1,10 @@
 // storage-start
+
+//算法数据生成
+export const readInts = (lo, hi) => {
+  return Math.floor(Math.random()*(hi - lo) + lo)
+}
+
 export const setSession = (key, value) => {
   sessionStorage.setItem(key, value)
 }

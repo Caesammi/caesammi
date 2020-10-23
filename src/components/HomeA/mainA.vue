@@ -107,6 +107,7 @@
       },
     },
     mounted(){
+      this.$router.push('/BinarySearch')
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
       console.log('---路由路径---')

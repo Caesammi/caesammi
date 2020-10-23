@@ -26,10 +26,10 @@ const routes = [
         meta: {title: 'myTest'}
       },
       {
-        path: '/myHome',
-        name: 'home',
-        component: getComponent('views/Home.vue'),
-        meta: {title: 'home'}
+        path: '/BinarySearch',
+        name: 'BinarySearch',
+        component: getComponent('views/BinarySearch.vue'),
+        meta: {title: 'BinarySearch'}
       },
     ]
   },

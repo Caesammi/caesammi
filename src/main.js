@@ -13,7 +13,7 @@ import 'amfe-flexible'
 import * as myApi from '@/request/api'
 
 
-Vue.use(ElementUI)
+Vue.use(ElementUI,{size:'mini'})
 Vue.use(VueAMap)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false

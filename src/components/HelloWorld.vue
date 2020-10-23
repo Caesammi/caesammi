@@ -41,7 +41,7 @@ export default {
     msg: String
   },
   mounted() {
-    console.log(this.myApi)
+    // console.log(this.myApi)
   }
 }
 </script>
