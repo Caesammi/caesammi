@@ -1,46 +1,44 @@
 <template>
-  <el-row class="home">
+  <el-row :gutter="5" class="home">
     <div style="height: 5000px;font-size: 30px">
       <div>BinarySearch</div>
       <el-col :span="6">
-        <div style="width: 300px">
-          <el-form>
-            <el-form-item label-width="100px" label="最小值">
-              <el-input v-model="myLo"></el-input>
-            </el-form-item>
-            <el-form-item label-width="100px" label="最大值">
-              <el-input v-model="myHi"></el-input>
-            </el-form-item>
-            <el-form-item label-width="100px" label="数组长度">
-              <el-input v-model.number="testDataL"/>
-            </el-form-item>
-            <el-form-item label="数据制造" label-width="100px">
-              <el-button @click="startTest">造</el-button>
-            </el-form-item>
-            <el-form-item label="Origin Data" label-width="100px">
-              <el-input v-model="myData.toString()" type="textarea"
-                        :autosize="{ minRows: 4, maxRows: 8}"
-              ></el-input>
-            </el-form-item>
-            <el-form-item label-width="100px" label="键值">
-              <el-input :disabled="true" v-model.number="myKey"></el-input>
-            </el-form-item>
-            <el-form-item label-width="100px">
-              <el-button @click="createKey">生成随机键值</el-button>
-            </el-form-item>
-            <el-form-item label-width="100px">
-              <el-button type="primary" @click="main(myData)">二分查找</el-button>
-              <el-button type="ghost" @click="normallSearch(myData)">普通搜索</el-button>
-            </el-form-item>
-            <el-form-item label="Result" label-width="100px">
-              二分查找结果
-              <el-input v-model="result"></el-input>
-              轮询结果
-              <el-input v-model="result2"></el-input>
-            </el-form-item>
-          </el-form>
-         <h5> 计算时间参考：console</h5>
-        </div>
+        <el-form>
+          <el-form-item label-width="100px" label="最小值">
+            <el-input v-model="myLo"></el-input>
+          </el-form-item>
+          <el-form-item label-width="100px" label="最大值">
+            <el-input v-model="myHi"></el-input>
+          </el-form-item>
+          <el-form-item label-width="100px" label="数组长度">
+            <el-input v-model.number="testDataL"/>
+          </el-form-item>
+          <el-form-item label="数据制造" label-width="100px">
+            <el-button @click="startTest">造</el-button>
+          </el-form-item>
+          <el-form-item label="Origin Data" label-width="100px">
+            <el-input v-model="myData.toString()" type="textarea"
+                      :autosize="{ minRows: 4, maxRows: 8}"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label-width="100px" label="键值">
+            <el-input :disabled="true" v-model.number="myKey"></el-input>
+          </el-form-item>
+          <el-form-item label-width="100px">
+            <el-button @click="createKey">生成随机键值</el-button>
+          </el-form-item>
+          <el-form-item label-width="100px">
+            <el-button type="primary" @click="main(myData)">二分查找</el-button>
+            <el-button type="ghost" @click="normallSearch(myData)">普通搜索</el-button>
+          </el-form-item>
+          <el-form-item label="Result" label-width="100px">
+            二分查找结果
+            <el-input v-model="result"></el-input>
+            轮询结果
+            <el-input v-model="result2"></el-input>
+          </el-form-item>
+        </el-form>
+        <h5> 计算时间参考：console</h5>
       </el-col>
       <el-col :span="8">
         <el-image
@@ -91,20 +89,20 @@ export default {
       console.timeEnd()
       console.log(sortedArr[this.result])
     },
-    rank(key, arr) {
+    rank(key, arr){
       let lo = 0
       let hi = arr.length - 1
-      while (lo <= hi) {
-        let mid = Math.floor(lo + (hi - lo) / 2)
-        if (key < arr[mid]) {
-          hi = mid - 1
-        } else if (key > arr[mid]) {
-          lo = mid + 1
+      while( lo <= hi ){
+        let mid = Math.floor( ( hi - lo )/2 + lo )
+        if( key < arr[mid] ){
+          hi = mid -1 // 如果查找的 项小于 中间键值的项 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
+        } else if( key > arr[mid] ) {
+          lo = mid + 1 // 如果查找的 项大于 中间键值的项 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
         } else {
-          return mid
+          return mid // 如果相等则返回
         }
       }
-      return -1
+      return -1 // 如果不存在则 返回-1
     },
     main(args) {
       let sortData = [...args]
@@ -117,9 +115,10 @@ export default {
       console.timeEnd()
       console.log(sortedArr[this.result])
     },
+
     startTest() {
       // console.time()
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         this.myData = []
         let randomArr = this.myData
         let randomNum = (lo, hi) => {
@@ -133,7 +132,8 @@ export default {
       })
     }
   },
-  mounted() {}
+  mounted() {
+  }
 }
 </script>
 <style scoped>

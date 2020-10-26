@@ -1,14 +1,22 @@
 const admin = [
   {
-    "header": "上海调度中心",
+    "header": "测试",
     "icon": "el-icon-s-order",
     "path":"/",
     "childrens": [
-      {"name": "about", "path": "/about"},
-      {"name": "BinarySearch", "path": "/BinarySearch"},
-      {"name": "myTest", "path": "/myTest"},
+      {name: "aMap", path: "/aMap"},
+      {name: "flowChart", path: "/flowChart"},
     ]
   },
+  {
+    "header": "算法练习",
+    "icon": "el-icon-s-opportunity",
+    "path":"/",
+    "childrens": [
+      {name: "二分查找", path: "/BinarySearch"},
+      {name: '深拷贝', path: "/deepCopy"}
+    ]
+  }
 
 ]
 

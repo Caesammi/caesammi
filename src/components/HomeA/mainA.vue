@@ -4,7 +4,7 @@
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
     <el-header class=" myFlex myBorderBottom">
-      <div style="font-weight:bolder">CAESAMMI</div>
+      <div style="font-weight:bolder;font-size: 20px;">CAESAMMI</div>
       <div><img alt style="width: 135px;height: 100%"></div>
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
@@ -55,8 +55,8 @@
 <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
-          <router-view style="margin-top:20px"></router-view>
-          <footerA style="height: auto;"></footerA>
+          <router-view style="margin-top:20px;background: #EBEEF5"></router-view>
+<!--          <footerA style="height: auto;"></footerA>-->
         </el-main>
 <!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
 
@@ -107,7 +107,7 @@
       },
     },
     mounted(){
-      this.$router.push('/BinarySearch')
+
       this.menuList = power.admin
       this.defaultOpen = this.$route.path  //获取路径
       console.log('---路由路径---')
@@ -133,6 +133,7 @@
     padding: 0;
     margin: 0;
     height: 100%;
+    min-width: 1000px;
   }
   .noScrollbar::-webkit-scrollbar {
     display: none;

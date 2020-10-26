@@ -14,16 +14,16 @@ const routes = [
     component: getComponent('components/HomeA/mainA.vue'),
     children: [
       {
-        path: '/about',
-        name: 'about',
-        component: getComponent('views/About.vue'),
-        meta: {title: 'about'}
+        path: '/aMap',
+        name: 'aMap',
+        component: getComponent('views/aMap.vue'),
+        meta: {title: 'aMap'}
       },
       {
-        path: '/myTest',
-        name: 'myTest',
-        component: getComponent('components/mytest.vue'),
-        meta: {title: 'myTest'}
+        path: '/flowChart',
+        name: 'flowChart',
+        component: getComponent('views/flowChart.vue'),
+        meta: {title: 'flowChart'}
       },
       {
         path: '/BinarySearch',
@@ -31,12 +31,18 @@ const routes = [
         component: getComponent('views/BinarySearch.vue'),
         meta: {title: 'BinarySearch'}
       },
+      {
+        path: '/deepCopy',
+        name: 'DeepCopy',
+        component: getComponent('views/deepCopy'),
+        meta: { title: 'deepCopy' }
+      }
     ]
   },
   {
     path: '/test2',
     name: 'test2',
-    component: getComponent('components/mytest.vue'),
+    component: getComponent('components/flowChart.vue'),
   },
 
 ]
