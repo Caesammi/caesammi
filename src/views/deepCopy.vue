@@ -32,84 +32,93 @@ export default {
             'name2-1': '第二层',
             'name2-2': {
               name3: {
-                'name3-1': '第三层'
+                'name3-1': '第三层',
+                'myFun': ()=>{
+                  return -1
+                }
               }
             }
           },
+          Arr:{
+            arrTest: [
+              {
+                arrName1:[
+                  {
+                    arrName2:[
+                      {
+                        arrName3:'我是第三层'
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
-        {
-          arrTest: [
-            {
-              arrName1:[
-                {
-                  arrName2:[
-                    {
-                      arrName3:'我是第三层'
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
+
         ],
-      result: [],
-      deepCopyCode:
-          'const deepCopy = (data) => {\n' +
-          '        const t = typeof (data);\n' +
+      result: null,
+      deepCopyCode:' const deepCopy = (data) => {\n' +
+          '        const t = data.constructor\n' +
+          '        // typeof (data);\n' +
           '        let o;\n' +
-          '        if (t === \'array\') {\n' +
-          '          o = [];\n' +
-          '        } else if (t === \'object\') {\n' +
-          '          o = {};\n' +
+          '        if (t === Array) {\n' +
+          '          o = []\n' +
+          '        } else if (t === Object) {\n' +
+          '          o = {}\n' +
           '        } else {\n' +
-          '          return data;\n' +
+          '          return data //如果是基础数据类型直接返回，下面的代码不执行\n' +
           '        }\n' +
           '\n' +
-          '        if (t === \'array\') {\n' +
+          '        if (t === Array) {\n' +
           '          for (let i = 0; i < data.length; i++) {\n' +
-          '            o.push(deepCopy(data[i]));\n' +
+          '            o.push(deepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容\n' +
           '          }\n' +
-          '        } else if (t === \'object\') {\n' +
-          '          for (let i in data) { //遍历对象\n' +
-          '            o[i] = deepCopy(data[i]);\n' +
+          '        } else if (t === Object) {\n' +
+          '          for (let i in data) { // 遍历对象\n' +
+          '            o[i] = deepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容\n' +
           '          }\n' +
           '        }\n' +
-          '        return o;\n' +
-          '      }\n' +
-          '      console.log(deepCopy(this.origin))\n' +
-          '    }'
+          '        return o\n' +
+          '        // 使用递归，节省很大工作量\n' +
+          '      }'
     }
   },
   methods: {
     deepCopy() {
       const deepCopy = (data) => {
-        const t = typeof (data);
+        const t = data.constructor
+        // typeof (data);
         let o;
-        if (t === 'array') {
-          o = [];
-        } else if (t === 'object') {
-          o = {};
+        if (t === Array) {
+          o = []
+        } else if (t === Object) {
+          o = {}
         } else {
-          return data;
+          return data //如果是基础数据类型直接返回，下面的代码不执行
         }
 
-        if (t === 'array') {
+        if (t === Array) {
           for (let i = 0; i < data.length; i++) {
-            o.push(deepCopy(data[i]));
+            o.push(deepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容
           }
-        } else if (t === 'object') {
-          for (let i in data) { //遍历对象
-            o[i] = deepCopy(data[i]);
+        } else if (t === Object) {
+          for (let i in data) { // 遍历对象
+            o[i] = deepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容
           }
         }
-        return o;
+        return o
+        // 使用递归，节省很大工作量
       }
-      console.log(deepCopy(this.origin))
+      this.result = deepCopy(this.origin)
+      console.log('----------------------------');
+      console.log(this.origin)
+      console.log(this.result)
+      console.log('----------------------------');
     }
   },
   mounted() {
-    console.log(JSON.stringify(this.origin))
+    console.log(this.origin)
   },
 }
 </script>
