@@ -9,7 +9,7 @@
       <el-input type="textarea" :autosize="{ minRows: 8 }" v-model="JSON.stringify(origin)"></el-input>
     </el-col>
     <el-col style="width: 112px" :span="2">
-      <el-button style="margin-top:50%;transform:translateY(-50%)" @click="deepCopy" type="ghost">Deep Copy
+      <el-button style="margin-top:50%;transform:translateY(-50%)" @click="DeepCopy" type="ghost">Deep Copy
         <el-icon class="el-icon-right"></el-icon>
       </el-button>
     </el-col>
@@ -114,17 +114,17 @@ export default {
 
         if (t === Array) {
           for (let i = 0; i < data.length; i++) {
-            o.push(deepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容
+            o.push(DeepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容
           }
         } else if (t === Object) {
           for (let i in data) { // 遍历对象
-            o[i] = deepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容
+            o[i] = DeepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容
           }
         }
         return o
         // 使用递归，节省很大工作量
       }
-      this.result = deepCopy(this.origin)
+      this.result = DeepCopy(this.origin)
       console.log('----------------------------');
       console.log(this.origin)
       console.log(this.result)

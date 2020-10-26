@@ -20,10 +20,10 @@ const routes = [
         meta: {title: 'aMap'}
       },
       {
-        path: '/flowChart',
-        name: 'flowChart',
-        component: getComponent('views/flowChart.vue'),
-        meta: {title: 'flowChart'}
+        path: '/FlowChart',
+        name: 'FlowChart',
+        component: getComponent('views/FlowChart.vue'),
+        meta: {title: 'FlowChart'}
       },
       {
         path: '/BinarySearch',
@@ -32,17 +32,23 @@ const routes = [
         meta: {title: 'BinarySearch'}
       },
       {
-        path: '/deepCopy',
+        path: '/DeepCopy',
         name: 'DeepCopy',
-        component: getComponent('views/deepCopy'),
-        meta: { title: 'deepCopy' }
+        component: getComponent('views/DeepCopy'),
+        meta: {title: 'DeepCopy.vue'}
+      },
+      {
+        path: '/CounterFlips',
+        name: 'CounterFlips',
+        component: getComponent('views/CounterFlips'),
+        meta: {title: 'CounterFlips'}
       }
     ]
   },
   {
     path: '/test2',
     name: 'test2',
-    component: getComponent('components/flowChart.vue'),
+    component: getComponent('components/FlowChart.vue'),
   },
 
 ]
@@ -57,7 +63,7 @@ router.beforeEach((to, from, next) => {
 })
 const routerPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error=> error)
+  return routerPush.call(this, location).catch(error => error)
 }
 
 export default router

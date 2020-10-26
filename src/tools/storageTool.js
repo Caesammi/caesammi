@@ -241,3 +241,54 @@ export const zcFuzzyQuery = (value, key, keyword) => {
   }
   return arr
 }
+export const RandomBernoulli = (key) => {
+  if(typeof key === "number" && key>=0 && key<= 1){
+    return Math.random() >= key
+  }else{
+    return '无效值'
+  }
+}
+
+export class Counter {
+  constructor(name) {
+    this.name = name
+  }
+  count = 0
+  increment = () => {
+    this.count++
+  }
+  tally = () => {
+    return this.count
+  }
+  toString = () => {
+    return this.count.toString()
+  }
+}
+
+export class Flips {
+  constructor(name) {
+  this.name = name
+  }
+  main(args) {
+    let T = parseInt(args[0])
+    let heads = new Counter('heads')
+    let tails = new Counter('tails')
+    for(let t = 0; t < T; t++){
+      if(RandomBernoulli(0.5)){
+        heads.increment()
+      }else{
+        tails.increment()
+      }
+    }
+    console.log(heads)
+    console.log(tails)
+    let d = heads.tally() - tails.tally()
+    console.log('delta:' + Math.abs(d)) // Math.abs 返回指定数字的绝对值
+  return {
+      heads:heads,
+      tails:tails,
+      delta:Math.abs(d)
+    }
+  }
+}
+

@@ -9,7 +9,7 @@
     </el-header>
     <el-container class="myContainer" style="height: calc(100% - 60px);">
       <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
-<!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
+        <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
         <el-container style="height: 100%">
           <el-menu class="el-menu-vertical-demo"
                    :collapse="isCollapse"
@@ -20,25 +20,26 @@
             <el-submenu v-for="(item,index) in menuList" :key="index" :index="index + ''">
               <template slot="title">
                 <i :class="item.icon"></i>
-                <span slot="title">{{item.header}}</span>
+                <span slot="title">{{ item.header }}</span>
               </template>
               <el-menu-item-group style="text-align: left">
                 <el-menu-item v-for="(children,i) in item.childrens" @click="handleClick(children.path)" :key="i"
                               :index="children.path">
-                  {{children.name}}
+                  {{ children.name }}
                 </el-menu-item>
               </el-menu-item-group>
               <el-submenu v-for="(center,icenter) in item.center" :key="icenter" :index="icenter + 'center'">
                 <template slot="title">
                   <i :class="center.icon"></i>
-                  <span slot="title">{{center.header}}</span>
+                  <span slot="title">{{ center.header }}</span>
                 </template>
                 <el-menu-item v-for="(kids, ikid) in center.kids" @click="handleClick(kids.path)" :key="ikid"
                               :index="kids.path + ''">
-                  {{kids.name}}
+                  {{ kids.name }}
                 </el-menu-item>
               </el-submenu>
-            </el-submenu> </el-menu>
+            </el-submenu>
+          </el-menu>
           <div class="bookmark" id="arrow" @click="cc">
             <i :class="[arrow?'el-icon-caret-left Aback':'el-icon-caret-left Afront']"></i>
           </div>
@@ -47,18 +48,20 @@
       </el-aside>
       <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
         <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
-<!--        <template>-->
-<!--          <el-backtop target=".myBacktop"></el-backtop>-->
-<!--        </template>-->
+        <!--        <template>-->
+        <!--          <el-backtop target=".myBacktop"></el-backtop>-->
+        <!--        </template>-->
 
         <!--内容面包屑组件-->
-<!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
+        <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
         <!--单页面内容容器-->
         <el-main style="padding: 0;margin: 0;height: 97%;">
-          <router-view style="margin-top:20px;background: #EBEEF5"></router-view>
-<!--          <footerA style="height: auto;"></footerA>-->
+          <transition name="fade-transform" mode="out-in">
+            <router-view style="margin-top:20px;background: #EBEEF5"></router-view>
+          </transition>
+          <!--          <footerA style="height: auto;"></footerA>-->
         </el-main>
-<!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
+        <!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
 
 
       </el-main>
@@ -70,162 +73,187 @@
 </template>
 
 <script>
-  import power from './power'
-  import headerA from "./headerA"
-  import footerA from './footerA'
+import power from './power'
+import headerA from "./headerA"
+import footerA from './footerA'
 
-  export default {
-    name: "mainA",
-    components: {
-      headerA,
-        footerA
-    },
-    data() {
-      return {
-        arrow: false,
-        menuList:[],
-        isCollapse : false,
-        menuRouter: true,
-        defaultOpen: '',
+export default {
+  name: "mainA",
+  components: {
+    headerA,
+    footerA
+  },
+  data() {
+    return {
+      arrow: false,
+      menuList: [],
+      isCollapse: false,
+      menuRouter: true,
+      defaultOpen: '',
 
 
-      }
-    },
-    methods: {
-      logOut(){
-        console.log('登出')
-      },
-      cc() {
-        this.isCollapse = !this.isCollapse
-        this.arrow = !this.arrow
-        this.logoo = !this.logoo
-      },
-      handleClick(path) {
-        console.log(path)
-        this.$router.push(path)
-        this.defaultOpen = path
-      },
-    },
-    mounted(){
-
-      this.menuList = power.admin
-      this.defaultOpen = this.$route.path  //获取路径
-      console.log('---路由路径---')
-      console.log(this.defaultOpen)
-      console.log('---路由路径---')
-
-      this.$router.afterEach(() => {
-        this.defaultOpen = this.$route.path
-        console.log('当前路径' + this.defaultOpen)
-      })
-    },
-    watch: {
-      defaultOpen: function () {
-        this.handleClick(this.defaultOpen)
-      },
     }
+  },
+  methods: {
+    logOut() {
+      console.log('登出')
+    },
+    cc() {
+      this.isCollapse = !this.isCollapse
+      this.arrow = !this.arrow
+      this.logoo = !this.logoo
+    },
+    handleClick(path) {
+      console.log(path)
+      this.$router.push(path)
+      this.defaultOpen = path
+    },
+  },
+  mounted() {
+
+    this.menuList = power.admin
+    this.defaultOpen = this.$route.path  //获取路径
+    console.log('---路由路径---')
+    console.log(this.defaultOpen)
+    console.log('---路由路径---')
+
+    this.$router.afterEach(() => {
+      this.defaultOpen = this.$route.path
+      console.log('当前路径' + this.defaultOpen)
+    })
+  },
+  watch: {
+    defaultOpen: function () {
+      this.handleClick(this.defaultOpen)
+    },
   }
+}
 </script>
 
 <style scoped>
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+}
 
-  .master{
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    min-width: 1000px;
-  }
-  .noScrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .myContainer {
-    height: 90%;
-  }
-  .myBacktop {
-    height: 100%;
-    overflow-x: hidden;
-  }
-  .bookmark {
-    opacity: 0.7;
-    width: 18px;
-    height: 40px;
-    margin-top: 250px;
-    margin-right: 4px;
-    line-height: 40px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    z-index: 1;
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
 
-  }
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 
-  #arrow:hover {
-    background-color: rgba(228, 237, 255, 0.65);
-    transform: scaleY(1.7);
-    transition: all 0.3s;
-    cursor: pointer;
+.master {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  min-width: 1000px;
+}
 
-  }
+.noScrollbar::-webkit-scrollbar {
+  display: none;
+}
 
-  #arrow {
-    background-color: white;
-    color: #303133;
-    transform: scaleY(1.3);
-    transition: all 0.3s;
-    -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-  }
+.myContainer {
+  height: 90%;
+}
+
+.myBacktop {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.bookmark {
+  opacity: 0.7;
+  width: 18px;
+  height: 40px;
+  margin-top: 250px;
+  margin-right: 4px;
+  line-height: 40px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 1;
+
+}
+
+#arrow:hover {
+  background-color: rgba(228, 237, 255, 0.65);
+  transform: scaleY(1.7);
+  transition: all 0.3s;
+  cursor: pointer;
+
+}
+
+#arrow {
+  background-color: white;
+  color: #303133;
+  transform: scaleY(1.3);
+  transition: all 0.3s;
+  -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+}
 
 
-  .Afront {
-    transition: all 0.3s;
-  }
+.Afront {
+  transition: all 0.3s;
+}
 
-  .Aback {
-    transform: rotate(180deg);
-    transition: all 0.3s;
+.Aback {
+  transform: rotate(180deg);
+  transition: all 0.3s;
 
-  }
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    z-index: 999;
-    width: 250px;
-    min-height: 400px;
+}
 
-    border-bottom: none;
-    border-right: none;
-    -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  z-index: 999;
+  width: 250px;
+  min-height: 400px;
 
-  }
-  .el-menu--collapse {
-    border: rgba(0, 0, 0, 0) solid 2px;
-    -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-    box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
-  }
-  .myBorderRight{
-    border-right: 1px solid;
-    border-image: -webkit-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 控制边框颜色渐变 */
-    border-image: -moz-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1;
-    border-image: linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 标准的必须写在最后 */
-  }
-  .myBorderBottom{
-    border-bottom: 1px solid;
-    border-image: -webkit-linear-gradient(to right, white, #bdbdbd, white) 1 8 1; /* 控制边框颜色渐变 */
-    border-image: -moz-linear-gradient(   to right, white, #bdbdbd, white) 1 10 1;
-    border-image: linear-gradient(        to right, white, #bdbdbd, white) 1 10 1; /* 标准的必须写在最后 */
-  }
-  .noFocus:focus{
-    background: none;
-  }
-  .noHover:hover{
-    background: none!important;
-  }
+  border-bottom: none;
+  border-right: none;
+  -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+
+}
+
+.el-menu--collapse {
+  border: rgba(0, 0, 0, 0) solid 2px;
+  -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  -webkit-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+  box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);
+}
+
+.myBorderRight {
+  border-right: 1px solid;
+  border-image: -webkit-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 控制边框颜色渐变 */
+  border-image: -moz-linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1;
+  border-image: linear-gradient(#ffffff, rgb(151, 151, 151), #ffffff) 1 10 1; /* 标准的必须写在最后 */
+}
+
+.myBorderBottom {
+  border-bottom: 1px solid;
+  border-image: -webkit-linear-gradient(to right, white, #bdbdbd, white) 1 8 1; /* 控制边框颜色渐变 */
+  border-image: -moz-linear-gradient(to right, white, #bdbdbd, white) 1 10 1;
+  border-image: linear-gradient(to right, white, #bdbdbd, white) 1 10 1; /* 标准的必须写在最后 */
+}
+
+.noFocus:focus {
+  background: none;
+}
+
+.noHover:hover {
+  background: none !important;
+}
+
 .myFlex {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 
 }
 
