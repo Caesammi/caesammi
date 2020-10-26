@@ -1,5 +1,7 @@
 <template>
   <el-row style="min-height: 100%" :gutter="5">
+
+
     <el-col style="font-size: 30px;">
       Deep Copy
     </el-col>
@@ -17,6 +19,10 @@
     <el-col style="margin-top:20px;margin-bottom: 20px" :span="24">
       <el-input type="textarea" :autosize="{ minRows: 1 }" v-model="deepCopyCode"></el-input>
     </el-col>
+    <el-col style="font-size: 30px;line-height: 30px;height:30px">
+      computed练习：<div style="margin-top:30px;transform: translateY(-30px)" > <el-button @click="computOrigin += '变'">变</el-button></div>
+      {{computOrigin}}:{{computResult}}
+    </el-col>
   </el-row>
 </template>
 
@@ -25,6 +31,7 @@ export default {
   name: "deepCopy",
   data() {
     return {
+      computOrigin:'原始',
       origin: [
         {
           name: '第一层',
@@ -84,6 +91,13 @@ export default {
           '      }'
     }
   },
+  computed:{
+    computResult(){
+      let myResult =''
+      myResult += this.computOrigin+ '加'
+      return myResult
+    }
+},
   methods: {
     deepCopy() {
       const deepCopy = (data) => {
@@ -117,9 +131,7 @@ export default {
       console.log('----------------------------');
     }
   },
-  mounted() {
-    console.log(this.origin)
-  },
+  mounted() {},
 }
 </script>
 
