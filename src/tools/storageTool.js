@@ -1,7 +1,7 @@
 // storage-start
 
-//算法数据生成
-export const readInts = (lo, hi) => {
+//返回指定范围内的随机整数
+export const uniform = (lo, hi) => {
   return Math.floor(Math.random() * (hi - lo) + lo)
 }
 
@@ -347,7 +347,6 @@ export const FlipMax = (x, y) => {
     constructor(name) {
       this.name = name
     }
-
     main(arr) {
       let T = parseInt(arr[0])
       let heads = new Counter('heads')
@@ -370,5 +369,28 @@ export const FlipMax = (x, y) => {
       }
     }
   }
+  // -------------抛硬币的第二天开始了掷色子。。。----------
+export class Rolls {
+  constructor(name) {
+  this.name = name
+  }
+  main(arr){
+    let T = arr[0]
+    let SIDES = 6
+    let rolls = []
+    for (let i = 0; i<=SIDES; i++){
+      rolls.push(new Counter('面'+i)) //做6个Counter
+    }
+    for(let t = 0;t < T; t++){
+      let result = uniform(1,SIDES+1) //从1-6中随机取一个key
+      rolls[result].increment() //对应的面+1
+    }
+    let result = []
+    for(let i = 1;i<=SIDES;i++){
+      result.push(rolls[i])
+    }
+    return result
+  }
+}
 
 
