@@ -296,3 +296,26 @@ export class Flips {
   }
 }
 
+// deepcopy 深拷贝
+export const deepCopy = (data)=> {
+  let t = data.constructor //判断数据类型
+  let o
+  if(t===Array){
+    o = []
+  }else if(t===Object){
+    o = {}
+  }else{
+    return data
+  }
+  if(t === Array){
+    for(let i = 0;i<data.length;i++){
+      o.push(deepCopy(data[i])) //递归调用自身
+    }
+  }else if(t===Object){
+    for(let i in data){
+      o[i] = deepCopy(data[i]) //遍历对象递归
+    }
+  }
+  return o
+}
+

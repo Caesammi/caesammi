@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import * as tools from '../tools/storageTool'
 export default {
   name: "deepCopy",
   data() {
@@ -98,31 +99,7 @@ export default {
 },
   methods: {
     deepCopy() {
-      const deepCopy = (data) => {
-        const t = data.constructor
-        // typeof (data);
-        let o;
-        if (t === Array) {
-          o = []
-        } else if (t === Object) {
-          o = {}
-        } else {
-          return data //如果是基础数据类型直接返回，下面的代码不执行
-        }
-
-        if (t === Array) {
-          for (let i = 0; i < data.length; i++) {
-            o.push(deepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容
-          }
-        } else if (t === Object) {
-          for (let i in data) { // 遍历对象
-            o[i] = deepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容
-          }
-        }
-        return o
-        // 使用递归，节省很大工作量
-      }
-      this.result = deepCopy(this.origin)
+      this.result = tools.deepCopy(this.origin)
       console.log('----------------------------');
       console.log(this.origin)
       console.log(this.result)
