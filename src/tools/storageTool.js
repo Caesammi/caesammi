@@ -241,6 +241,8 @@ export const zcFuzzyQuery = (value, key, keyword) => {
   }
   return arr
 }
+
+// 返回按照指定几率 返回true/false (抛硬币)
 export const RandomBernoulli = (key) => {
   if(typeof key === "number" && key>=0 && key<= 1){
     return Math.random() >= key
@@ -249,6 +251,7 @@ export const RandomBernoulli = (key) => {
   }
 }
 
+//计数器类
 export class Counter {
   constructor(name) {
     this.name = name
@@ -265,6 +268,7 @@ export class Counter {
   }
 }
 
+//抛硬币类
 export class Flips {
   constructor(name) {
   this.name = name
