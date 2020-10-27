@@ -6,13 +6,26 @@
     <el-col :span="13">
       <el-col :span="6">
         <el-input v-model="count"></el-input>
-        <el-button style="float: right" @click="Flips">抛</el-button>
+        <el-button @click="Flips">抛</el-button>
       </el-col>
       <el-col :span="1" style="height: 1px"></el-col>
       <el-col :span="12" style="font-size: 30px">
-        Heads: {{heads}} <br>
-        Tails: {{tails}} <br>
-        Delta: {{delta}}
+        Heads:<vue-count-to :startVal='0' :endVal='parseInt(heads)'/> <br>
+        Tails:<vue-count-to :startVal='0' :endVal='parseInt(tails)'/> <br>
+        Delta:<vue-count-to :startVal='0' :endVal='parseInt(delta)'/>
+      </el-col>
+      <el-col :span="24">
+        <el-col :span="6">
+          猜正反
+          <el-input v-model="flipMaxCount"></el-input>
+          <el-button @click="flipMax">开始</el-button>
+        </el-col>
+        <el-col :span="1" style="height: 1px"></el-col>
+        <el-col style="font-size: 30px"  :span="12">
+          {{flipMaxResult.name}} wins！<br>
+          heads counts:<vue-count-to :startVal='0' :endVal='parseInt(flipMaxResult.xTally)'/><br>
+          tails counts:<vue-count-to :startVal='0' :endVal='parseInt(flipMaxResult.yTally)'/>
+        </el-col>
       </el-col>
     </el-col>
   </el-row>
@@ -20,7 +33,7 @@
 
 <script>
 import * as tools from '../../src/tools/storageTool'
-
+import VueCountTo from 'vue-count-to'
 
 
 
@@ -29,12 +42,24 @@ export default {
   data() {
     return {
       count: 0,
-      heads: '',
-      tails: '',
-      delta: ''
+      flipMaxCount: 0,
+      flipMaxResult: {
+        name:'',
+        xTally:0,
+        yTally:0
+      },
+      heads: 0,
+      tails: 0,
+      delta: 0
     }
   },
+  components:{VueCountTo},
   methods:{
+    flipMax(){
+      let result = new tools.FlipWin('sss').main([this.flipMaxCount])
+      this.flipMaxResult = result
+      console.log(result)
+    },
     Flips(){
      let result = new tools.Flips('sss').main([this.count])
       this.heads = result.heads

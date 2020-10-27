@@ -2,7 +2,7 @@
 
 //算法数据生成
 export const readInts = (lo, hi) => {
-  return Math.floor(Math.random()*(hi - lo) + lo)
+  return Math.floor(Math.random() * (hi - lo) + lo)
 }
 
 export const setSession = (key, value) => {
@@ -74,7 +74,7 @@ export const zcMobileDevice = () => {
 
 // 数组对象排序
 export const zcJsonCompare = (value, key) => {
-  let myCompare = function(val) {
+  let myCompare = function (val) {
     value.sort((a, b) => {
       let value1 = a[val]
       let value2 = b[val]
@@ -86,9 +86,13 @@ export const zcJsonCompare = (value, key) => {
 
 // 数字排序
 export const zcNumberCompare = (value) => {
-  let myCompare = function(a, b) {
-    if (a < b) { return -1 }
-    if (a > b) { return 1 }
+  let myCompare = function (a, b) {
+    if (a < b) {
+      return -1
+    }
+    if (a > b) {
+      return 1
+    }
     return 0
   }
   return value.sort(myCompare)
@@ -188,7 +192,7 @@ export const zcClearObj = (value) => {
 // 日期格式化
 export const zcGetDate = (pastHour) => {
   // eslint-disable-next-line no-extend-native
-  Date.prototype.Format = function(fmt) {
+  Date.prototype.Format = function (fmt) {
     let o = {
       'M+': this.getMonth() + 1, // 月份
       'd+': this.getDate(), // 日
@@ -242,21 +246,47 @@ export const zcFuzzyQuery = (value, key, keyword) => {
   return arr
 }
 
+// deepcopy 深拷贝
+export const deepCopy = (data) => {
+  let t = data.constructor
+  let o
+  if (t === Array) {
+    o = []
+  } else if (t === Object) {
+    o = {}
+  } else {
+    return data
+  }
+  if (t === Array) {
+    for (let i = 0; i < data.length; i++) {
+      o.push(deepCopy(data[i]))
+    }
+  } else if (t === Object) {
+    for (let i in data) {
+      o[i] = deepCopy(data[i])
+    }
+  }
+  return o
+}
+
+// ----------------------抛硬币第一天-------------------------------
 // 返回按照指定几率 返回true/false (抛硬币)
 export const RandomBernoulli = (key) => {
-  if(typeof key === "number" && key>=0 && key<= 1){
+  if (typeof key === "number" && key >= 0 && key <= 1) {
     return Math.random() >= key
-  }else{
+  } else {
     return '无效值'
   }
 }
 
 //计数器类
 export class Counter {
+  count = 0
+
   constructor(name) {
     this.name = name
   }
-  count = 0
+
   increment = () => {
     this.count++
   }
@@ -271,16 +301,17 @@ export class Counter {
 //抛硬币类
 export class Flips {
   constructor(name) {
-  this.name = name
+    this.name = name
   }
+
   main(args) {
     let T = parseInt(args[0])
     let heads = new Counter('heads')
     let tails = new Counter('tails')
-    for(let t = 0; t < T; t++){
-      if(RandomBernoulli(0.5)){
+    for (let t = 0; t < T; t++) {
+      if (RandomBernoulli(0.5)) {
         heads.increment()
-      }else{
+      } else {
         tails.increment()
       }
     }
@@ -288,34 +319,56 @@ export class Flips {
     console.log(tails)
     let d = heads.tally() - tails.tally()
     console.log('delta:' + Math.abs(d)) // Math.abs 返回指定数字的绝对值
-  return {
-      heads:heads,
-      tails:tails,
-      delta:Math.abs(d)
+    return {
+      heads: heads,
+      tails: tails,
+      delta: Math.abs(d)
     }
   }
 }
 
-// deepcopy 深拷贝
-export const deepCopy = (data)=> {
-  let t = data.constructor //判断数据类型
-  let o
-  if(t===Array){
-    o = []
-  }else if(t===Object){
-    o = {}
-  }else{
-    return data
+// ------------------------抛硬币第二天--------------------------------
+export const FlipMax = (x, y) => {
+  let xt = x.tally()
+  let yt = y.tally()
+  if (xt > yt) return {
+    name: x.name,
+    xTally: xt,
+    yTally: yt
   }
-  if(t === Array){
-    for(let i = 0;i<data.length;i++){
-      o.push(deepCopy(data[i])) //递归调用自身
-    }
-  }else if(t===Object){
-    for(let i in data){
-      o[i] = deepCopy(data[i]) //遍历对象递归
-    }
+  else return {
+    name: y.name,
+    xTally: xt,
+    yTally: yt
   }
-  return o
 }
+
+  export class FlipWin {
+    constructor(name) {
+      this.name = name
+    }
+
+    main(arr) {
+      let T = parseInt(arr[0])
+      let heads = new Counter('heads')
+      let tails = new Counter('tails')
+      for (let t = 0; t < T; t++) {
+        if (RandomBernoulli(0.5)) {
+          heads.increment()
+        } else {
+          tails.increment()
+        }
+      }
+      if (heads.tally() === tails.tally()) {
+        return {
+          name: 'Both',
+          xTally: T/2,
+          yTally: T/2
+        }
+      } else {
+        return FlipMax(heads, tails)
+      }
+    }
+  }
+
 
