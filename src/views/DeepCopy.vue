@@ -1,12 +1,12 @@
 <template>
-  <el-row style="min-height: 100%" :gutter="5">
+  <el-row style="min-height: 100%">
     <el-col style="font-size: 30px">
       Deep Copy
     </el-col>
     <el-col :span="8">
       <el-input type="textarea" :autosize="{ minRows: 8 }" v-model="JSON.stringify(origin)"></el-input>
     </el-col>
-    <el-col style="width: 112px" :span="2">
+    <el-col style="width: 107px" :span="2">
       <el-button style="margin-top:50%;transform:translateY(-50%)" @click="deepCopy" type="ghost">Deep Copy
         <el-icon class="el-icon-right"></el-icon>
       </el-button>
@@ -17,8 +17,8 @@
     <el-col style="margin-top:20px;margin-bottom: 20px" :span="24">
       <el-input type="textarea" :autosize="{ minRows: 1 }" v-model="deepCopyCode"></el-input>
     </el-col>
-    <el-col style="font-size: 30px;line-height: 30px;height:30px">
-      computed练习：<div style="margin-top:30px;transform: translateY(-30px)" > <el-button @click="computOrigin += '变'">变</el-button></div>
+    <el-col style="font-size: 30px;line-height: 30px;margin-bottom: 20px">
+      computed练习：<div> <el-button @click="computOrigin += '变'">变</el-button></div>
       {{computOrigin}}:{{computResult}}
     </el-col>
   </el-row>

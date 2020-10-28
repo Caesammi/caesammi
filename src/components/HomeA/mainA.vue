@@ -1,74 +1,61 @@
 <template>
-  <div class="master">
+  <el-container class="master">
 
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
-    <el-header class=" myFlex myBorderBottom">
+    <el-header style="line-height: 60px" class="myFlex myBorderBottom">
       <div style="font-weight:bolder;font-size: 20px;">CAESAMMI</div>
       <div><img alt style="width: 135px;height: 100%"></div>
     </el-header>
-    <el-container class="myContainer" style="height: calc(100% - 60px);">
-      <el-aside class="noScrollbar" style="width: auto;height: 100%;background-color: rgba(0,0,0,0);">
-        <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
-        <el-container style="height: 100%">
-          <el-menu class="el-menu-vertical-demo"
-                   :collapse="isCollapse"
-                   mode="vertical"
-                   :unique-opened="true"
-                   :router="menuRouter"
-                   :default-active="defaultOpen">
-            <el-submenu v-for="(item,index) in menuList" :key="index" :index="index + ''">
-              <template slot="title">
-                <i :class="item.icon"></i>
-                <span slot="title">{{ item.header }}</span>
-              </template>
-              <el-menu-item-group style="text-align: left">
-                <el-menu-item v-for="(children,i) in item.childrens" @click="handleClick(children.path)" :key="i"
-                              :index="children.path">
-                  {{ children.name }}
-                </el-menu-item>
-              </el-menu-item-group>
-              <el-submenu v-for="(center,icenter) in item.center" :key="icenter" :index="icenter + 'center'">
-                <template slot="title">
-                  <i :class="center.icon"></i>
-                  <span slot="title">{{ center.header }}</span>
-                </template>
-                <el-menu-item v-for="(kids, ikid) in center.kids" @click="handleClick(kids.path)" :key="ikid"
-                              :index="kids.path + ''">
-                  {{ kids.name }}
-                </el-menu-item>
-              </el-submenu>
-            </el-submenu>
-          </el-menu>
-          <div class="bookmark" id="arrow" @click="cc">
-            <i :class="[arrow?'el-icon-caret-left Aback':'el-icon-caret-left Afront']"></i>
-          </div>
-        </el-container>
-
-      </el-aside>
-      <el-main class="myBacktop noScrollbar" style="padding: 0;margin: 0 0 0 -22px;">
-        <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
-        <!--        <template>-->
-        <!--          <el-backtop target=".myBacktop"></el-backtop>-->
-        <!--        </template>-->
-
-        <!--内容面包屑组件-->
-        <!--        <headerA v-if="headerShow !=='/map'" :menuList="menuList" style="height: 20px"></headerA>-->
-        <!--单页面内容容器-->
-        <el-main style="padding: 0;margin: 0;height: 97%;">
-          <transition name="fade-transform" mode="out-in">
-            <router-view style="margin-top:20px;background: #EBEEF5"></router-view>
-          </transition>
-          <!--          <footerA style="height: auto;"></footerA>-->
-        </el-main>
-        <!--        <div class="main-footer">sdkjljlkjkljlf</div>-->
-
-
-      </el-main>
-
-    </el-container>
+   <el-container style="overflow: auto;background: #EBEEF5;height:100%">
+     <el-aside class="noScrollbar" style="width: auto;background-color: rgba(0,0,0,0);">
+       <!--        <menuA :headerShow="headerShow" :menuList="menuList" style="opacity: 0.9;"></menuA>-->
+       <el-container style="height: 100%">
+         <el-menu class="el-menu-vertical-demo"
+                  :collapse="isCollapse"
+                  mode="vertical"
+                  :unique-opened="true"
+                  :router="menuRouter"
+                  :default-active="defaultOpen">
+           <el-submenu v-for="(item,index) in menuList" :key="index" :index="index + ''">
+             <template slot="title">
+               <i :class="item.icon"></i>
+               <span slot="title">{{ item.header }}</span>
+             </template>
+             <el-menu-item-group style="text-align: left">
+               <el-menu-item v-for="(children,i) in item.childrens" @click="handleClick(children.path)" :key="i"
+                             :index="children.path">
+                 {{ children.name }}
+               </el-menu-item>
+             </el-menu-item-group>
+             <el-submenu v-for="(center,icenter) in item.center" :key="icenter" :index="icenter + 'center'">
+               <template slot="title">
+                 <i :class="center.icon"></i>
+                 <span slot="title">{{ center.header }}</span>
+               </template>
+               <el-menu-item v-for="(kids, ikid) in center.kids" @click="handleClick(kids.path)" :key="ikid"
+                             :index="kids.path + ''">
+                 {{ kids.name }}
+               </el-menu-item>
+             </el-submenu>
+           </el-submenu>
+         </el-menu>
+         <div class="bookmark" id="arrow" @click="cc">
+           <i :class="[arrow?'el-icon-caret-left Aback':'el-icon-caret-left Afront']"></i>
+         </div>
+       </el-container>
+     </el-aside>
+     <el-container style="height: 100%">
+       <el-main style="padding:0;height: 97%;">
+         <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
+         <transition name="fade-transform" mode="out-in">
+           <router-view style="min-width: 830px;padding-top:20px;"></router-view>
+         </transition>
+       </el-main>
+     </el-container>
+   </el-container>
     <!--顶部动态工具栏结束-->
-  </div>
+  </el-container>
 
 </template>
 
@@ -110,10 +97,10 @@ export default {
     },
   },
   mounted() {
-
     this.menuList = power.admin
     this.defaultOpen = this.$route.path  //获取路径
     console.log('---路由路径---')
+    console.log(this.menuList)
     console.log(this.defaultOpen)
     console.log('---路由路径---')
 
@@ -150,7 +137,6 @@ export default {
   padding: 0;
   margin: 0;
   height: 100%;
-  min-width: 1000px;
 }
 
 .noScrollbar::-webkit-scrollbar {
@@ -212,7 +198,6 @@ export default {
   z-index: 999;
   width: 250px;
   min-height: 400px;
-
   border-bottom: none;
   border-right: none;
   -moz-box-shadow: 1px 0 8px rgba(51, 51, 51, 0.2);

@@ -15,31 +15,31 @@ const routes = [
     children: [
       {
         path: '/aMap',
-        name: 'aMap',
+        name: '高德地图',
         component: getComponent('views/aMap.vue'),
         meta: {title: 'aMap'}
       },
       {
         path: '/FlowChart',
-        name: 'FlowChart',
+        name: '流程图',
         component: getComponent('views/FlowChart.vue'),
         meta: {title: 'FlowChart'}
       },
       {
         path: '/BinarySearch',
-        name: 'BinarySearch',
+        name: '二分查找',
         component: getComponent('views/BinarySearch.vue'),
         meta: {title: 'BinarySearch'}
       },
       {
         path: '/DeepCopy',
-        name: 'DeepCopy',
+        name: '深拷贝',
         component: getComponent('views/DeepCopy'),
         meta: {title: 'DeepCopy.vue'}
       },
       {
         path: '/CounterFlips',
-        name: 'CounterFlips',
+        name: '抛硬币',
         component: getComponent('views/CounterFlips'),
         meta: {title: 'CounterFlips'}
       }

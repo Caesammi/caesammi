@@ -15,6 +15,7 @@
         Delta:<vue-count-to :startVal='0' :endVal='parseInt(delta)'/>
       </el-col>
       <el-col :span="24">
+        <el-divider></el-divider>
         <el-col :span="6">
           <div style="font-size: 30px;">猜正反</div>
           <el-input v-model="flipMaxCount"></el-input>
@@ -28,6 +29,7 @@
         </el-col>
       </el-col>
       <el-col :span="24">
+        <el-divider></el-divider>
         <div style="font-size: 30px">
           掷色子
         </div>
@@ -67,14 +69,14 @@ export default {
       tails: 0,
       delta: 0,
       rollCount:0,
-      rollResult:null
+      rollResult:[{"count":0,"name":"Side1"},{"count":0,"name":"Side2"},{"count":0,"name":"Side3"},{"count":0,"name":"Side4"},{"count":0,"name":"Side5"},{"count":0,"name":"Side6"}]
     }
   },
   components:{VueCountTo},
   methods:{
     roll(){
       this.rollResult = new tools.Rolls('掷色子').main([this.rollCount])
-      console.log(this.rollResult)
+      // console.log(JSON.stringify(this.rollResult))
     },
     flipMax(){
       let result = new tools.FlipWin('sss').main([this.flipMaxCount])

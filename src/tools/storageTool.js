@@ -343,53 +343,56 @@ export const FlipMax = (x, y) => {
   }
 }
 
-  export class FlipWin {
-    constructor(name) {
-      this.name = name
-    }
-    main(arr) {
-      let T = parseInt(arr[0])
-      let heads = new Counter('heads')
-      let tails = new Counter('tails')
-      for (let t = 0; t < T; t++) {
-        if (RandomBernoulli(0.5)) {
-          heads.increment()
-        } else {
-          tails.increment()
-        }
-      }
-      if (heads.tally() === tails.tally()) {
-        return {
-          name: 'Both',
-          xTally: T/2,
-          yTally: T/2
-        }
+// 猜正反
+export class FlipWin {
+  constructor(name) {
+    this.name = name
+  }
+
+  main(arr) {
+    let T = parseInt(arr[0])
+    let heads = new Counter('heads')
+    let tails = new Counter('tails')
+    for (let t = 0; t < T; t++) {
+      if (RandomBernoulli(0.5)) {
+        heads.increment()
       } else {
-        return FlipMax(heads, tails)
+        tails.increment()
       }
+    }
+    if (heads.tally() === tails.tally()) {
+      return {
+        name: 'Both',
+        xTally: T / 2,
+        yTally: T / 2
+      }
+    } else {
+      return FlipMax(heads, tails)
     }
   }
-  // -------------抛硬币的第二天开始了掷色子。。。----------
+}
+
+// -------------抛硬币的第二天开始了掷色子。。。----------
 export class Rolls {
   constructor(name) {
-  this.name = name
+    this.name = name
   }
-  main(arr){
-    let T = arr[0]
-    let SIDES = 6
-    let rolls = []
-    for (let i = 0; i<=SIDES; i++){
-      rolls.push(new Counter('面'+i)) //做6个Counter
+  main(arr) {
+    let T = arr[0] // 摇色子的次数
+    let SIDES = 6 // 定义六个面
+    let rolls = [] // 筛子面装次数的容器
+    for (let i = 0; i <= SIDES; i++) {
+      rolls.push(new Counter('Side' + i)) // 将6个面的计数器对象填入数组中
     }
-    for(let t = 0;t < T; t++){
-      let result = uniform(1,SIDES+1) //从1-6中随机取一个key
-      rolls[result].increment() //对应的面+1
+    for (let t = 0; t < T; t++) {
+      let result = uniform(1, SIDES + 1) //从1-6中随机取一个key
+      rolls[result].increment() //摇到了面对应的面+1
     }
-    let result = []
-    for(let i = 1;i<=SIDES;i++){
-      result.push(rolls[i])
+    let result = [] // 声明结果
+    for (let i = 1; i <= SIDES; i++) {
+      result.push(rolls[i]) // 将rolls拷贝到结果中
     }
-    return result
+    return result // 返回结果
   }
 }
 

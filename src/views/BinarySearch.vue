@@ -1,54 +1,54 @@
 <template>
-  <el-row :gutter="5" class="home">
-    <div style="height: 5000px;font-size: 30px">
+  <el-row class="home">
+    <div style="font-size: 30px">
       <div>BinarySearch</div>
-      <el-col :span="6">
-        <el-form>
-          <el-form-item label-width="100px" label="最小值">
-            <el-input v-model="myLo"></el-input>
-          </el-form-item>
-          <el-form-item label-width="100px" label="最大值">
-            <el-input v-model="myHi"></el-input>
-          </el-form-item>
-          <el-form-item label-width="100px" label="数组长度">
-            <el-input v-model.number="testDataL"/>
-          </el-form-item>
-          <el-form-item label="数据制造" label-width="100px">
-            <el-button @click="createArr">造</el-button>
-          </el-form-item>
-          <el-form-item label="Origin Data" label-width="100px">
-            <el-input v-model="originData.toString()" type="textarea"
-                      :autosize="{ minRows: 4, maxRows: 8}"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label-width="100px" label="键值">
-            <el-input :disabled="true" v-model.number="myKey"></el-input>
-          </el-form-item>
-          <el-form-item label-width="100px">
-            <el-button @click="createKey">生成随机键值</el-button>
-          </el-form-item>
-          <el-form-item label-width="100px">
-            <el-button type="primary" @click="main(originData)">二分查找</el-button>
-            <el-button type="ghost" @click="normalSearch(originData)">普通搜索</el-button>
-          </el-form-item>
-          <el-form-item label="Result" label-width="100px">
-            二分查找结果
-            <el-input v-model="result"></el-input>
-            轮询结果
-            <el-input v-model="result2"></el-input>
-          </el-form-item>
-        </el-form>
-        <h5> 计算时间参考：console</h5>
-      </el-col>
-      <el-col :span="8">
-        <el-image
-            style="width: 500px; height: 300px"
-            :src="require('../assets/Algorithms/BinarySearch.png')"
-            fit="contain"></el-image>
-      </el-col>
+      <el-row>
+        <el-col :span="6">
+          <el-form>
+            <el-form-item label-width="100px" label="最小值">
+              <el-input v-model="myLo"></el-input>
+            </el-form-item>
+            <el-form-item label-width="100px" label="最大值">
+              <el-input v-model="myHi"></el-input>
+            </el-form-item>
+            <el-form-item label-width="100px" label="数组长度">
+              <el-input v-model.number="testDataL"/>
+            </el-form-item>
+            <el-form-item label="数据制造" label-width="100px">
+              <el-button @click="createArr">造</el-button>
+            </el-form-item>
+            <el-form-item label="Origin Data" label-width="100px">
+              <el-input v-model="originData.toString()" type="textarea"
+                        :autosize="{ minRows: 4, maxRows: 8}"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label-width="100px" label="键值">
+              <el-input :disabled="true" v-model.number="myKey"></el-input>
+            </el-form-item>
+            <el-form-item label-width="100px">
+              <el-button @click="createKey">生成随机键值</el-button>
+            </el-form-item>
+            <el-form-item label-width="100px">
+              <el-button type="primary" @click="main(originData)">二分查找</el-button>
+              <el-button type="ghost" @click="normalSearch(originData)">普通搜索</el-button>
+            </el-form-item>
+            <el-form-item label="Result" label-width="100px">
+              二分查找结果
+              <el-input v-model="result"></el-input>
+              轮询结果
+              <el-input v-model="result2"></el-input>
+            </el-form-item>
+          </el-form>
+          <h5> 计算时间参考：console</h5>
+        </el-col>
+        <el-col :offset="1" :span="8">
+          <el-image
+              style="width: 500px; height: 300px"
+              :src="require('../assets/Algorithms/BinarySearch.png')"
+              fit="contain"></el-image>
+        </el-col>
+      </el-row>
     </div>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </el-row>
 </template>
 
@@ -135,4 +135,7 @@ export default {
 }
 </script>
 <style scoped>
+.home{
+
+}
 </style>
