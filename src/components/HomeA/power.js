@@ -15,7 +15,8 @@ const admin = [
     childrens: [
       {name: "二分查找", path: "/BinarySearch"},
       {name: "深拷贝", path: "/DeepCopy"},
-      {name: "抛硬币", path: "/CounterFlips"}
+      {name: "抛硬币", path: "/CounterFlips"},
+      {name:'demo', path:"/demo"}
     ]
   }
 

@@ -273,7 +273,8 @@ export const deepCopy = (data) => {
 // 返回按照指定几率 返回true/false (抛硬币)
 export const RandomBernoulli = (key) => {
   if (typeof key === "number" && key >= 0 && key <= 1) {
-    return Math.random() >= key
+    let test = Math.random()
+    return Math.random() >= key  // Math.Random() 方法中随即返回0-1之间的小数，若超过则返回true 否则返回false
   } else {
     return '无效值'
   }
@@ -354,7 +355,7 @@ export class FlipWin {
     let heads = new Counter('heads')
     let tails = new Counter('tails')
     for (let t = 0; t < T; t++) {
-      if (RandomBernoulli(0.5)) {
+      if (RandomBernoulli(0.5)) { // 如果返回为true 正面加1
         heads.increment()
       } else {
         tails.increment()
@@ -380,7 +381,7 @@ export class Rolls {
   main(arr) {
     let T = arr[0] // 摇色子的次数
     let SIDES = 6 // 定义六个面
-    let rolls = [] // 筛子面装次数的容器
+    let rolls = [] // 装筛子面次数的容器
     for (let i = 0; i <= SIDES; i++) {
       rolls.push(new Counter('Side' + i)) // 将6个面的计数器对象填入数组中
     }
@@ -395,5 +396,26 @@ export class Rolls {
     return result // 返回结果
   }
 }
+// ------------------抽象数据类型学习第三天-------------------------
 
+// 判断回文
+export const isPalindrome = (s) => {
+  let n = s.length
+  for(let i = 0; i< n/2; i++){ // 循环字符串长度的一半
+    if(s.charAt(i) !== s.charAt(n-1-i)){ //判断首尾字符是否相等
+      return false   //不等返回false
+    }
+  }
+  return true  // 全部相等返回true
+}
 
+//判断文件类型
+export const getFileType = (fullName) => {
+  let dot = fullName.indexOf('.')
+  let fileName = fullName.substr(0,dot)
+  let fileType = fullName.substr(dot+1,fullName.length)
+  return {
+    fileName: fileName,
+    fileType: fileType
+  }
+}

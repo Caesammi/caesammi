@@ -36,6 +36,7 @@
         <el-col :span="6">
           <el-input v-model="rollCount"></el-input>
           <el-button @click="roll">掷</el-button>
+          <el-button @click="bernoulli">贝诺利实验</el-button>
         </el-col>
         <el-col :span="1" style="height: 1px"></el-col>
         <el-col :span="17">
@@ -74,6 +75,9 @@ export default {
   },
   components:{VueCountTo},
   methods:{
+    bernoulli(){
+      console.log(tools.RandomBernoulli(0.5));
+    },
     roll(){
       this.rollResult = new tools.Rolls('掷色子').main([this.rollCount])
       // console.log(JSON.stringify(this.rollResult))

@@ -42,6 +42,12 @@ const routes = [
         name: '抛硬币',
         component: getComponent('views/CounterFlips'),
         meta: {title: 'CounterFlips'}
+      },
+      {
+        path: '/demo',
+        name: 'demo',
+        component: getComponent('views/demo'),
+        meta: {title: 'demo'}
       }
     ]
   },
@@ -49,8 +55,7 @@ const routes = [
     path: '/test2',
     name: 'test2',
     component: getComponent('components/FlowChart.vue'),
-  },
-
+  }
 ]
 
 const router = new VueRouter({
