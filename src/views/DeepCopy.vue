@@ -64,30 +64,14 @@ export default {
 
         ],
       result: null,
-      deepCopyCode:' const deepCopy = (data) => {\n' +
-          '        const t = data.constructor\n' +
-          '        // typeof (data);\n' +
-          '        let o;\n' +
-          '        if (t === Array) {\n' +
-          '          o = []\n' +
-          '        } else if (t === Object) {\n' +
-          '          o = {}\n' +
-          '        } else {\n' +
-          '          return data //如果是基础数据类型直接返回，下面的代码不执行\n' +
-          '        }\n' +
-          '\n' +
-          '        if (t === Array) {\n' +
-          '          for (let i = 0; i < data.length; i++) {\n' +
-          '            o.push(deepCopy(data[i])) // 再次调用自身，继续完成该数组里面的内容\n' +
-          '          }\n' +
-          '        } else if (t === Object) {\n' +
-          '          for (let i in data) { // 遍历对象\n' +
-          '            o[i] = deepCopy(data[i]) // 再次调用自身，继续完成该对象里面的内容\n' +
-          '          }\n' +
-          '        }\n' +
-          '        return o\n' +
-          '        // 使用递归，节省很大工作量\n' +
-          '      }'
+      deepCopyCode:'    copy(obj){\n' +
+          '      let res = obj instanceof Object ? {} : [] //分类数组对象、 初始化返回值\n' +
+          '      let resultObj = Object.entries(obj)       //将传入对象拆分成键值对\n' +
+          '      for(let [k,v] of resultObj){              //解构遍历键值对数组\n' +
+          '        res[k] = typeof v === \'object\' ? this.copy(v) : v //为res赋值\n' +
+          '      }\n' +
+          '      return res\n' +
+          '    },'
     }
   },
   computed:{
@@ -98,8 +82,16 @@ export default {
     }
 },
   methods: {
+    copy(obj){
+      let res = obj.constructor === Object ? {} : [] //分类数组对象、 初始化返回值
+      let resultObj = Object.entries(obj)       //将传入对象拆分成键值对
+      for(let [k,v] of resultObj){              //解构遍历键值对数组
+        res[k] = typeof v === 'object' ? this.copy(v) : v //为res赋值
+      }
+      return res
+    },
     deepCopy() {
-      this.result = tools.deepCopy(this.origin)
+      this.result = tools.copy(this.origin)
       console.log('----------------------------');
       console.log(this.origin)
       console.log(this.result)

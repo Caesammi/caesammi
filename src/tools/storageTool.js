@@ -1,6 +1,6 @@
 // storage-start
 
-//返回指定范围内的随机整数
+// 返回指定范围内的随机整数
 export const uniform = (lo, hi) => {
   return Math.floor(Math.random() * (hi - lo) + lo)
 }
@@ -74,7 +74,7 @@ export const zcMobileDevice = () => {
 
 // 数组对象排序
 export const zcJsonCompare = (value, key) => {
-  let myCompare = function (val) {
+  let myCompare = function(val) {
     value.sort((a, b) => {
       let value1 = a[val]
       let value2 = b[val]
@@ -86,7 +86,7 @@ export const zcJsonCompare = (value, key) => {
 
 // 数字排序
 export const zcNumberCompare = (value) => {
-  let myCompare = function (a, b) {
+  let myCompare = function(a, b) {
     if (a < b) {
       return -1
     }
@@ -192,7 +192,7 @@ export const zcClearObj = (value) => {
 // 日期格式化
 export const zcGetDate = (pastHour) => {
   // eslint-disable-next-line no-extend-native
-  Date.prototype.Format = function (fmt) {
+  Date.prototype.Format = function(fmt) {
     let o = {
       'M+': this.getMonth() + 1, // 月份
       'd+': this.getDate(), // 日
@@ -246,174 +246,32 @@ export const zcFuzzyQuery = (value, key, keyword) => {
   return arr
 }
 
-// deepcopy 深拷贝
-export const deepCopy = (data) => {
-  let t = data.constructor
-  let o
-  if (t === Array) {
-    o = []
-  } else if (t === Object) {
-    o = {}
-  } else {
-    return data
+// 深拷贝
+export const copy = (obj) => {
+  let res = obj.constructor === Array ? [] : {}
+  let objEntries = Object.entries(obj)
+  for (const [k, v] of objEntries) { // 解构对象键值对
+    res[k] = typeof v === 'object' ? copy(v) : v
   }
-  if (t === Array) {
-    for (let i = 0; i < data.length; i++) {
-      o.push(deepCopy(data[i]))
-    }
-  } else if (t === Object) {
-    for (let i in data) {
-      o[i] = deepCopy(data[i])
-    }
-  }
-  return o
+  return res
 }
-
-// ----------------------抛硬币第一天-------------------------------
-// 返回按照指定几率 返回true/false (抛硬币)
-export const RandomBernoulli = (key) => {
-  if (typeof key === "number" && key >= 0 && key <= 1) {
-    let test = Math.random()
-    return Math.random() >= key  // Math.Random() 方法中随即返回0-1之间的小数，若超过则返回true 否则返回false
-  } else {
-    return '无效值'
-  }
-}
-
-//计数器类
-export class Counter {
-  count = 0
-
-  constructor(name) {
-    this.name = name
-  }
-
-  increment = () => {
-    this.count++
-  }
-  tally = () => {
-    return this.count
-  }
-  toString = () => {
-    return this.count.toString()
-  }
-}
-
-//抛硬币类
-export class Flips {
-  constructor(name) {
-    this.name = name
-  }
-
-  main(args) {
-    let T = parseInt(args[0])
-    let heads = new Counter('heads')
-    let tails = new Counter('tails')
-    for (let t = 0; t < T; t++) {
-      if (RandomBernoulli(0.5)) {
-        heads.increment()
-      } else {
-        tails.increment()
-      }
-    }
-    console.log(heads)
-    console.log(tails)
-    let d = heads.tally() - tails.tally()
-    console.log('delta:' + Math.abs(d)) // Math.abs 返回指定数字的绝对值
-    return {
-      heads: heads,
-      tails: tails,
-      delta: Math.abs(d)
-    }
-  }
-}
-
-// ------------------------抛硬币第二天--------------------------------
-export const FlipMax = (x, y) => {
-  let xt = x.tally()
-  let yt = y.tally()
-  if (xt > yt) return {
-    name: x.name,
-    xTally: xt,
-    yTally: yt
-  }
-  else return {
-    name: y.name,
-    xTally: xt,
-    yTally: yt
-  }
-}
-
-// 猜正反
-export class FlipWin {
-  constructor(name) {
-    this.name = name
-  }
-
-  main(arr) {
-    let T = parseInt(arr[0])
-    let heads = new Counter('heads')
-    let tails = new Counter('tails')
-    for (let t = 0; t < T; t++) {
-      if (RandomBernoulli(0.5)) { // 如果返回为true 正面加1
-        heads.increment()
-      } else {
-        tails.increment()
-      }
-    }
-    if (heads.tally() === tails.tally()) {
-      return {
-        name: 'Both',
-        xTally: T / 2,
-        yTally: T / 2
-      }
-    } else {
-      return FlipMax(heads, tails)
-    }
-  }
-}
-
-// -------------抛硬币的第二天开始了掷色子。。。----------
-export class Rolls {
-  constructor(name) {
-    this.name = name
-  }
-  main(arr) {
-    let T = arr[0] // 摇色子的次数
-    let SIDES = 6 // 定义六个面
-    let rolls = [] // 装筛子面次数的容器
-    for (let i = 0; i <= SIDES; i++) {
-      rolls.push(new Counter('Side' + i)) // 将6个面的计数器对象填入数组中
-    }
-    for (let t = 0; t < T; t++) {
-      let result = uniform(1, SIDES + 1) //从1-6中随机取一个key
-      rolls[result].increment() //摇到了面对应的面+1
-    }
-    let result = [] // 声明结果
-    for (let i = 1; i <= SIDES; i++) {
-      result.push(rolls[i]) // 将rolls拷贝到结果中
-    }
-    return result // 返回结果
-  }
-}
-// ------------------抽象数据类型学习第三天-------------------------
 
 // 判断回文
 export const isPalindrome = (s) => {
   let n = s.length
-  for(let i = 0; i< n/2; i++){ // 循环字符串长度的一半
-    if(s.charAt(i) !== s.charAt(n-1-i)){ //判断首尾字符是否相等
-      return false   //不等返回false
+  for (let i = 0; i < n / 2; i++) { // 循环字符串长度的一半
+    if (s.charAt(i) !== s.charAt(n - 1 - i)) { // 判断首尾字符是否相等
+      return false // 不等返回false
     }
   }
-  return true  // 全部相等返回true
+  return true // 全部相等返回true
 }
 
-//判断文件类型
+// 判断文件类型
 export const getFileType = (fullName) => {
   let dot = fullName.indexOf('.')
-  let fileName = fullName.substr(0,dot)
-  let fileType = fullName.substr(dot+1,fullName.length)
+  let fileName = fullName.substr(0, dot)
+  let fileType = fullName.substr(dot + 1, fullName.length)
   return {
     fileName: fileName,
     fileType: fileType
