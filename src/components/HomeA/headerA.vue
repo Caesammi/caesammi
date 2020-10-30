@@ -28,10 +28,6 @@
             breadCrumbList () {
                 const {name} = this.$route;
                 let breadList = [{ path: 'map', name: 'Home' }];
-                console.log('--------------------')
-                console.log(name)
-                console.log(this.menuList)
-                console.log('--------------------')
                 this.menuList.forEach(item => {
                     if (item.childrens.length > 0) {
                         item.childrens.forEach(sub => {
@@ -41,7 +37,7 @@
                         });
                     }
                 });
-                console.log(breadList)
+
                return breadList;
             }
         },

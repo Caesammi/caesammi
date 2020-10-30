@@ -8,7 +8,7 @@ import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/eleTheme.scss'
 import './tools/dialogDrag'
-import 'amfe-flexible'
+import * as zcTools from '../src/tools/zcTools'
 
 import * as myApi from '@/request/api'
 
@@ -18,6 +18,7 @@ Vue.use(VueAMap)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 Vue.prototype.myApi = myApi
+Vue.prototype.zcTools = zcTools
 VueAMap.initAMapApiLoader({
   key: 'your amap key',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],

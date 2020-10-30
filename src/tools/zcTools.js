@@ -1,10 +1,5 @@
 // storage-start
 
-// 返回指定范围内的随机整数
-export const uniform = (lo, hi) => {
-  return Math.floor(Math.random() * (hi - lo) + lo)
-}
-
 export const setSession = (key, value) => {
   sessionStorage.setItem(key, value)
 }
@@ -98,6 +93,26 @@ export const zcNumberCompare = (value) => {
   return value.sort(myCompare)
 }
 
+//汉字排序
+export const finalSort = (arr) => {
+  arr.sort((a,b)=>a.localeCompare(b))
+}
+
+//忽略大小写排序
+export const ignoreUpperSort = (arr) => {
+  arr.sort((a, b)=> {
+    let x1 = a.toUpperCase();
+    let x2 = b.toUpperCase();
+    if (x1 < x2) {
+      return -1;
+    }
+    if (x1 > x2) {
+      return 1;
+    }
+    return 0;
+  }); // ['apple', 'Google', 'Microsoft']
+}
+
 // JSON 数字属性求和
 export const zcJsonSum = (value, key) => {
   let EE = []
@@ -183,13 +198,18 @@ export const zcDateArr = (begin, end) => {
   return arrTime
 }
 
+// 返回指定范围内的随机整数
+export const uniform = (lo, hi) => {
+  return Math.floor(Math.random() * (hi - lo) + lo)
+}
+
 // 清空对象
 export const zcClearObj = (value) => {
   // eslint-disable-next-line no-return-assign
   Object.keys(value).forEach((key) => value[key] = '')
 }
 
-// 日期格式化
+// 获取日期，可按照参数设定，比如几小时之前，几小时之后的时间
 export const zcGetDate = (pastHour) => {
   // eslint-disable-next-line no-extend-native
   Date.prototype.Format = function(fmt) {
@@ -229,7 +249,7 @@ export const timestempToTime = (value) => {
   return Y + M + D + ' ' + h + m + s
 }
 
-// 检测是否是null 或 undefine
+// 检测是否是null 或 undefined
 export const zcUndefined = (value) => {
   return !(value === undefined || value === null)
 }
@@ -255,7 +275,6 @@ export const copy = (obj) => {
   }
   return res
 }
-
 // 判断回文
 export const isPalindrome = (s) => {
   let n = s.length
@@ -277,3 +296,15 @@ export const getFileType = (fullName) => {
     fileType: fileType
   }
 }
+
+// 打乱一个数组
+export const shuffle = (arr) => {
+  let n = arr.length
+  for(let i = 0; i < n; i++){
+    let r = i + uniform(0,n - i)
+    let temp = arr[i]
+    arr[i] = arr[r]
+    arr[r] = temp
+  }
+}
+

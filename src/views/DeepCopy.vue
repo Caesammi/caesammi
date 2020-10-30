@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import * as tools from '../tools/storageTool'
+import * as tools from '../tools/zcTools'
 export default {
   name: "deepCopy",
   data() {
@@ -96,9 +96,23 @@ export default {
       console.log(this.origin)
       console.log(this.result)
       console.log('----------------------------');
+    },
+    test(){
+      let arrTest = [1,2,3,4]
+      // tools.shuffle(arrTest)
+      // console.log(pop);
+      arrTest.forEach((a,i,n)=>{
+
+      })
+      console.log(arrTest);
     }
   },
-  mounted() {},
+  mounted() {
+    setTimeout(()=>{
+      this.test()
+
+    },5000)
+  },
 }
 </script>
 

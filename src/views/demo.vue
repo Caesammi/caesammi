@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import * as tools from '../../src/tools/storageTool'
+import * as tools from '../tools/zcTools'
 
 export default {
   name: "demo",

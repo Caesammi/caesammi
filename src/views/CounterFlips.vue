@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import * as tools from '../../src/tools/storageTool'
+import * as tools from '../tools/zcTools'
 import VueCountTo from 'vue-count-to'
 
 

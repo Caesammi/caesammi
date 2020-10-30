@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {Message} from 'element-ui'
-import * as storageTool from '../tools/storageTool'
+import * as storageTool from '../tools/zcTools'
 
 Vue.use(Vuex)
 

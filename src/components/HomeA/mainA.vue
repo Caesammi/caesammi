@@ -96,17 +96,16 @@ export default {
       this.defaultOpen = path
     },
   },
-  mounted() {
+  created() {
     this.menuList = power.admin
     this.defaultOpen = this.$route.path  //获取路径
-    console.log('---路由路径---')
     console.log(this.menuList)
-    console.log(this.defaultOpen)
-    console.log('---路由路径---')
+    if(this.defaultOpen === '/'){
+      this.$router.push('/BinarySearch')
+    }
 
     this.$router.afterEach(() => {
       this.defaultOpen = this.$route.path
-      console.log('当前路径' + this.defaultOpen)
     })
   },
   watch: {

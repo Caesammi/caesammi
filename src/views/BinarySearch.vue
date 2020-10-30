@@ -55,7 +55,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import * as tools from '../tools/storageTool'
+import * as tools from '../tools/zcTools'
 import store from "@/store";
 
 export default {
@@ -131,11 +131,14 @@ export default {
     }
   },
   mounted() {
+    let arr = [1,2,3,4]
+    this.zcTools.shuffle(arr)
+    console.log(arr)
   }
 }
 </script>
 <style scoped>
 .home{
-
+ min-width: 1000px;
 }
 </style>
