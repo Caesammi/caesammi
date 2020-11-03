@@ -37,6 +37,18 @@ export const zcJsonSearch = (arr, key, keyword) => {
   }
 }
 
+// 模糊搜索
+export const zcFuzzyQuery = (value, key, keyword) => {
+  let reg = new RegExp(keyword, 'i') // i不区分大小写
+  let arr = []
+  for (let i = 0; i < value.length; i++) {
+    if (reg.test(value[i][key])) {
+      arr.push(value[i])
+    }
+  }
+  return arr
+}
+
 // 翻转字符串
 export const zcStringReverse = (value) => {
   return value.split('').reverse().join('')
@@ -69,12 +81,8 @@ export const zcMobileDevice = () => {
 
 // 数组对象排序
 export const zcJsonCompare = (value, key) => {
-  let myCompare = function(val) {
-    value.sort((a, b) => {
-      let value1 = a[val]
-      let value2 = b[val]
-      return value1 - value2
-    })
+  let myCompare = (val) => {
+    value.sort((a, b) => a[val] - b[val])
   }
   return value.sort(myCompare(key))
 }
@@ -94,7 +102,7 @@ export const zcNumberCompare = (value) => {
 }
 
 //汉字排序
-export const finalSort = (arr) => {
+export const zcChSort = (arr) => {
   arr.sort((a,b)=>a.localeCompare(b))
 }
 
@@ -115,12 +123,12 @@ export const ignoreUpperSort = (arr) => {
 
 // JSON 数字属性求和
 export const zcJsonSum = (value, key) => {
-  let EE = []
-  value.forEach((a, i, n) => {
-    EE.push(n[i][key])
+  let preArr = []
+  value.forEach((a,i,n)=>{
+    preArr.push(n[i][key])
   })
-  return EE.reduce((prev, cur, index, array) => {
-    return prev + cur
+  return preArr.reduce((prev, cur) => {
+    return prev+cur
   })
 }
 
@@ -206,7 +214,10 @@ export const uniform = (lo, hi) => {
 // 清空对象
 export const zcClearObj = (value) => {
   // eslint-disable-next-line no-return-assign
-  Object.keys(value).forEach((key) => value[key] = '')
+  // Object.keys(value).forEach((key) => value[key] = '')
+  for(let i in value){
+    value[i]=''
+  }
 }
 
 // 获取日期，可按照参数设定，比如几小时之前，几小时之后的时间
@@ -254,23 +265,10 @@ export const zcUndefined = (value) => {
   return !(value === undefined || value === null)
 }
 
-// 模糊搜索
-export const zcFuzzyQuery = (value, key, keyword) => {
-  let reg = new RegExp(keyword, 'i') // i不区分大小写
-  let arr = []
-  for (let i = 0; i < value.length; i++) {
-    if (reg.test(value[i][key])) {
-      arr.push(value[i])
-    }
-  }
-  return arr
-}
-
 // 深拷贝
 export const copy = (obj) => {
   let res = obj.constructor === Array ? [] : {}
-  let objEntries = Object.entries(obj)
-  for (const [k, v] of objEntries) { // 解构对象键值对
+  for (const [k, v] of Object.entries(obj)) { // 解构对象键值对
     res[k] = typeof v === 'object' ? copy(v) : v
   }
   return res
@@ -279,6 +277,7 @@ export const copy = (obj) => {
 export const isPalindrome = (s) => {
   let n = s.length
   for (let i = 0; i < n / 2; i++) { // 循环字符串长度的一半
+          //chartAt(i)返回第i个字符
     if (s.charAt(i) !== s.charAt(n - 1 - i)) { // 判断首尾字符是否相等
       return false // 不等返回false
     }
@@ -301,10 +300,177 @@ export const getFileType = (fullName) => {
 export const shuffle = (arr) => {
   let n = arr.length
   for(let i = 0; i < n; i++){
-    let r = i + uniform(0,n - i)
+    let r = i +  Math.floor(Math.random() * (n - i))
     let temp = arr[i]
     arr[i] = arr[r]
     arr[r] = temp
   }
 }
 
+// ----------------------抛硬币第一天-------------------------------
+// 返回按照指定几率 返回true/false (抛硬币)
+export const RandomBernoulli = (key) => {
+  if (typeof key === "number" && key >= 0 && key <= 1) {
+    let test = Math.random()
+    return Math.random() >= key  // Math.Random() 方法中随即返回0-1之间的小数，若超过则返回true 否则返回false
+  } else {
+    return '无效值'
+  }
+}
+
+// 计数器类
+export class Counter {
+  count = 0
+
+  constructor(name) {
+    this.name = name
+  }
+
+  increment = () => {
+    this.count++
+  }
+  tally = () => {
+    return this.count
+  }
+  toString = () => {
+    return this.count.toString()
+  }
+}
+
+//抛硬币类
+export class Flips {
+  constructor(name) {
+    this.name = name
+  }
+
+  main(args) {
+    let T = parseInt(args[0])
+    let heads = new Counter('heads')
+    let tails = new Counter('tails')
+    for (let t = 0; t < T; t++) {
+      if (RandomBernoulli(0.5)) {
+        heads.increment()
+      } else {
+        tails.increment()
+      }
+    }
+    let d = heads.tally() - tails.tally()
+    return {
+      heads: heads,
+      tails: tails,
+      delta: Math.abs(d) //绝对值
+    }
+  }
+}
+
+// ------------------------抛硬币第二天--------------------------------
+export const FlipMax = (x, y) => {
+  let xt = x.tally()
+  let yt = y.tally()
+  if (xt > yt) return {
+    name: x.name,
+    xTally: xt,
+    yTally: yt
+  }
+  else return {
+    name: y.name,
+    xTally: xt,
+    yTally: yt
+  }
+}
+
+// 猜正反
+export class FlipWin {
+  constructor(name) {
+    this.name = name
+  }
+  main(arr) {
+    let T = parseInt(arr[0])
+    let heads = new Counter('heads')
+    let tails = new Counter('tails')
+    for (let t = 0; t < T; t++) {
+      if (RandomBernoulli(0.5)) { // 如果返回为true 正面加1
+        heads.increment()
+      } else {
+        tails.increment()
+      }
+    }
+    if (heads.tally() === tails.tally()) {
+      return {
+        name: 'Both',
+        xTally: T / 2,
+        yTally: T / 2
+      }
+    } else {
+      return FlipMax(heads, tails)
+    }
+  }
+}
+
+// -------------抛硬币的第二天开始了掷色子。。。----------
+export class Rolls {
+  constructor(name) {
+    this.name = name
+  }
+  main(arr) {
+    let T = arr[0] // 摇色子的次数
+    let SIDES = 6 // 定义六个面
+    let rolls = [] // 装筛子面次数的容器
+    for (let i = 0; i <= SIDES; i++) {
+      rolls.push(new Counter('Side' + i)) // 将6个面的计数器对象填入数组中
+    }
+    for (let t = 0; t < T; t++) {
+      let result = Math.random()*SIDES+1 //从1-6中随机取一个key
+      rolls[result].increment() //摇到了面对应的面+1
+    }
+    let result = [] // 声明结果
+    for (let i = 1; i <= SIDES; i++) {
+      result.push(rolls[i]) // 将rolls拷贝到结果中
+    }
+    return result // 返回结果
+  }
+}
+// ------------------抽象数据类型学习第三天-------------------------
+
+
+// ---------------------reduce-----------------------
+// 计算数组中每一个元素出现的次数
+export const arrCount = (arr) => {
+  return arr.reduce((prev,cur)=>{
+    if(cur in prev){ //如果当前项在前一项中，前一项增加1
+      prev[cur]++
+    }else{
+      prev[cur] = 1
+    }
+    return prev // {key: number} 该返回值为一个数组值次数统计的结构
+  },{})
+}
+
+// 对象数组分类
+export const groupBy = (objArr, keyWord) => {
+  return objArr.reduce((prev, cur)=>{
+    let key = cur[keyWord]
+    if(!prev[key]){
+      prev[key]=[cur] // 初始化返回值
+    }
+    prev[key].push(cur)
+    return prev // 每次迭代都将相同的值 push进相同的属性中
+  }, {})
+}
+
+// 数组对象中的数组合并
+export const sumObjArr = (objArr, keyWord) => {
+  return objArr.reduce((prev,cur)=>{
+    return [...prev, ...cur[keyWord]]
+  },[])
+}
+
+// 数组去重
+export const duplicateArray = (arr) => {
+  return arr.reduce((prev, cur)=>{
+    if(prev.indexOf(cur) === -1) {
+      prev.push(cur)
+    }
+    return prev
+  },[])
+}

@@ -1,7 +1,7 @@
 <template>
-  <el-row class="home">
+  <el-row>
     <div style="font-size: 30px">
-      <div>BinarySearch</div>
+      <div>BinarySearch（sorted）</div>
       <el-row>
         <el-col :span="6">
           <el-form>
@@ -87,7 +87,7 @@ export default {
         for (let i = 0; i < this.testDataL; i++) {
           randomArr.push(randomNum(this.myLo, this.myHi))
         }
-        this.originData = tools.zcQuchong(this.originData)
+        this.originData = [...new Set(randomArr)]
         console.log(this.originData)
       })
     },
@@ -96,16 +96,16 @@ export default {
       let index = Math.floor(Math.random() * this.originData.length)
       this.myKey = this.originData[index]
     },
-    rank(key, arr){
-      // 二分查找
+    rank(key, arr){ //数字
+      // 有序 二分查找
       let lo = 0
       let hi = arr.length - 1
-      while( lo <= hi ){
-        let mid = Math.floor( ( hi - lo )/2 + lo )
+      while( lo <= hi ) {
+        let mid = Math.floor( ( hi - lo )/2 + lo ) // 获取中间键
         if( key < arr[mid] ){
-          hi = mid -1 // 如果查找的 项小于 中间键值的项 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
+          hi = mid -1 // 如果查找的值小于 中间键的值 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
         } else if( key > arr[mid] ) {
-          lo = mid + 1 // 如果查找的 项大于 中间键值的项 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
+          lo = mid + 1 // 如果查找的值大于 中间键的值 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
         } else {
           return mid // 如果相等则返回
         }
@@ -120,6 +120,8 @@ export default {
       this.result2 = sortedArr.indexOf(this.myKey)
       console.log('-------普通用时-------')
       console.timeEnd()
+      let test = ''
+      console.log(test);
     },
     main(args) {
       let sortData = [...args]
@@ -134,6 +136,10 @@ export default {
     let arr = [1,2,3,4]
     this.zcTools.shuffle(arr)
     console.log(arr)
+    let str = 'abcd'
+    console.log(str.charAt(0))
+    console.log(str.charAt(str.length - 1));
+    console.log(str.indexOf('c'))
   }
 }
 </script>

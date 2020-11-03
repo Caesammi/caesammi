@@ -49,7 +49,7 @@
        <el-main style="padding:0;height: 97%;">
          <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
          <transition name="fade-transform" mode="out-in">
-           <router-view style="min-width: 830px;padding-top:20px;"></router-view>
+           <router-view style="min-width: 1200px;padding-top:20px;"></router-view>
          </transition>
        </el-main>
      </el-container>
@@ -95,8 +95,128 @@ export default {
       this.$router.push(path)
       this.defaultOpen = path
     },
+    groupBy(obj, keyWord){
+      return obj.reduce(function (acc, cur){
+        let key = cur[keyWord]
+        if(!acc[key]){
+          acc[key] = []
+        }
+        acc[key].push(cur)
+        return acc
+      },{})
+    },
+    duplicateArr(arr){
+      return arr.reduce((prev, cur)=>{
+        if(prev.indexOf(cur)===-1){
+          prev.push(cur)
+        }
+        return prev
+      },[])
+    }
   },
   created() {
+    let objArr = [
+      {
+        x:1
+      },
+      {
+        x:1
+      },
+      {
+        x:1
+      },
+    ]
+    let test = this.zcTools.zcJsonSum(objArr,'x')
+    let obj11 = {
+      a:'a',
+      b:'b',
+      c:'c'
+    }
+    this.zcTools.zcClearObj(obj11)
+    console.log(obj11)
+
+//     let obj11 = {
+//       a:'a',
+//       b:'b',
+//       c:'c'
+//     }
+//     let {a:my1,c:my2} = obj11
+//
+//     let obj2 = {
+//       dd:my1,
+//       ee:my2
+//     }
+//     debugger
+//     return
+//     let { foo: baz } = { foo: 'aaa', bar: 'bbb' };
+//     console.log(baz); // "aaa"
+//
+//     let obj = { first: 'hello', last: 'world',ff:'ff' };
+//
+//     let { first: f, last: l } = obj
+//
+//     let obj1={
+//       f,l
+//     }
+//     console.log(f); // 'hello'
+//     console.log(l); // 'world'
+//
+//     let testArr = [{"x":5},{"x":3},{"x":4},{"x":2}]
+//     // let result = this.zcTools.zcJsonCompare(testArr,'x')
+//     // console.log(result);
+//     let arr2 = [2,1,4,2,5,3,4,4,3,5,6]
+//     let newArr2 = this.zcTools.arrCount(arr2)
+//     console.log('--------main--------')
+//     let groupByResult = this.zcTools.groupBy(testArr,'x')
+//     console.log(groupByResult);
+//     let friends = [{
+//       name: 'Anna',
+//       books: ['Bible', 'Harry Potter'],
+//       age: 21
+//     }, {
+//       name: 'Bob',
+//       books: ['War and peace', 'Romeo and Juliet'],
+//       age: 26
+//     }, {
+//       name: 'Alice',
+//       books: ['The Lord of the Rings', 'The Shining'],
+//       age: 21
+//     }];
+//     console.log(this.zcTools.groupBy(friends, 'age'));
+//     debugger
+//     // for(let i = 0; i<4;i++){
+//     //   testArr.push({
+//     //     x:i+1
+//     //   })
+//     // }
+//     // console.log(JSON.stringify(testArr));
+//     let testResult = testArr.reduce((prev, v)=>{
+//           let pr = prev
+//           let vx = v.x
+//       return pr + vx
+//     },{})
+//     console.log(testResult)
+//     console.log('-------testResult-------')
+//
+//     let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+//
+//     let countedNames = names.reduce((allNames, name) => {
+//       if (name in allNames) { // 判断object中是否含有该属性
+//         console.log(allNames);
+//         console.log(name);
+//         allNames[name]++;
+//       }
+//       else {
+//         allNames[name] = 1;
+//       }
+//       return allNames;
+//     }, {});
+//     console.log('----countedNames---')
+//     console.log(countedNames);
+//     console.log('----countedNames---')
+// // countedNames is:
+// // { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+
     this.menuList = power.admin
     this.defaultOpen = this.$route.path  //获取路径
     console.log(this.menuList)
