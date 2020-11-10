@@ -1,6 +1,7 @@
 <template>
   <el-row :gutter="10" style="font-size:30px;margin-top: 10px">
     <el-col>
+      <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK" />
       <editor v-model="myValue" :init="init"></editor>
     </el-col>
     <el-col :span="4">
@@ -42,16 +43,24 @@ import * as tools from '../tools/zcTools'
 import jsonEditor from '../components/JsonEditor/index'
 import tinymce from 'tinymce/tinymce'
 import Editor from '@tinymce/tinymce-vue'
+import editorImage from '../components/EditorImage'
 
 // 引入富文本编辑器主题的js和css
 import 'tinymce/themes/silver/theme.min.js'
 import 'tinymce/icons/default'
 import 'tinymce/skins/ui/oxide/skin.min.css'
 
+// 引入插件
+import 'tinymce/plugins/image'
+import 'tinymce/plugins/link'
+import 'tinymce/plugins/code'
+import 'tinymce/plugins/lists'
+import 'tinymce/plugins/wordcount'
+
 export default {
   name: "demo",
   components:{
-    jsonEditor, Editor
+    jsonEditor, Editor, editorImage
   },
   data() {
     return {
@@ -63,6 +72,31 @@ export default {
         skin_url: '/tinymce/skins/ui/oxide',
         branding: false,
         menubar: false,
+        toolbar: ['bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright outdent indent undo redo hr bullist numlist'],
+        plugins: ['lists image'],
+        end_container_on_empty_block: true,
+        powerpaste_word_import: 'clean',
+        code_dialog_height: 450,
+        code_dialog_width: 1000,
+        advlist_bullet_styles: 'square',
+        advlist_number_styles: 'default',
+        default_link_target: '_blank',
+        link_title: false,
+        nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
+        convert_urls: false
+      },
+      init2: {
+        plugins: ['advlist anchor autolink autosave code codesample colorpicker colorpicker contextmenu directionality emoticons fullscreen hr image imagetools insertdatetime link lists media nonbreaking noneditable pagebreak paste preview print save searchreplace spellchecker tabfocus table template textcolor textpattern visualblocks visualchars wordcount'],
+        end_container_on_empty_block: true,
+        powerpaste_word_import: 'clean',
+        code_dialog_height: 450,
+        code_dialog_width: 1000,
+        advlist_bullet_styles: 'square',
+        advlist_number_styles: 'default',
+        default_link_target: '_blank',
+        link_title: false,
+        nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
+        convert_urls: false
       },
       huiWenData: '',
       myIsPalindrome: null,
@@ -95,6 +129,9 @@ export default {
     }
   },
   methods: {
+    imageSuccessCBK(arr) {
+      arr.forEach(v => this.myValue += `<img class="wscnph" src="${v.url}" >`)
+    },
     testPre(method, originData){
       this.resultData = method
     },
@@ -115,6 +152,7 @@ export default {
     },
   },
   mounted() {
+    this.myValue = '<p>ddd</p>'
   }
 }
 </script>
