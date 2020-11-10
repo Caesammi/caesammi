@@ -1,5 +1,8 @@
 <template>
   <el-row :gutter="10" style="font-size:30px;margin-top: 10px">
+    <el-col>
+      <editor v-model="myValue" :init="init"></editor>
+    </el-col>
     <el-col :span="4">
       <div>
         回文判断
@@ -37,14 +40,30 @@
 <script>
 import * as tools from '../tools/zcTools'
 import jsonEditor from '../components/JsonEditor/index'
+import tinymce from 'tinymce/tinymce'
+import Editor from '@tinymce/tinymce-vue'
+
+// 引入富文本编辑器主题的js和css
+import 'tinymce/themes/silver/theme.min.js'
+import 'tinymce/icons/default'
+import 'tinymce/skins/ui/oxide/skin.min.css'
 
 export default {
   name: "demo",
   components:{
-    jsonEditor
+    jsonEditor, Editor
   },
   data() {
     return {
+      myValue: '',
+      init: {
+        language_url: '/tinymce/zh_CN.js',
+        language: 'zh_CN',
+        height: 300,
+        skin_url: '/tinymce/skins/ui/oxide',
+        branding: false,
+        menubar: false,
+      },
       huiWenData: '',
       myIsPalindrome: null,
       fullName: '',

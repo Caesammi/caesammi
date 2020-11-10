@@ -60,15 +60,6 @@ let rebuseObjArr = (objArr, keyword) => {
 // .
 // .
 // .
-
-let duplicateArr = (arr)=>{
-  return arr.reduce((prev, cur)=>{
-    if(prev.indexOf(cur)===-1){
-      prev.push(cur)
-    }
-    return prev
-  },[])
-}
 // -------使用reduce实现-------
 let obj1 = {
   a:'a',
