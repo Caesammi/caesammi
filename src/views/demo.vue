@@ -1,8 +1,14 @@
 <template>
   <el-row :gutter="10" style="font-size:30px;margin-top: 10px">
     <el-col>
+      <div style="height: 300px;width: 800px;background: #112439" id="echart1"></div>
+    </el-col>
+    <el-col>
+      <el-button @click="originData+=myValue+=bb+=cc;">
+        显示数据
+      </el-button>
       <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK" />
-      <editor v-model="myValue" :init="init"></editor>
+      <editor id="t1" v-model="myValue" :init="init"></editor>
     </el-col>
     <el-col :span="4">
       <div>
@@ -39,6 +45,7 @@
 </template>
 
 <script>
+import echarts from 'echarts'
 import * as tools from '../tools/zcTools'
 import jsonEditor from '../components/JsonEditor/index'
 import tinymce from 'tinymce/tinymce'
@@ -56,7 +63,20 @@ import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/plugins/lists'
 import 'tinymce/plugins/wordcount'
-
+ let echartData={
+      "name": "flare",
+      "children": [
+        {"name": "ArrayInterpolator", "value": 1983},
+        {"name": "ColorInterpolator", "value": 2047},
+        {"name": "DateInterpolator", "value": 1375},
+        {"name": "Interpolator", "value": 8746},
+        {"name": "MatrixInterpolator", "value": 2202},
+        {"name": "NumberInterpolator", "value": 1382},
+        {"name": "ObjectInterpolator", "value": 1629},
+        {"name": "PointInterpolator", "value": 1675},
+        {"name": "RectangleInterpolator", "value": 2042}
+      ]
+    }
 export default {
   name: "demo",
   components:{
@@ -64,7 +84,69 @@ export default {
   },
   data() {
     return {
+      echartOpt:{
+        title:{
+          text:'ddd',
+          subtext:'subtext',
+          textStyle: {
+            color: 'white'
+          },
+          subtextStyle: {
+            left:'right'
+          },
+          left: 'center',
+        },
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove'
+        },
+        series:[
+          {
+            type: 'tree',
+            data: [echartData],
+            top: '15%',
+            left: '2%',
+            right: '2%',
+            bottom: '10%',
+            lineStyle:{ color : '#034978',borderColor:'#034978'},
+            symbol: 'emptyCircle',
+            symbolSize: 1,
+            orient: 'vertical',
+
+            expandAndCollapse: true,
+            label: {
+              formatter: function (val){
+                let name = typeof val.name !='undefined'? val.name : ''
+                let value = typeof val.value !='undefined'? val.value : ''
+                return `${name}\n${value}`
+              },
+              position: 'top',
+              // rotate: -90,
+              verticalAlign: 'middle',
+              align: 'center',
+              fontSize: 9,
+              backgroundColor: '#0F344D',
+              color:'white',
+              padding:[5,0],
+              offset: [0,5]
+            },
+
+            leaves: {
+              label: {
+                position: 'center',
+                // rotate: -90,
+                verticalAlign: 'middle',
+                align: 'center'
+              }
+            },
+
+            animationDurationUpdate: 750
+          }
+        ]
+      },
       myValue: '',
+      bb:'',
+      cc:'',
       init: {
         language_url: '/tinymce/zh_CN.js',
         language: 'zh_CN',
@@ -153,6 +235,9 @@ export default {
   },
   mounted() {
     this.myValue = '<p>ddd</p>'
+    let getID = document.getElementById('echart1')
+    let thischart = echarts.init(getID)
+    thischart.setOption(this.echartOpt)
   }
 }
 </script>
