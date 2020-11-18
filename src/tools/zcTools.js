@@ -81,10 +81,17 @@ export const zcMobileDevice = () => {
 
 // 数组对象排序
 export const zcJsonCompare = (value, key) => {
-  let myCompare = (val) => {
-    value.sort((a, b) => a[val] - b[val])
-  }
-  return value.sort(myCompare(key))
+    value.sort((a,b)=>{
+      let x1 = a[key];
+      let x2 = b[key];
+      if (x1 < x2) {
+        return -1;
+      }
+      if (x1 > x2) {
+        return 1;
+      }
+      return 0;
+    })
 }
 
 // 数字排序

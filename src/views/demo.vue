@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="10" style="font-size:30px;margin-top: 10px">
+  <el-row :gutter="10" style="font-size:30px;margin: 10px 0 0 0;">
     <el-col>
       <div style="height: 300px;width: 800px;background: #112439" id="echart1"></div>
     </el-col>
@@ -234,6 +234,29 @@ export default {
     },
   },
   mounted() {
+    let newArray = [{
+      name: "aaa",
+      value: 0
+    },
+      {
+        name: "单元",
+        value: 3
+      },
+      {
+        name: "bbb",
+        value: 1
+      },
+      {
+        name: "单元",
+        value: 4
+      },
+      {
+        name: "ccc",
+        value: 2
+      }];
+    this.zcTools.zcJsonCompare(newArray, 'name')
+    console.log(newArray)
+    debugger
     this.myValue = '<p>ddd</p>'
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)

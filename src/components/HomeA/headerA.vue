@@ -1,6 +1,5 @@
 <template>
     <el-header class="headerA">
-
             <el-breadcrumb style="lineHeight:1.4" separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item v-for="(item,index) in breadCrumbList" :key="index" :to="item.path">{{item.name}}</el-breadcrumb-item>
             </el-breadcrumb>
