@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       myLo: 0,
-      myHi: 0,
+      myHi: 100,
       testDataL: 100000,
       originData: [],
       myKey: 0,
@@ -97,39 +97,47 @@ export default {
       this.myKey = this.originData[index]
     },
     rank(key, arr){ //数字
-      // 有序 二分查找
-      let lo = 0
-      let hi = arr.length - 1
-      while( lo <= hi ) {
-        let mid = Math.floor( ( hi - lo )/2 + lo ) // 获取中间键
-        if( key < arr[mid] ){
-          hi = mid -1 // 如果查找的值小于 中间键的值 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
-        } else if( key > arr[mid] ) {
-          lo = mid + 1 // 如果查找的值大于 中间键的值 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
-        } else {
-          return mid // 如果相等则返回
+    return new Promise((resolve, reject)=>{
+       // 有序 二分查找
+       let lo = 0
+       let hi = arr.length - 1
+      let result = () => {
+        while( lo <= hi ) {
+          let mid = Math.floor( ( hi - lo )/2 + lo ) // 获取中间键
+          if( key < arr[mid] ){
+            hi = mid -1 // 如果查找的值小于 中间键的值 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
+          } else if( key > arr[mid] ) {
+            lo = mid + 1 // 如果查找的值大于 中间键的值 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
+          } else {
+            return mid // 如果相等则返回
+          }
         }
+        return -1 // 如果不存在则 返回-1
       }
-      return -1 // 如果不存在则 返回-1
+      resolve(result())
+     })
     },
     normalSearch(args) {
       // 轮询搜索
       let sortData = [...args]
-      let sortedArr = tools.zcNumberCompare(sortData)
+      tools.zcNumberCompare(sortData)
+      let sortedArr = sortData
       console.time()
       this.result2 = sortedArr.indexOf(this.myKey)
       console.log('-------普通用时-------')
       console.timeEnd()
-      let test = ''
-      console.log(test);
     },
     main(args) {
       let sortData = [...args]
-      let sortedArr = tools.zcNumberCompare(sortData)
+      tools.zcNumberCompare((sortData))
+      let sortedArr = sortData
       console.time()
-      this.result = this.rank(this.myKey, sortedArr)
-      console.log('-------二分用时-------')
-      console.timeEnd()
+      this.rank(this.myKey, sortedArr).then(res=>{
+        this.result=res
+            console.log('-------二分用时-------')
+        console.timeEnd()
+      })
+
     }
   },
   mounted() {

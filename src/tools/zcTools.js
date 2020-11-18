@@ -105,7 +105,7 @@ export const zcNumberCompare = (value) => {
     }
     return 0
   }
-  return value.sort(myCompare)
+    value.sort(myCompare)
 }
 
 //汉字排序

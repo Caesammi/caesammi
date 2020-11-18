@@ -108,11 +108,11 @@ export default {
             left: '2%',
             right: '2%',
             bottom: '10%',
+            edgeShape:'polyline', // 直角连接线，只适用于4.7之后的版本
             lineStyle:{ color : '#034978',borderColor:'#034978'},
             symbol: 'emptyCircle',
             symbolSize: 1,
-            orient: 'vertical',
-
+            orient: 'vertical', // 方向
             expandAndCollapse: true,
             label: {
               formatter: function (val){
@@ -127,10 +127,9 @@ export default {
               fontSize: 9,
               backgroundColor: '#0F344D',
               color:'white',
-              padding:[5,0],
+              padding:5,
               offset: [0,5]
             },
-
             leaves: {
               label: {
                 position: 'center',
@@ -232,8 +231,26 @@ export default {
       console.log(tools.isPalindrome(data))
       this.myIsPalindrome = tools.isPalindrome(data)
     },
+    newP(){
+     return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          console.log('fff')
+          resolve('完成')
+        },1111)
+      })
+    }
   },
   mounted() {
+    // let startTime = Date.parse(new Date())
+    // this.newP().then(res=>{
+    //   let endTime = Date.parse(new Date())
+    //   console.log(endTime - startTime)
+    // })
+    console.time()
+    this.newP().then(res=>{
+      console.timeEnd()
+    })
+
     let newArray = [{
       name: "aaa",
       value: 0
@@ -256,7 +273,6 @@ export default {
       }];
     this.zcTools.zcJsonCompare(newArray, 'name')
     console.log(newArray)
-    debugger
     this.myValue = '<p>ddd</p>'
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)
