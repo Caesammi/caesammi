@@ -15,10 +15,30 @@
               <el-input v-model.number="testDataL"/>
             </el-form-item>
             <el-form-item label="数据制造" label-width="100px">
-              <el-button @click="createArr">造</el-button>
+              负值开关
+              <el-switch
+                  v-model="zaoValue"
+                  active-color="#13ce66"
+                  >
+              </el-switch> <el-divider direction="vertical"></el-divider>
+              重复开关
+              <el-switch
+              v-model="unitValue"
+              active-color="#13ce66"
+              />
+              <el-divider direction="vertical"></el-divider>
+              <el-button @click="createArr(zaoValue)">造</el-button>
             </el-form-item>
             <el-form-item label="Origin Data" label-width="100px">
               <el-input v-model="originData.toString()" type="textarea"
+                        :autosize="{ minRows: 4, maxRows: 8}"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label-width="100px">
+              <el-button @click="twoSum">ComputeTwoSum</el-button>
+            </el-form-item>
+            <el-form-item label="two sum value" label-width="100px">
+              <el-input v-model="twoSumValue" type="textarea"
                         :autosize="{ minRows: 4, maxRows: 8}"
               ></el-input>
             </el-form-item>
@@ -72,23 +92,54 @@ export default {
       myKey: 0,
       result: '',
       result2: '',
+      twoSumValue: '',
+      zaoValue: false,
+      unitValue: false,
     }
   },
   methods: {
-    createArr() {
+    twoSum(){
+      //排序
+      let a = this.originData
+      this.zcTools.zcNumberCompare(a)
+      let N = a.length
+      let cnt = 0
+      for(let i = 0; i<N; i++){
+        if(this.rank2(-a[i], a)>i){
+          cnt++
+        }
+      }
+      this.twoSumValue = cnt
+    },
+    createArr(isB) {
       //创建数组
       // console.time()
       this.$nextTick(() => {
         this.originData = []
         let randomArr = this.originData
         let randomNum = (lo, hi) => {
-          return Math.floor(Math.random() * (hi - lo) + lo)
+          let reRandom = ''
+          let isBernoulli = false
+            if (isB === false) {
+              isBernoulli = true
+            } else {
+              isBernoulli = this.zcTools.RandomBernoulli(0.5)
+            }
+          if(isBernoulli){
+            reRandom = Math.floor(Math.random() * (hi - lo) + lo)
+          }else{
+            reRandom = -Math.floor(Math.random() * (hi - lo) + lo)
+          }
+          return reRandom
         }
         for (let i = 0; i < this.testDataL; i++) {
           randomArr.push(randomNum(this.myLo, this.myHi))
         }
-        this.originData = [...new Set(randomArr)]
-        console.log(this.originData)
+        if(this.unitValue){
+          this.originData = [...new Set(randomArr)]
+        }else{
+          this.originData = randomArr
+        }
       })
     },
     createKey() {
@@ -116,6 +167,25 @@ export default {
       }
       resolve(result())
      })
+    },
+    rank2(key, arr){
+      // 有序 二分查找
+      let lo = 0
+      let hi = arr.length - 1
+      let result = () => {
+        while( lo <= hi ) {
+          let mid = Math.floor( ( hi - lo )/2 + lo ) // 获取中间键
+          if( key < arr[mid] ){
+            hi = mid -1 // 如果查找的值小于 中间键的值 查找最大键值设置为 中间键值-1，此时查找范围缩小至数组前半段 （例lo 至 mid - 1）
+          } else if( key > arr[mid] ) {
+            lo = mid + 1 // 如果查找的值大于 中间键的值 查找最小键值设置为 中间键值+1，此时查找范围缩小至数组后半段 （例mid + 1 至 hi）
+          } else {
+            return mid // 如果相等则返回
+          }
+        }
+        return -1 // 如果不存在则 返回-1
+      }
+      return result()
     },
     normalSearch(args) {
       // 轮询搜索
