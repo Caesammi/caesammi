@@ -105,11 +105,11 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.editor-slide-upload {
-  margin-bottom: 20px;
-  ::v-deep .el-upload--picture-card {
-    width: 100%;
-  }
-}
-</style>
+<!--<style lang="less" scoped>-->
+<!--.editor-slide-upload {-->
+<!--  margin-bottom: 20px;-->
+<!--  ::v-deep .el-upload&#45;&#45;picture-card {-->
+<!--    width: 100%;-->
+<!--  }-->
+<!--}-->
+<!--</style>-->

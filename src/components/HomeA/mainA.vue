@@ -49,7 +49,9 @@
        <el-main style="padding:0;height: 97%;">
          <headerA :menuList="menuList" style="height: 20px;position:fixed;z-index: 2"></headerA>
          <transition name="fade-transform" mode="out-in">
-           <router-view style="min-width: 1200px;padding-top:20px;"></router-view>
+          <keep-alive>
+            <router-view style="min-width: 1200px;padding-top:20px;"></router-view>
+          </keep-alive>
          </transition>
        </el-main>
      </el-container>
