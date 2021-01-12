@@ -39,15 +39,21 @@ export const zcJsonSearch = (arr, key, keyword) => {
 
 // 模糊搜索
 export const zcFuzzyQuery = (value, key, keyword) => {
-  let reg = new RegExp(keyword, 'i') // i不区分大小写
-  let arr = []
-  for (let i = 0; i < value.length; i++) {
-    if (reg.test(value[i][key])) {
-      arr.push(value[i])
+  let reg = new RegExp(keyword, 'i'); // i不区分大小写
+  let arr = [];
+  let index = [];
+  if (value[key]) {
+    for (let i = 0; i < value.length; i++) {
+      if (reg.test(value[i][key])) {
+        arr.push(value[i]);
+        index.push(i);
+      }
     }
+  } else {
+    return 'error';
   }
-  return arr
-}
+  return {arr: arr, index: index};
+};
 
 // 翻转字符串
 export const zcStringReverse = (value) => {
@@ -59,9 +65,7 @@ export const zcQs = (url, value) => {
   let param = value
   let query = ''
   Object.keys(param).forEach((item, index) => {
-    if (param[item]) {
       query += `${index === 0 ? '?' : '&'}${item}=${param[item]}`
-    }
   })
   return `${url}${query}`
 }
@@ -130,14 +134,14 @@ export const ignoreUpperSort = (arr) => {
 
 // JSON 数字属性求和
 export const zcJsonSum = (value, key) => {
-  let preArr = []
-  value.forEach((a,i,n)=>{
-    preArr.push(n[i][key])
-  })
+  let preArr = [];
+  value.forEach((a, i, n) => {
+    preArr.push(n[i][key]);
+  });
   return preArr.reduce((prev, cur) => {
-    return prev+cur
-  })
-}
+    return prev + cur;
+  });
+};
 
 // 数组去重
 export const zcQuchong = (value) => {
@@ -228,7 +232,10 @@ export const zcClearObj = (value) => {
 }
 
 // 获取日期，可按照参数设定，比如几小时之前，几小时之后的时间
-export const zcGetDate = (pastHour) => {
+export function zcGetDate(pastHour, format) {
+  if (!format) {
+    format = 'yyyy-MM-dd'
+  }
   // eslint-disable-next-line no-extend-native
   Date.prototype.Format = function(fmt) {
     let o = {
@@ -249,9 +256,9 @@ export const zcGetDate = (pastHour) => {
   }
   if (pastHour) {
     // 获取之前的时间
-    return new Date(new Date().getTime() - pastHour * 60 * 60 * 1000).Format('yyyy-MM-dd hh:mm:ss')
+    return new Date(new Date().getTime() - pastHour * 60 * 60 * 1000).Format(format)
   } else {
-    return new Date(new Date().getTime()).Format('yyyy-MM-dd hh:mm:ss')
+    return new Date(new Date().getTime()).Format(format)
   }
 }
 
@@ -266,7 +273,15 @@ export const timestempToTime = (value) => {
   let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
   return Y + M + D + ' ' + h + m + s
 }
-
+//文件下载
+export const zcdownLoad = (url) => {
+  let downloadElement = document.createElement('a');
+  downloadElement.href = url; // 创建
+  downloadElement.download = '日志包.zip'; // 下载后文件名
+  document.body.appendChild(downloadElement);
+  downloadElement.click(); // 点击下载
+  document.body.removeChild(downloadElement); // 下载完成移除元素
+};
 // 检测是否是null 或 undefined
 export const zcUndefined = (value) => {
   return !(value === undefined || value === null)
