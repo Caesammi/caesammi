@@ -468,6 +468,16 @@ export const arrCount = (arr) => {
   },{})
 }
 
+//对象数组去重
+export const objArrQuChong = (arr, key) => {
+  let newobj = {};
+  arr = arr.reduce((preVal, curVal) => {
+    newobj[curVal[key]] ? '' : newobj[curVal[key]] = preVal.push(curVal);
+    return preVal
+  }, [])
+  return arr
+}
+
 // 对象数组分类
 export const groupBy = (objArr, keyWord) => {
   return objArr.reduce((prev, cur)=>{

@@ -1,5 +1,6 @@
 <template>
   <el-row :gutter="10" style="font-size:30px;margin: 10px 0 0 0;">
+      <el-cascader-multi v-model="checkList" :onlyShowChecked="true" :data="casData" valueKey="value"> </el-cascader-multi>
     <el-col>
       <div style="height: 300px;width: 800px;background: #112439" id="echart1"></div>
     </el-col>
@@ -51,6 +52,7 @@ import jsonEditor from '../components/JsonEditor/index'
 import tinymce from 'tinymce/tinymce'
 import Editor from '@tinymce/tinymce-vue'
 import editorImage from '../components/EditorImage'
+import elCascaderMulti from './multi-cascader-base-element/multi-cascader'
 
 // 引入富文本编辑器主题的js和css
 import 'tinymce/themes/silver/theme.min.js'
@@ -80,10 +82,57 @@ import 'tinymce/plugins/wordcount'
 export default {
   name: "demo",
   components:{
-    jsonEditor, Editor, editorImage
+    jsonEditor, Editor, editorImage, elCascaderMulti
   },
   data() {
     return {
+      casData: [
+        {
+          value: 'zhinan',
+          label: '指南',
+          children: [{
+            value: 'shejiyuanze',
+            label: '设计原则',
+            children: [{
+              value: 'yizhi',
+              label: '一致'
+            }, {
+              value: 'fankui',
+              label: '反馈'
+            }, {
+              value: 'xiaolv',
+              label: '效率'
+            }, {
+              value: 'kekong',
+              label: '可控'
+            }]
+          }, {
+            value: 'daohang',
+            label: '导航',
+            children: [{
+              value: 'cexiangdaohang',
+              label: '侧向导航'
+            }, {
+              value: 'dingbudaohang',
+              label: '顶部导航'
+            }]
+          }]
+        }, {
+          value: 'ziyuan',
+          label: '资源',
+          children: [{
+            value: 'axure',
+            label: 'Axure Components'
+          }, {
+            value: 'sketch',
+            label: 'Sketch Templates'
+          }, {
+            value: 'jiaohu',
+            label: '组件交互文档'
+          }]
+        }
+      ],
+      checkList: [],
       echartOpt:{
         title:{
           text:'ddd',
