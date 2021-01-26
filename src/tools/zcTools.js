@@ -469,7 +469,7 @@ export const arrCount = (arr) => {
 }
 
 //对象数组去重
-export const objArrQuChong = (arr, key) => {
+export const objArrDuplicate = (arr, key) => {
   let newobj = {};
   arr = arr.reduce((preVal, curVal) => {
     newobj[curVal[key]] ? '' : newobj[curVal[key]] = preVal.push(curVal);
@@ -479,7 +479,7 @@ export const objArrQuChong = (arr, key) => {
 }
 
 // 对象数组分类
-export const groupBy = (objArr, keyWord) => {
+export const objArrGroupBy = (objArr, keyWord) => {
   return objArr.reduce((prev, cur)=>{
     let key = cur[keyWord]
     if(!prev[key]){
@@ -491,14 +491,14 @@ export const groupBy = (objArr, keyWord) => {
 }
 
 // 数组对象中的数组合并
-export const sumObjArr = (objArr, keyWord) => {
+export const objArrMerge = (objArr, keyWord) => {
   return objArr.reduce((prev,cur)=>{
     return [...prev, ...cur[keyWord]]
   },[])
 }
 
 // 数组去重
-export const duplicateArray = (arr) => {
+export const arrDuplicate = (arr) => {
   return arr.reduce((prev, cur)=>{
     if(prev.indexOf(cur) === -1) {
       prev.push(cur)

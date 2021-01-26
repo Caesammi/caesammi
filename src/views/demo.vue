@@ -303,6 +303,9 @@ export default {
     let newArray = [{
       name: "aaa",
       value: 0
+    },{
+      name: "aaa",
+      value: 0
     },
       {
         name: "单元",
@@ -321,7 +324,10 @@ export default {
         value: 2
       }];
     this.zcTools.zcJsonCompare(newArray, 'name')
+   let fff = this.zcTools.objArrDuplicate(newArray, 'name')
     console.log(newArray)
+    console.log(fff)
+    debugger
     this.myValue = '<p>ddd</p>'
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)
