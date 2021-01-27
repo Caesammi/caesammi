@@ -1,3 +1,5 @@
+# 算法学习项目，将书上的知识制作成可测试与运行的系统
+ps: 学习记录
 # caesammi
 
 ## Project setup
