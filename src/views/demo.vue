@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import * as api from '../request/api'
 import echarts from 'echarts'
 import * as tools from '../tools/zcTools'
 import jsonEditor from '../components/JsonEditor/index'
@@ -290,6 +291,13 @@ export default {
     }
   },
   mounted() {
+    api.login({}).then(res=>{
+      console.log(res)
+      debugger
+    }).catch((res)=>{
+      console.log(res)
+      debugger
+    })
     // let startTime = Date.parse(new Date())
     // this.newP().then(res=>{
     //   let endTime = Date.parse(new Date())
@@ -327,7 +335,6 @@ export default {
    let fff = this.zcTools.objArrDuplicate(newArray, 'name')
     console.log(newArray)
     console.log(fff)
-    debugger
     this.myValue = '<p>ddd</p>'
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)

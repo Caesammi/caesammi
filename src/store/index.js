@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userName:'我是原始值',
+    userName:'admin',
     vuexTest:'',
     sessionTest:storageTool.getSession('sessionTest')
   },

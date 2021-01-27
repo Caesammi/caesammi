@@ -7,7 +7,7 @@ import router from '../router'
 // 环境的切换
 switch (process.env.NODE_ENV) {
   case 'development':
-    axios.defaults.baseURL = 'http://10.238.213.72:8080'
+    axios.defaults.baseURL = 'http://10.238.221.113'
     break
   case 'debug':
     axios.defaults.baseURL = 'http://www.ceshi.com'
@@ -31,8 +31,11 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 // 请求拦截器
 axios.interceptors.request.use(
   config => {
+    debugger
     const token = store.state.userName
+    debugger
     token && (config.headers.Authorization = token)
+    debugger
     return config
   },
   error => {
@@ -103,6 +106,7 @@ axios.interceptors.response.use(
 
 //封装get&post
 export function get (url, params) {
+  debugger
   return new Promise((resolve, reject) => {
     // params.push({token:store.getters.token})
     let Param = {
@@ -114,6 +118,8 @@ export function get (url, params) {
       resolve(res.data)
     }).catch(err => {
       reject(err.data)
+    }).finally(res=>{
+      debugger
     })
   })
 }
