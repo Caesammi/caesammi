@@ -230,8 +230,42 @@ export const zcClearObj = (value) => {
     value[i]=''
   }
 }
-
-// 获取日期，可按照参数设定，比如几小时之前，几小时之后的时间
+export function parseTime(time, cFormat) {
+  if (!time) return false
+  if (arguments.length === 0) {
+    return false
+  }
+  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+  let date
+  if (typeof time === 'object') {
+    date = time
+  } else {
+    if (('' + time).length === 10) time = parseInt(time) * 1000
+    if (('' + time).length === 8 && ('' + time).indexOf('-') === -1 && ('' + time).indexOf('/') === -1) {
+      time = time.substring(0, 4) + '-' + time.substring(4, 6) + '-' + time.substring(6, 8)
+    }
+    
+    date = new Date(time)
+  }
+  const formatObj = {
+    y: date.getFullYear(),
+    m: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    i: date.getMinutes(),
+    s: date.getSeconds(),
+    a: date.getDay()
+  }
+  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+    let value = formatObj[key]
+    if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
+    if (result.length > 0 && value < 10) {
+      value = '0' + value
+    }
+    return value || 0
+  })
+  return timeStr
+}
 export function zcGetDate(pastHour, format) {
   if (!format) {
     format = 'yyyy-MM-dd'
@@ -261,6 +295,68 @@ export function zcGetDate(pastHour, format) {
     return new Date(new Date().getTime()).Format(format)
   }
 }
+
+/**
+ * 获取传入时间一周的数据
+ */
+export const zcGetWeek = (date, pastHour, isDay) => {
+  if (!isTrue(isDay)) {
+    isDay = false
+  }
+  // eslint-disable-next-line no-extend-native
+  Date.prototype.Format = function(fmt) {
+    let o = {
+      'M+': this.getMonth() + 1, // 月份
+      'd+': this.getDate(), // 日
+      'h+': this.getHours(), // 小时
+      'm+': this.getMinutes(), // 分
+      's+': this.getSeconds(), // 秒
+      'q+': Math.floor((this.getMonth() + 3) / 3), // 季度
+      'S': this.getMilliseconds() // 毫秒
+    }
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
+    for (let k in o) {
+      // eslint-disable-next-line eqeqeq
+      if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
+    return fmt
+  }
+  if (isDay) {
+    return new Date(Date.parse(new Date(date)) + pastHour * 60 * 60 * 1000).Format('yyyy-MM-dd')
+  } else {
+    return new Date(Date.parse(new Date(date)) + pastHour * 60 * 60 * 1000).Format('yyyy-MM-dd 00:00:00')
+  }
+}
+
+/**
+ * 获取周一的日期
+ */
+export function getFirstDayOfWeek(date, isDay) {
+  if (!isTrue(isDay)) {
+    isDay = false
+  }
+  let weekday = date.getDay() || 7 // 获取星期几,getDay()返回值是 0（周日） 到 6（周六） 之间的一个整数。0||7为7，即weekday的值为1-7
+  date.setDate(date.getDate() - weekday + 1)// 往前算（weekday-1）天，年份、月份会自动变化
+  if (isDay) {
+    return parseTime(date, '{y}-{m}-{d}')
+  } else {
+    return parseTime(date, '{y}-{m}-{d}') + ' 00:00:00'
+  }
+}
+
+/**
+ * 下载方法
+ */
+export const fileDownLoad = (url) => {
+  let downloadElement = document.createElement('a')
+  downloadElement.href = url
+  downloadElement.target = '_blank' // 创建
+  downloadElement.download = url.substring(url.lastIndexOf('/') + 1, url.length) // 下载后文件名
+  document.body.appendChild(downloadElement)
+  downloadElement.click() // 点击下载
+  document.body.removeChild(downloadElement) // 下载完成移除元素
+}
+
 
 // 时间戳转换成日期
 export const timestempToTime = (value) => {
