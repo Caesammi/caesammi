@@ -1,5 +1,13 @@
 <template>
     <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;">
+        <el-col>
+            <el-color-picker
+                size="medium"
+                v-model="color"
+                show-alpha
+                :predefine="predefineColors">
+            </el-color-picker>
+        </el-col>
         <el-col :span="11">
             <editor id="t1" v-model="myValue" :init="init"></editor>
         </el-col>
@@ -67,13 +75,6 @@ import 'tinymce/themes/silver/theme.min.js'
 import 'tinymce/icons/default'
 import 'tinymce/skins/ui/oxide/skin.min.css'
 
-// 引入插件
-import 'tinymce/plugins/image'
-import 'tinymce/plugins/link'
-import 'tinymce/plugins/code'
-import 'tinymce/plugins/lists'
-import 'tinymce/plugins/wordcount'
-
 let echartData = {
   'name': 'flare',
   'children': [
@@ -95,6 +96,23 @@ export default {
   },
   data() {
     return {
+      color: 'rgba(255, 69, 0, 0.68)',
+      predefineColors: [
+        '#ff4500',
+        '#ff8c00',
+        '#ffd700',
+        '#90ee90',
+        '#00ced1',
+        '#1e90ff',
+        '#c71585',
+        'rgba(255, 69, 0, 0.68)',
+        'rgb(255, 120, 0)',
+        'hsv(51, 100, 98)',
+        'hsva(120, 40, 94, 0.5)',
+        'hsl(181, 100%, 37%)',
+        'hsla(209, 100%, 56%, 0.73)',
+        '#c7158577'
+      ],
       ssss: true,
       tinyHtml: '请在左侧富文本编辑框输入内容',
       casData: [
@@ -213,8 +231,8 @@ export default {
         skin_url: '/tinymce/skins/ui/oxide',
         branding: false,
         menubar: false,
-        toolbar: ['bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright outdent indent undo redo hr bullist numlist'],
-        plugins: ['lists image'],
+        toolbar: ['fontselect fontsizeselect bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright outdent indent undo redo hr bullist numlist lineheight'],
+        plugins: ['lists image lineheight'],
         end_container_on_empty_block: true,
         powerpaste_word_import: 'clean',
         code_dialog_height: 450,
@@ -223,6 +241,9 @@ export default {
         advlist_number_styles: 'default',
         default_link_target: '_blank',
         link_title: false,
+        fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px',
+        font_formats: "微软雅黑=Microsoft YaHei;宋体='宋体';黑体='黑体';仿宋='仿宋';楷体='楷体';隶书='隶书';幼圆='幼圆';",
+        lineheight_formats: '1 1.2 1.5 1.6 1.8 2 2.4',
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         convert_urls: false
       },
