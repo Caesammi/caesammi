@@ -1,48 +1,55 @@
 <template>
-  <el-row :gutter="10" style="font-size:30px;margin: 10px 0 0 0;">
-      <el-cascader-multi v-model="checkList" :onlyShowChecked="true" :data="casData" valueKey="value"> </el-cascader-multi>
-    <el-col>
-      <div style="height: 300px;width: 800px;background: #112439" id="echart1"></div>
-    </el-col>
-    <el-col>
-      <el-button @click="originData+=myValue+=bb+=cc;">
-        显示数据
-      </el-button>
-      <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK" />
-      <editor id="t1" v-model="myValue" :init="init"></editor>
-    </el-col>
-    <el-col :span="4">
-      <div>
-        回文判断
-        <el-input v-model="huiWenData"></el-input>
-        <el-button @click="huiWen(huiWenData)">判断</el-button>
-        <br>
-        结果: {{ myIsPalindrome }}
-      </div>
-      <el-divider></el-divider>
-      <div>
-        文件类型判断
-        <el-input v-model="fullName"></el-input>
-        <el-button @click="getFileType()">get</el-button>
-        <br>
-        文件类型: {{ fileNameResult.fileType }}
-      </div>
-    </el-col>
-    <el-col :span="20" style="font-size: 18px">
-      <el-col style="font-size: 30px;line-height: 30px;margin-top:10px;margin-bottom: 10px">
-        代码测试:
-        <el-button size="medium" @click="test" type="ghost">点击测试</el-button>
-      </el-col>
-      <el-col :span="12">
-<!--        <el-input v-model="originData" type="textarea" :autosize="{ minRows: 8 }"/>-->
-        <jsonEditor v-model="originData" />
-      </el-col>
-      <el-col :span="12">
-<!--        <el-input v-model="resultData" type="textarea" :autosize="{ minRows: 8 }"/>-->
-        <jsonEditor v-model="resultData" />
-      </el-col>
-    </el-col>
-  </el-row>
+    <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;">
+        <el-col :span="11">
+            <editor id="t1" v-model="myValue" :init="init"></editor>
+        </el-col>
+        <el-col align="center" :span="2">
+            <el-button @click="outputHtml">生成代码</el-button>
+        </el-col>
+        <el-col :span="11" class="htmlContent">
+            <span v-html="tinyHtml"></span>
+        </el-col>
+        <el-col>
+            <el-button @click="originData+=myValue+=bb+=cc;">
+                显示数据
+            </el-button>
+            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
+        </el-col>
+        <el-col :span="4">
+            <div>
+                回文判断
+                <el-input v-model="huiWenData"></el-input>
+                <el-button @click="huiWen(huiWenData)">判断</el-button>
+                <br>
+                结果: {{ myIsPalindrome }}
+            </div>
+            <el-divider></el-divider>
+            <div>
+                文件类型判断
+                <el-input v-model="fullName"></el-input>
+                <el-button @click="getFileType()">get</el-button>
+                <br>
+                文件类型: {{ fileNameResult.fileType }}
+            </div>
+        </el-col>
+        <el-col :span="20" style="font-size: 18px">
+            <el-col style="font-size: 30px;line-height: 30px;margin-top:10px;margin-bottom: 10px;">
+                代码测试:
+                <el-button size="medium" @click="test" type="ghost">点击测试</el-button>
+            </el-col>
+            <el-col :span="12" class="htmlContent">
+                <!--        <el-input v-model="originData" type="textarea" :autosize="{ minRows: 8 }"/>-->
+                <jsonEditor v-model="originData"/>
+            </el-col>
+            <el-col :span="12" class="htmlContent">
+                <!--        <el-input v-model="resultData" type="textarea" :autosize="{ minRows: 8 }"/>-->
+                <jsonEditor v-model="resultData"/>
+            </el-col>
+        </el-col>
+        <el-col>
+            <div style="height: 400px;width: 100%;margin-top:20px;background: #112439" id="echart1"></div>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
@@ -66,27 +73,30 @@ import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/plugins/lists'
 import 'tinymce/plugins/wordcount'
- let echartData={
-      "name": "flare",
-      "children": [
-        {"name": "ArrayInterpolator", "value": 1983},
-        {"name": "ColorInterpolator", "value": 2047},
-        {"name": "DateInterpolator", "value": 1375},
-        {"name": "Interpolator", "value": 8746},
-        {"name": "MatrixInterpolator", "value": 2202},
-        {"name": "NumberInterpolator", "value": 1382},
-        {"name": "ObjectInterpolator", "value": 1629},
-        {"name": "PointInterpolator", "value": 1675},
-        {"name": "RectangleInterpolator", "value": 2042}
-      ]
-    }
+
+let echartData = {
+  'name': 'flare',
+  'children': [
+    {'name': 'ArrayInterpolator', 'value': 1983},
+    {'name': 'ColorInterpolator', 'value': 2047},
+    {'name': 'DateInterpolator', 'value': 1375},
+    {'name': 'Interpolator', 'value': 8746},
+    {'name': 'MatrixInterpolator', 'value': 2202},
+    {'name': 'NumberInterpolator', 'value': 1382},
+    {'name': 'ObjectInterpolator', 'value': 1629},
+    {'name': 'PointInterpolator', 'value': 1675},
+    {'name': 'RectangleInterpolator', 'value': 2042}
+  ]
+}
 export default {
-  name: "demo",
-  components:{
+  name: 'demo',
+  components: {
     jsonEditor, Editor, editorImage, elCascaderMulti
   },
   data() {
     return {
+      ssss: true,
+      tinyHtml: '请在左侧富文本编辑框输入内容',
       casData: [
         {
           value: 'zhinan',
@@ -134,23 +144,23 @@ export default {
         }
       ],
       checkList: [],
-      echartOpt:{
-        title:{
-          text:'ddd',
-          subtext:'subtext',
+      echartOpt: {
+        title: {
+          text: 'ddd',
+          subtext: 'subtext',
           textStyle: {
             color: 'white'
           },
           subtextStyle: {
-            left:'right'
+            left: 'right'
           },
-          left: 'center',
+          left: 'center'
         },
         tooltip: {
           trigger: 'item',
           triggerOn: 'mousemove'
         },
-        series:[
+        series: [
           {
             type: 'tree',
             data: [echartData],
@@ -158,16 +168,16 @@ export default {
             left: '2%',
             right: '2%',
             bottom: '10%',
-            edgeShape:'polyline', // 直角连接线，只适用于4.7之后的版本
-            lineStyle:{ color : '#034978',borderColor:'#034978'},
+            edgeShape: 'polyline', // 直角连接线，只适用于4.7之后的版本
+            lineStyle: {color: '#034978', borderColor: '#034978'},
             symbol: 'emptyCircle',
             symbolSize: 1,
             orient: 'vertical', // 方向
             expandAndCollapse: true,
             label: {
-              formatter: function (val){
-                let name = typeof val.name !='undefined'? val.name : ''
-                let value = typeof val.value !='undefined'? val.value : ''
+              formatter: function (val) {
+                let name = typeof val.name != 'undefined' ? val.name : ''
+                let value = typeof val.value != 'undefined' ? val.value : ''
                 return `${name}\n${value}`
               },
               position: 'top',
@@ -176,9 +186,9 @@ export default {
               align: 'center',
               fontSize: 9,
               backgroundColor: '#0F344D',
-              color:'white',
-              padding:5,
-              offset: [0,5]
+              color: 'white',
+              padding: 5,
+              offset: [0, 5]
             },
             leaves: {
               label: {
@@ -194,8 +204,8 @@ export default {
         ]
       },
       myValue: '',
-      bb:'',
-      cc:'',
+      bb: '',
+      cc: '',
       init: {
         language_url: '/tinymce/zh_CN.js',
         language: 'zh_CN',
@@ -233,13 +243,13 @@ export default {
       myIsPalindrome: null,
       fullName: '',
       fileNameResult: '',
-      originData:'',
-      resultData:'',
+      originData: '',
+      resultData: '',
       testData: {
         duplicateArr: [2, 1, 4, 2, 5, 3, 4, 4, 3, 5, 6],
         groupByArr: [{
           name: 'Anna',
-          books: ['Bible', 'Harry Potter'],
+          books: ['Bible', 'Bible', 'Harry Potter'],
           age: 21
         }, {
           name: 'Bob',
@@ -260,17 +270,22 @@ export default {
     }
   },
   methods: {
+    outputHtml() {
+      this.tinyHtml = this.myValue.toString()
+      console.log(this.myValue)
+      debugger
+    },
     imageSuccessCBK(arr) {
       arr.forEach(v => this.myValue += `<img class="wscnph" src="${v.url}" >`)
     },
-    testPre(method, originData){
+    testPre(method, originData) {
       this.resultData = method
     },
-    test(){
+    test() {
       let originData = this.testData.groupByArr
-      this.originData =originData
+      this.originData = originData
       let method = this.toolTest.objArrMerge(originData, 'books')
-      this.testPre(method,originData)
+      this.testPre(method, originData)
       debugger
     },
     getFileType() {
@@ -281,20 +296,20 @@ export default {
       console.log(tools.isPalindrome(data))
       this.myIsPalindrome = tools.isPalindrome(data)
     },
-    newP(){
-     return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
+    newP() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
           console.log('fff')
           resolve('完成')
-        },1111)
+        }, 1111)
       })
     }
   },
   mounted() {
-    api.login({}).then(res=>{
+    api.login({}).then(res => {
       console.log(res)
       debugger
-    }).catch((res)=>{
+    }).catch((res) => {
       console.log(res)
       debugger
     })
@@ -304,38 +319,38 @@ export default {
     //   console.log(endTime - startTime)
     // })
     console.time()
-    this.newP().then(res=>{
+    this.newP().then(res => {
       console.timeEnd()
     })
 
     let newArray = [{
-      name: "aaa",
+      name: 'aaa',
       value: 0
-    },{
-      name: "aaa",
+    }, {
+      name: 'aaa',
       value: 0
     },
       {
-        name: "单元",
+        name: '单元',
         value: 3
       },
       {
-        name: "bbb",
+        name: 'bbb',
         value: 1
       },
       {
-        name: "单元",
+        name: '单元',
         value: 4
       },
       {
-        name: "ccc",
+        name: 'ccc',
         value: 2
-      }];
+      }]
     this.zcTools.zcJsonCompare(newArray, 'name')
-   let fff = this.zcTools.objArrDuplicate(newArray, 'name')
+    let fff = this.zcTools.objArrDuplicate(newArray, 'name')
     console.log(newArray)
     console.log(fff)
-    this.myValue = '<p>ddd</p>'
+    this.myValue = ''
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)
     thischart.setOption(this.echartOpt)
@@ -344,5 +359,9 @@ export default {
 </script>
 
 <style scoped>
-
+.htmlContent {
+    background: black;
+    height: 300px;
+    overflow: scroll;
+}
 </style>

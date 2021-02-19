@@ -369,15 +369,7 @@ export const timestempToTime = (value) => {
   let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
   return Y + M + D + ' ' + h + m + s
 }
-//文件下载
-export const zcdownLoad = (url) => {
-  let downloadElement = document.createElement('a');
-  downloadElement.href = url; // 创建
-  downloadElement.download = '日志包.zip'; // 下载后文件名
-  document.body.appendChild(downloadElement);
-  downloadElement.click(); // 点击下载
-  document.body.removeChild(downloadElement); // 下载完成移除元素
-};
+
 // 检测是否是null 或 undefined
 export const zcUndefined = (value) => {
   return !(value === undefined || value === null)
@@ -429,7 +421,6 @@ export const shuffle = (arr) => {
 // 返回按照指定几率 返回true/false (抛硬币)
 export const RandomBernoulli = (key) => {
   if (typeof key === "number" && key >= 0 && key <= 1) {
-    let test = Math.random()
     return Math.random() >= key  // Math.Random() 方法中随即返回0-1之间的小数，若超过则返回true 否则返回false
   } else {
     return '无效值'
@@ -586,7 +577,7 @@ export const objArrGroupBy = (objArr, keyWord) => {
   }, {})
 }
 
-// 数组对象中的数组合并
+// 数组对象中的数组合并(不去重)
 export const objArrMerge = (objArr, keyWord) => {
   return objArr.reduce((prev,cur)=>{
     return [...prev, ...cur[keyWord]]
