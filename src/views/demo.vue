@@ -13,15 +13,10 @@
         </el-col>
         <el-col align="center" :span="2">
             <el-button @click="outputHtml">生成代码</el-button>
+            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
         </el-col>
         <el-col :span="11" class="htmlContent">
             <span v-html="tinyHtml"></span>
-        </el-col>
-        <el-col>
-            <el-button @click="originData+=myValue+=bb+=cc;">
-                显示数据
-            </el-button>
-            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
         </el-col>
         <el-col :span="4">
             <div>
@@ -74,6 +69,14 @@ import elCascaderMulti from './multi-cascader-base-element/multi-cascader'
 import 'tinymce/themes/silver/theme.min.js'
 import 'tinymce/icons/default'
 import 'tinymce/skins/ui/oxide/skin.min.css'
+
+// 引入插件
+import 'tinymce/plugins/image'
+import 'tinymce/plugins/link'
+import 'tinymce/plugins/code'
+import 'tinymce/plugins/lists'
+import 'tinymce/plugins/wordcount'
+// import 'public/lineheight/plugin'
 
 let echartData = {
   'name': 'flare',
@@ -231,7 +234,8 @@ export default {
         skin_url: '/tinymce/skins/ui/oxide',
         branding: false,
         menubar: false,
-        toolbar: ['fontselect fontsizeselect bold italic underline strikethrough forecolor backcolor alignleft aligncenter alignright outdent indent undo redo hr bullist numlist lineheight'],
+        object_resizing: true,
+        toolbar: ['fontselect | fontsizeselect | forecolor backcolor bold italic underline strikethrough | alignleft aligncenter alignright | outdent indent | hr bullist numlist lineheight imagetools | undo redo | '],
         plugins: ['lists image lineheight'],
         end_container_on_empty_block: true,
         powerpaste_word_import: 'clean',
@@ -381,6 +385,7 @@ export default {
 
 <style scoped>
 .htmlContent {
+    resize: both;
     background: black;
     height: 300px;
     overflow: scroll;
