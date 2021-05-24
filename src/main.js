@@ -10,6 +10,9 @@ import './assets/eleTheme.scss'
 import './tools/dialogDrag'
 import * as zcTools from '../src/tools/zcTools'
 import * as test from '../src/tools/test'
+import 'vue-number-counter/dist/vue-number-counter.css'
+import VueNumberCounter from 'vue-number-counter'
+import dataV from '@jiaminghi/data-view'
 
 import * as myApi from '@/request/api'
 
@@ -17,6 +20,8 @@ import * as myApi from '@/request/api'
 Vue.use(ElementUI,{size:'mini'})
 Vue.use(VueAMap)
 Vue.use(VueAwesomeSwiper)
+Vue.use(VueNumberCounter)
+Vue.use(dataV)
 Vue.config.productionTip = false
 Vue.prototype.myApi = myApi
 Vue.prototype.zcTools = zcTools

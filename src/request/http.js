@@ -31,11 +31,11 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 // 请求拦截器
 axios.interceptors.request.use(
   config => {
-    debugger
+    
     const token = store.state.userName
-    debugger
+    
     token && (config.headers.Authorization = token)
-    debugger
+    
     return config
   },
   error => {
@@ -106,7 +106,7 @@ axios.interceptors.response.use(
 
 //封装get&post
 export function get (url, params) {
-  debugger
+  
   return new Promise((resolve, reject) => {
     // params.push({token:store.getters.token})
     let Param = {
@@ -119,7 +119,7 @@ export function get (url, params) {
     }).catch(err => {
       reject(err.data)
     }).finally(res=>{
-      debugger
+    
     })
   })
 }

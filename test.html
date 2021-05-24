@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  // 事件循环机制 EventLoop测试题（宏任务，微任务）
+  // 请说出以下结果的打印顺序
+  setTimeout(() => {
+    console.log(1)
+  }, 0)
+  let fun = () => {
+    return new Promise((resolve, reject) => {
+      console.log(2)
+      resolve(3)
+      console.log(5)
+    })
+  }
+  fun().then(res => {
+    console.log(3)
+  })
+  console.log(4)
+  // 2 5 4 3 1
+
+
+  // let originArr = [1, 2, 4, 3, 9, 7, 2,
+  //   {
+  //     deepCopy: [1, 2, 3]
+  //   }
+  // ]
+  // // 深拷贝
+  // let deepCopy = (arr) => {
+  //   let result = arr.constructor === Array ? [] : {} // 创建结果类型
+  //   for (let [key, value] of Object.entries(arr)) {
+  //     result[key] = typeof value === 'object' ? deepCopy(value) : value
+  //   }
+  //   return result
+  // }
+  // let copyArr = deepCopy(originArr)
+  // console.log(copyArr)
+
+
+  // // 数组排序
+  // let sortArr = (arr) => {
+  //   arr.sort((a, b) => a - b)
+  // }
+  // sortArr(testArr)
+  // console.log(testArr)
+  // 数组去重1
+  let newArr = [...new Set(testArr)]
+  console.log(newArr)
+  //
+  // 数组去重2
+  let duplicate = (arr) => {
+    return arr.reduce((acc, cur) => {
+      if (acc.indexOf(cur) === -1) {
+        acc.push(cur)
+      }
+      return acc
+    }, [])
+  }
+  let resultDup = duplicate(testArr)
+  console.log(resultDup)
+
+
+  // let changeIndex = (e) => {
+  //   let resultIndex = []
+  //   for (let i = 0; i < testArr.length;i++) {
+  //     if (testArr[i] === e) {
+  //       resultIndex.push(i)
+  //     }
+  //   }
+  //   if (resultIndex.length > 1) {
+  //     return resultIndex.pop()
+  //   } else {
+  //     return false
+  //   }
+  //   // let resultIndex = testArr.filter((n, i, a) => {
+  //   //     if (n === e) {
+  //   //       return i
+  //   //     }
+  //   //   })
+  // }
+  // let testArr = ['1', '2', '3', '4', '1']
+  // for (let i = 0; i < testArr.length; i++) {
+  //   if (changeIndex(testArr[i]) === i) {
+  //     console.log('当前值重复')
+  //   } else {
+  //     console.log('nothing')
+  //   }
+  // }
+  // // for (let i=1; i<=5; i++) {
+  // //   setInterval(function timer() {
+  // //     console.log(i);
+  // //   }, i*1000);
+  // // }
+  // for (let i=1; i<=5; i++) {
+  //   setTimeout(function () {
+  //     console.log(i);
+  //   }, i*1000);
+  // }
+  // (() => {
+  //   let a = {}
+  //   let b = new RegExp()
+  //   console.log(a.__proto__.test)
+  //   console.log(b.__proto__.test)
+  //
+  //   return
+  //   var lengthOfLongestSubstring = function(s) {
+  //     // 哈希集合，记录每个字符是否出现过
+  //     const occ = new Set();
+  //     const n = s.length;
+  //     // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
+  //     let rk = -1, ans = 0;
+  //     for (let i = 0; i < n; ++i) {
+  //       if (i != 0) {
+  //         // 左指针向右移动一格，移除一个字符
+  //         occ.delete(s.charAt(i - 1));
+  //       }
+  //       while (rk + 1 < n && !occ.has(s.charAt(rk + 1))) {
+  //         // 不断地移动右指针
+  //         occ.add(s.charAt(rk + 1));
+  //         ++rk;
+  //       }
+  //       // 第 i 到 rk 个字符是一个极长的无重复字符子串
+  //       ans = Math.max(ans, rk - i + 1);
+  //     }
+  //     return ans;
+  //   };
+  //   console.log(lengthOfLongestSubstring('ssddfivivvvvvsafdasdfasdf'))
+  // })()
+  // // 假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现。
+  // // 以加法为例，现有远程API的模拟实现
+  // const addRemote = async (a, b) => new Promise(resolve => {
+  //   setTimeout(() => resolve(a + b), 1000)
+  // })
+  //
+  // // 请实现本地的add方法，调用addRemote，能最优的实现输入数字的加法。
+  // async function add(...inputs) {
+  //   // 你的实现
+  //   return new Promise(resolve => {
+  //     addRemote(...inputs).then(res => {
+  //       resolve(res)
+  //     })
+  //   })
+  // }
+  //
+  // // 请用示例验证运行结果:
+  // add(1, 2)
+  //   .then(result => {
+  //     console.log(result) // 3
+  //   })
+  //
+  // add(3, 5, 2)
+  //   .then(result => {
+  //     console.log(result) // 10
+  //   })
+</script>
+</html>

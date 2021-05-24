@@ -30,7 +30,7 @@ export const groupBy = (objArr,keyword) => {
   },{})
 }
 
-// -------对象数组中的数组合并
+// -------JSON对象数组中的数组合并
 // .
 // .
 // .

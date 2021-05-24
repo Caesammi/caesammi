@@ -1,23 +1,5 @@
 <template>
-    <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;">
-        <el-col>
-            <el-color-picker
-                size="medium"
-                v-model="color"
-                show-alpha
-                :predefine="predefineColors">
-            </el-color-picker>
-        </el-col>
-        <el-col :span="11">
-            <editor id="t1" v-model="myValue" :init="init"></editor>
-        </el-col>
-        <el-col align="center" :span="2">
-            <el-button @click="outputHtml">生成代码</el-button>
-            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
-        </el-col>
-        <el-col :span="11" class="htmlContent">
-            <span v-html="tinyHtml"></span>
-        </el-col>
+    <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;" class="demoBox">
         <el-col :span="4">
             <div>
                 回文判断
@@ -49,6 +31,40 @@
                 <jsonEditor v-model="resultData"/>
             </el-col>
         </el-col>
+        <el-col v-if="false" style="height: 600px">
+            <dv-flyline-chart-enhanced :config="config" style="width:100%;height:100%;" />
+        </el-col>
+        <el-col :span="12">
+            <div style="height: 28px;overflow: hidden">
+                <Roller :text="testNum.toLocaleString('en-US')"/>
+<!--                <vue-number-counter class='my-number' :value="-17842.7129" :option='myOption' />-->
+            </div>
+            <Roller :text="testNum.toLocaleString('en-US')"/>
+            <count-to :start-val=0 :end-val='10.1' decimal="." :duration="2600" class="card-panel-num"/>
+            <number-panel id="number_" :number-data="0.025"/>
+        </el-col>
+        <el-col>
+            <div class="bottle-bg">
+                <div :style="{bottom: '10px'}" class="bottle-cover"></div>
+            </div>
+            <div :class="[{contentTest: isActive}, {defaultTest: !isActive}]"></div>
+            <el-color-picker
+                size="medium"
+                v-model="color"
+                show-alpha
+                :predefine="predefineColors">
+            </el-color-picker>
+        </el-col>
+        <el-col :span="11">
+            <editor id="t1" v-model="myValue" :init="init"></editor>
+        </el-col>
+        <el-col align="center" :span="2">
+            <el-button @click="outputHtml">生成代码</el-button>
+            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
+        </el-col>
+        <el-col :span="11" class="htmlContent">
+            <span v-html="tinyHtml"></span>
+        </el-col>
         <el-col>
             <div style="height: 400px;width: 100%;margin-top:20px;background: #112439" id="echart1"></div>
         </el-col>
@@ -76,9 +92,13 @@ import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/plugins/lists'
 import 'tinymce/plugins/wordcount'
+import NumberPanel from '@/views/NumberPanel'
+import CountTo from 'vue-count-to'
+import Roller from 'vue-roller'
 // import 'public/lineheight/plugin'
+  let logo = require('../../src/assets/logo.png')
 
-let echartData = {
+  let echartData = {
   'name': 'flare',
   'children': [
     {'name': 'ArrayInterpolator', 'value': 1983},
@@ -92,13 +112,184 @@ let echartData = {
     {'name': 'RectangleInterpolator', 'value': 2042}
   ]
 }
+  let points = [
+  {
+    name: '郑州',
+    coordinate: [0.0, 0.99],
+    icon: {
+      src: logo,
+      width: 30,
+      height: 30
+    }
+  },
+  {
+    name: '新乡',
+    coordinate: [0.52, 0.23]
+  },
+  {
+    name: '焦作',
+    coordinate: [0.43, 0.29]
+  },
+  {
+    name: '开封',
+    coordinate: [0.59, 0.35]
+  },
+  {
+    name: '许昌',
+    coordinate: [0.53, 0.47]
+  },
+  {
+    name: '平顶山',
+    coordinate: [0.45, 0.54]
+  },
+  {
+    name: '洛阳',
+    coordinate: [0.36, 0.38]
+  },
+  {
+    name: '周口',
+    coordinate: [0.62, 0.55]
+  },
+  {
+    name: '漯河',
+    coordinate: [0.56, 0.56]
+  },
+  {
+    name: '南阳',
+    coordinate: [0.37, 0.66]
+  },
+  {
+    name: '信阳',
+    coordinate: [0.55, 0.81]
+  },
+  {
+    name: '驻马店',
+    coordinate: [0.55, 0.67]
+  },
+  {
+    name: '济源',
+    coordinate: [0.37, 0.29]
+  },
+  {
+    name: '三门峡',
+    coordinate: [0.20, 0.36]
+  },
+  {
+    name: '商丘',
+    coordinate: [0.76, 0.41]
+  },
+  {
+    name: '鹤壁',
+    coordinate: [0.59, 0.18]
+  },
+  {
+    name: '濮阳',
+    coordinate: [0.68, 0.17]
+  },
+  {
+    name: '安阳',
+    coordinate: [0.59, 0.10]
+  }
+]
+  let lines = [
+  {
+    source: '新乡',
+    target: '郑州'
+  },
+  {
+    source: '焦作',
+    target: '郑州'
+  },
+  {
+    source: '开封',
+    target: '郑州'
+  },
+  {
+    source: '许昌',
+    target: '郑州'
+  },
+  {
+    source: '平顶山',
+    target: '郑州'
+  },
+  {
+    source: '洛阳',
+    target: '郑州'
+  },
+  {
+    source: '周口',
+    target: '郑州'
+  },
+  {
+    source: '漯河',
+    target: '郑州'
+  },
+  {
+    source: '南阳',
+    target: '郑州'
+  },
+  {
+    source: '信阳',
+    target: '郑州'
+  },
+  {
+    source: '驻马店',
+    target: '郑州'
+  },
+  {
+    source: '济源',
+    target: '郑州'
+  },
+  {
+    source: '三门峡',
+    target: '郑州'
+  },
+  {
+    source: '商丘',
+    target: '郑州'
+  },
+  {
+    source: '鹤壁',
+    target: '郑州'
+  },
+  {
+    source: '濮阳',
+    target: '郑州'
+  },
+  {
+    source: '安阳',
+    target: '郑州'
+  }
+]
+  let icon = {
+  show: true,
+    src: logo
+}
+  let bgImgSrc = logo
 export default {
   name: 'demo',
   components: {
-    jsonEditor, Editor, editorImage, elCascaderMulti
+    CountTo,
+    NumberPanel,
+    jsonEditor, Editor, editorImage, elCascaderMulti,
+    Roller
   },
   data() {
     return {
+      config: {
+        points: points,
+        lines: lines
+      },
+      testNum: 234567,
+      myOption: {
+        duration: 2000,
+        characterWidth: 16,
+        addCharacter: [],
+        replaceCharacterMap: [],
+        decimals: 2,
+        thousandsSeparatorFlag: false
+      },
+      isActive: false,
       color: 'rgba(255, 69, 0, 0.68)',
       predefineColors: [
         '#ff4500',
@@ -298,7 +489,7 @@ export default {
     outputHtml() {
       this.tinyHtml = this.myValue.toString()
       console.log(this.myValue)
-      debugger
+
     },
     imageSuccessCBK(arr) {
       arr.forEach(v => this.myValue += `<img class="wscnph" src="${v.url}" >`)
@@ -311,7 +502,7 @@ export default {
       this.originData = originData
       let method = this.toolTest.objArrMerge(originData, 'books')
       this.testPre(method, originData)
-      debugger
+
     },
     getFileType() {
       this.fileNameResult = tools.getFileType(this.fullName)
@@ -331,12 +522,87 @@ export default {
     }
   },
   mounted() {
+    // JSON 去重
+    this.originData = [
+      {a: 'a'},
+      {a: 'a'},
+      {b: 'b'},
+      {b: 'b'}
+    ]
+    const objArrQuChong = (arr, key) => {
+      let newobj = {};
+      arr = arr.reduce((preVal, curVal) => {
+        newobj[curVal[key]] ? '' : newobj[curVal[key]] = preVal.push(curVal);
+        return preVal
+      }, [])
+      return arr
+    }
+    this.resultData = objArrQuChong(this.originData, 'b')
+    console.log(objArrQuChong(this.originData, 'b'))
+    // 数字排序
+    // let testArr = [1,1,1,2,4,2,3,3,3,3]
+    // let sortArr = (arr) => {
+    //   arr.sort((a, b) => a - b)
+    // }
+    // sortArr(testArr)
+    // console.log(testArr)
+    // return
+    // // 数组去重
+    // let testArr = ['吧','啊','从','吧','啊','从']
+    // let arrDuplicate = (array) => {
+    //   return array.reduce((acc, cur) => {
+    //     if (acc.indexOf(cur) === -1) {
+    //       acc.push(cur)
+    //     }
+    //     return acc
+    //   }, [])
+    // }
+    // let newArr = arrDuplicate(testArr)
+    // console.log(newArr)
+    // return
+    let test = () => {
+      // 数组去重
+      let arrDuplicate = (array) => {
+        return array.reduce((acc, cur) => {
+          if (acc.indexOf(cur) === -1) {
+            acc.push(cur)
+          }
+          return acc
+        }, [])
+      }
+      // 汉字排序
+      let testArr = ['吧','啊','从']
+      let chineseSort = (array) => {
+        array.sort((a, b) => a.localeCompare(b))
+      }
+      chineseSort(testArr)
+      console.log(testArr)
+    }
+    setTimeout(() => {
+      this.isActive = true
+    }, 5000)
+    let arrA = [{"GZMACNO":"1","CPY206006":1550},{"GZMACNO":"2","CPY206006":3209},{"GZMACNO":"3","CPY206006":368},{"GZMACNO":"4","CPY206006":2426},{"GZMACNO":"5","CPY206006":1550},{"GZMACNO":"6","CPY206006":3209}]
+    let arrB = {"1":[{"GZMACNO":"1","GZOILGUN":"1","GZYLLW2":"92#","CPY206007":271,"CPY206008":6.59,"CPY206009":8},{"GZMACNO":"1","GZOILGUN":"2","GZYLLW2":"92#","CPY206007":510,"CPY206008":6.59,"CPY206009":16},{"GZMACNO":"1","GZOILGUN":"3","GZYLLW2":"92#","CPY206007":152,"CPY206008":6.59,"CPY206009":4},{"GZMACNO":"1","GZOILGUN":"4","GZYLLW2":"92#","CPY206007":43,"CPY206008":6.59,"CPY206009":1},{"GZMACNO":"1","GZOILGUN":"5","GZYLLW2":"95#","CPY206007":319,"CPY206008":7.01,"CPY206009":7},{"GZMACNO":"1","GZOILGUN":"6","GZYLLW2":"95#","CPY206007":255,"CPY206008":7.01,"CPY206009":5}],"2":[{"GZMACNO":"2","GZOILGUN":"10","GZYLLW2":"92#","CPY206007":48,"CPY206008":6.59,"CPY206009":2},{"GZMACNO":"2","GZOILGUN":"11","GZYLLW2":"95#","CPY206007":809,"CPY206008":7.01,"CPY206009":17},{"GZMACNO":"2","GZOILGUN":"12","GZYLLW2":"95#","CPY206007":350,"CPY206008":7.01,"CPY206009":8},{"GZMACNO":"2","GZOILGUN":"7","GZYLLW2":"92#","CPY206007":643,"CPY206008":6.59,"CPY206009":22},{"GZMACNO":"2","GZOILGUN":"8","GZYLLW2":"92#","CPY206007":1374,"CPY206008":6.59,"CPY206009":42},{"GZMACNO":"2","GZOILGUN":"9","GZYLLW2":"92#","CPY206007":84,"CPY206008":6.59,"CPY206009":2}],"3":[{"GZMACNO":"3","GZOILGUN":"14","GZYLLW2":"95#","CPY206007":44,"CPY206008":7.01,"CPY206009":1},{"GZMACNO":"3","GZOILGUN":"16","GZYLLW2":"98#","CPY206007":46,"CPY206008":7.99,"CPY206009":1},{"GZMACNO":"3","GZOILGUN":"17","GZYLLW2":"95#","CPY206007":118,"CPY206008":7.01,"CPY206009":3},{"GZMACNO":"3","GZOILGUN":"18","GZYLLW2":"95#","CPY206007":161,"CPY206008":7.01,"CPY206009":3}],"4":[{"GZMACNO":"4","GZOILGUN":"19","GZYLLW2":"95#","CPY206007":1507,"CPY206008":7.01,"CPY206009":32},{"GZMACNO":"4","GZOILGUN":"20","GZYLLW2":"95#","CPY206007":593,"CPY206008":7.01,"CPY206009":15},{"GZMACNO":"4","GZOILGUN":"21","GZYLLW2":"98#","CPY206007":63,"CPY206008":7.99,"CPY206009":1},{"GZMACNO":"4","GZOILGUN":"22","GZYLLW2":"98#","CPY206007":108,"CPY206008":7.99,"CPY206009":2},{"GZMACNO":"4","GZOILGUN":"23","GZYLLW2":"98#","CPY206007":157,"CPY206008":7.99,"CPY206009":3}],"5":[{"GZMACNO":"4","GZOILGUN":"19","GZYLLW2":"95#","CPY206007":1507,"CPY206008":7.01,"CPY206009":32},{"GZMACNO":"4","GZOILGUN":"20","GZYLLW2":"95#","CPY206007":593,"CPY206008":7.01,"CPY206009":15},{"GZMACNO":"4","GZOILGUN":"21","GZYLLW2":"98#","CPY206007":63,"CPY206008":7.99,"CPY206009":1},{"GZMACNO":"4","GZOILGUN":"22","GZYLLW2":"98#","CPY206007":108,"CPY206008":7.99,"CPY206009":2},{"GZMACNO":"4","GZOILGUN":"23","GZYLLW2":"98#","CPY206007":157,"CPY206008":7.99,"CPY206009":3}],"6":[{"GZMACNO":"4","GZOILGUN":"19","GZYLLW2":"95#","CPY206007":1507,"CPY206008":7.01,"CPY206009":32},{"GZMACNO":"4","GZOILGUN":"20","GZYLLW2":"95#","CPY206007":593,"CPY206008":7.01,"CPY206009":15},{"GZMACNO":"4","GZOILGUN":"21","GZYLLW2":"98#","CPY206007":63,"CPY206008":7.99,"CPY206009":1},{"GZMACNO":"4","GZOILGUN":"22","GZYLLW2":"98#","CPY206007":108,"CPY206008":7.99,"CPY206009":2},{"GZMACNO":"4","GZOILGUN":"23","GZYLLW2":"98#","CPY206007":157,"CPY206008":7.99,"CPY206009":3}]}
+    let counter = 0
+    let arrIndex = 0
+    let preArr = []
+    for (let i = 0; i<arrA.length; i++) {
+      if (!preArr[arrIndex]) preArr[arrIndex] = []
+      preArr[arrIndex].push(arrA[i])
+      counter++
+      if (counter === 4) {
+        arrIndex++
+        counter = 0
+      }
+    }
+    console.log(preArr)
+
     api.login({}).then(res => {
       console.log(res)
-      debugger
+
     }).catch((res) => {
       console.log(res)
-      debugger
+
     })
     // let startTime = Date.parse(new Date())
     // this.newP().then(res=>{
@@ -384,6 +650,40 @@ export default {
 </script>
 
 <style scoped>
+.demoBox {
+    background: #1a1a1a;
+}
+.my-number {
+    font-size: 40px;
+}
+.bottle-bg {
+    height: 200px;
+    width: 100px;
+    position: relative;
+    background: url("./bottleChaiBg.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.bottle-cover {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    background: url("./bottleChaiFlat.png") no-repeat center;
+    background-size: 100% 100%;
+
+}
+.contentTest {
+    transition-duration: 5s;
+    background: #00feff;
+    width: 100px;
+    height: 100px
+    /*animation: test 5s linear;*/
+}
+.defaultTest {
+    transition-duration: 5s;
+    background: #00ff80;
+    width: 100px;
+    height: 100px
+}
 .htmlContent {
     resize: both;
     background: black;
