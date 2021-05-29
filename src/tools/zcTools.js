@@ -557,9 +557,9 @@ export const arrCount = (arr) => {
 
 //对象数组去重
 export const objArrDuplicate = (arr, key) => {
-  let newobj = {};
+  let newObj = {};
   arr = arr.reduce((preVal, curVal) => {
-    newobj[curVal[key]] ? '' : newobj[curVal[key]] = preVal.push(curVal);
+    newObj[curVal[key]] ? '' : newObj[curVal[key]] = preVal.push(curVal);
     return preVal
   }, [])
   return arr
@@ -570,7 +570,7 @@ export const objArrGroupBy = (objArr, keyWord) => {
   return objArr.reduce((prev, cur)=>{
     let key = cur[keyWord]
     if(!prev[key]){
-      prev[key]=[cur] // 初始化返回值
+      prev[key]=[] // 初始化返回值
     }
     prev[key].push(cur)
     return prev // 每次迭代都将相同的值 push进相同的属性中
