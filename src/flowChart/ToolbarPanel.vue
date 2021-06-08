@@ -67,7 +67,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .toolbar {
         text-align: left;
         width: 100%;

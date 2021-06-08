@@ -79,7 +79,6 @@ import jsonEditor from '../components/JsonEditor/index'
 import tinymce from 'tinymce/tinymce'
 import Editor from '@tinymce/tinymce-vue'
 import editorImage from '../components/EditorImage'
-import elCascaderMulti from './multi-cascader-base-element/multi-cascader'
 
 // 引入富文本编辑器主题的js和css
 import 'tinymce/themes/silver/theme.min.js'
@@ -271,7 +270,7 @@ export default {
   components: {
     CountTo,
     NumberPanel,
-    jsonEditor, Editor, editorImage, elCascaderMulti,
+    jsonEditor, Editor, editorImage,
     Roller
   },
   data() {
@@ -651,7 +650,7 @@ export default {
 
 <style scoped>
 .demoBox {
-    background: #1a1a1a;
+    /*background: grey;*/
 }
 .my-number {
     font-size: 40px;

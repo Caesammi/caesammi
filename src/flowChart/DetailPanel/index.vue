@@ -86,7 +86,7 @@
     },
   }
 </script>
-<style lang="scss">
+<style lang="less">
     .detailPanel {
         height: 100%;
         background: #f0f2f5;

@@ -84,7 +84,7 @@
   }
 </script>
 
-<style lang="scss" >
+<style lang="less" >
     .itemPanel {
         float: left;
         width: 10%;
