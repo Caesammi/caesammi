@@ -128,13 +128,13 @@ export default {
         x:1
       },
     ]
-    let test = this.zcTools.zcJsonSum(objArr,'x')
+    let test = this.$tools.zcJsonSum(objArr,'x')
     let obj11 = {
       a:'a',
       b:'b',
       c:'c'
     }
-    this.zcTools.zcClearObj(obj11)
+    this.$tools.zcClearObj(obj11)
     console.log(obj11)
 
 //     let obj11 = {
@@ -164,12 +164,12 @@ export default {
 //     console.log(l); // 'world'
 //
 //     let testArr = [{"x":5},{"x":3},{"x":4},{"x":2}]
-//     // let result = this.zcTools.zcJsonCompare(testArr,'x')
+//     // let result = this.$tools.zcJsonCompare(testArr,'x')
 //     // console.log(result);
 //     let arr2 = [2,1,4,2,5,3,4,4,3,5,6]
-//     let newArr2 = this.zcTools.arrCount(arr2)
+//     let newArr2 = this.$tools.arrCount(arr2)
 //     console.log('--------main--------')
-//     let groupByResult = this.zcTools.groupBy(testArr,'x')
+//     let groupByResult = this.$tools.groupBy(testArr,'x')
 //     console.log(groupByResult);
 //     let friends = [{
 //       name: 'Anna',
@@ -184,7 +184,7 @@ export default {
 //       books: ['The Lord of the Rings', 'The Shining'],
 //       age: 21
 //     }];
-//     console.log(this.zcTools.groupBy(friends, 'age'));
+//     console.log(this.$tools.groupBy(friends, 'age'));
 //     debugger
 //     // for(let i = 0; i<4;i++){
 //     //   testArr.push({

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 // storage-start
 
 export const setSession = (key, value) => {
@@ -24,7 +25,35 @@ export const removeLocal = (key) => {
   return localStorage.removeItem(key)
 }
 // storage-end
+//判断 参数是否嵌套在url里
+export function isInlineParams(url) {
+  const splitChar = '{$'
+  if (url && url.indexOf(splitChar) > -1) {
+    return true
+  } else {
+    return false
+  }
+}
+// 将get的参数拼接到url后
+export function replaceUrlParams(url, params) {
+  if (url) {
+    if (!isInlineParams(url)) {
+      return url
+    }
+    // 正则匹配{}，生成数组
+    let patt = /\{.*?\}/g
+    let arr = url.match(patt) ? url.match(patt) : []
+    arr.forEach(function(item) {
+      let key = item.replace('{', '').replace('}', '').replace('$', '')
+      url = url.replace(item, params[key])
+    })
+  }
+  return url
+}
 
+export function isTrue(val) {
+  return !_.isNull(val) && !_.isUndefined(val) && val !== ''
+}
 // 数组对象搜索
 export const zcJsonSearch = (arr, key, keyword) => {
   let zcResult = arr.filter((item) => {
@@ -38,7 +67,24 @@ export const zcJsonSearch = (arr, key, keyword) => {
 }
 
 // 模糊搜索
-export const zcFuzzyQuery = (value, key, keyword) => {
+export const zcFuzzyQueryA = (arr, conditionObj) => {
+  let filterFun = (key, keyword) => {
+    let arrPre = []
+    let reg = new RegExp(keyword, 'i') // i不区分大小写
+    for (let i = 0; i < arr.length; i++) {
+      if (reg.test(arr[i][key])) {
+        arrPre.push(arr[i])
+      }
+    }
+    arr = arrPre
+  }
+  for (let item in conditionObj) {
+    filterFun(item, conditionObj[item])
+  }
+  return arr
+}
+
+export const zcFuzzyQueryB = (value, key, keyword) => {
   let reg = new RegExp(keyword, 'i'); // i不区分大小写
   let arr = [];
   let index = [];
@@ -65,7 +111,7 @@ export const zcQs = (url, value) => {
   let param = value
   let query = ''
   Object.keys(param).forEach((item, index) => {
-      query += `${index === 0 ? '?' : '&'}${item}=${param[item]}`
+    query += `${index === 0 ? '?' : '&'}${item}=${param[item]}`
   })
   return `${url}${query}`
 }
@@ -85,17 +131,17 @@ export const zcMobileDevice = () => {
 
 // 数组对象排序
 export const zcJsonCompare = (value, key) => {
-    value.sort((a,b)=>{
-      let x1 = a[key];
-      let x2 = b[key];
-      if (x1 < x2) {
-        return -1;
-      }
-      if (x1 > x2) {
-        return 1;
-      }
-      return 0;
-    })
+  value.sort((a,b)=>{
+    let x1 = a[key];
+    let x2 = b[key];
+    if (x1 < x2) {
+      return -1;
+    }
+    if (x1 > x2) {
+      return 1;
+    }
+    return 0;
+  })
 }
 
 // 数字排序
@@ -109,7 +155,7 @@ export const zcNumberCompare = (value) => {
     }
     return 0
   }
-    value.sort(myCompare)
+  value.sort(myCompare)
 }
 
 //汉字排序
@@ -163,7 +209,7 @@ export const zcDateArr = (begin, end) => {
     // 客户端时间与服务器时间保持一致，固定北京时间东八区。
     offset = offsetZone + 8
     currentTimestamp = currentTimestamp + offset * 3600 * 1000
-
+    
     let newtimestamp = null
     if (currentTimestamp) {
       if (currentTimestamp.toString().length === 13) {
@@ -197,7 +243,7 @@ export const zcDateArr = (begin, end) => {
       output += YYYY + separator + MM + separator + DD
     }
     output = prefix ? (prefix + output) : output
-
+    
     return newtimestamp ? output : ''
   }
   let arr1 = begin.split('-')
@@ -375,7 +421,7 @@ export const zcUndefined = (value) => {
   return !(value === undefined || value === null)
 }
 
-// 深拷贝
+// 基础深拷贝
 export const copy = (obj) => {
   let res = obj.constructor === Array ? [] : {}
   for (const [k, v] of Object.entries(obj)) { // 解构对象键值对
@@ -383,11 +429,76 @@ export const copy = (obj) => {
   }
   return res
 }
+// 深拷贝加条件，能转成数字的字符串转成数字
+export const zcFilter = (data = [], notTrans = '', numDot = 2, type = 'string') => {
+  if (data === null) {
+    return '--'
+  } else {
+    let result = data.constructor === Array ? [] : {}
+    for (let [key, value] of Object.entries(data)) {
+      if (typeof value === 'object') {
+        result[key] = zcFilter(value, notTrans, numDot, type)
+      } else {
+        if (typeof value === 'string' && !isNaN(Number(value)) && key !== notTrans) {
+          result[key] = type === 'string' ? parseFloat(value).toFixed(numDot) : _.round(value, numDot)
+        } else {
+          if (typeof value === 'number' && key !== notTrans) {
+            result[key] = type === 'string' ? parseFloat(value).toFixed(numDot) : _.round(value, numDot)
+          } else {
+            result[key] = value
+          }
+        }
+      }
+    }
+    return result
+  }
+}
+// 合并JSON同类项的数字属性
+// origin Data
+// [{a: 1, b: 2},
+//  {a: 1, b: 2},
+//  {a: 2, b: 3}]
+// result
+// [{a: 1, b: 4}
+// {a: 2, b: 3}]
+export const zcSumSame = (data, key, numKey = []) => {
+  let dataPre = []
+  for (let i = 0; i < data.length; i++) {
+    let isExist = dataPre.filter(itemPre => itemPre[key] === data[i][key])
+    if (isExist.length > 0) {
+      for (let item of numKey) {
+        isExist[0][item] += data[i][item]
+      }
+    } else {
+      dataPre.push(data[i])
+    }
+  }
+  return dataPre
+}
+
+// data [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// result [[1, 2, 3, 4], [5, 6, 7, 8], [9]]
+export const fourClassification = (data, num) => {
+  let counter = 0
+  let arrIndex = 0
+  let preArr = []
+  for (let i = 0; i < data.length; i++) {
+    if (!preArr[arrIndex]) preArr[arrIndex] = []
+    preArr[arrIndex].push(data[i])
+    counter++
+    if (counter === num) {
+      arrIndex++
+      counter = 0
+    }
+  }
+  return preArr
+}
+
 // 判断回文
 export const isPalindrome = (s) => {
   let n = s.length
   for (let i = 0; i < n / 2; i++) { // 循环字符串长度的一半
-          //chartAt(i)返回第i个字符
+    //chartAt(i)返回第i个字符
     if (s.charAt(i) !== s.charAt(n - 1 - i)) { // 判断首尾字符是否相等
       return false // 不等返回false
     }
@@ -430,11 +541,11 @@ export const RandomBernoulli = (key) => {
 // 计数器类
 export class Counter {
   count = 0
-
+  
   constructor(name) {
     this.name = name
   }
-
+  
   increment = () => {
     this.count++
   }
@@ -451,7 +562,7 @@ export class Flips {
   constructor(name) {
     this.name = name
   }
-
+  
   main(args) {
     let T = parseInt(args[0])
     let heads = new Counter('heads')
@@ -567,13 +678,13 @@ export const objArrDuplicate = (arr, key) => {
 
 // 对象数组分类
 export const objArrGroupBy = (objArr, keyWord) => {
-  return objArr.reduce((prev, cur)=>{
+  return objArr.reduce((acc, cur) => {
     let key = cur[keyWord]
-    if(!prev[key]){
-      prev[key]=[] // 初始化返回值
+    if (!acc[key]) {
+      acc[key] = [] // 初始化返回值
     }
-    prev[key].push(cur)
-    return prev // 每次迭代都将相同的值 push进相同的属性中
+    acc[key].push(cur)
+    return acc // 每次迭代都将相同的值 push进相同的属性中
   }, {})
 }
 

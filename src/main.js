@@ -6,25 +6,28 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import dayjs from 'dayjs'
+import lodash from 'lodash'
+
 import './tools/dialogDrag'
 import * as zcTools from '../src/tools/zcTools'
 import * as test from '../src/tools/test'
-import 'vue-number-counter/dist/vue-number-counter.css'
-import VueNumberCounter from 'vue-number-counter'
 import dataV from '@jiaminghi/data-view'
 
-import * as myApi from '@/request/api'
+import * as API from './request/api'
+require('./mock')
 
 
 Vue.use(ElementUI,{size:'mini'})
 Vue.use(VueAMap)
 Vue.use(VueAwesomeSwiper)
-Vue.use(VueNumberCounter)
 Vue.use(dataV)
 Vue.config.productionTip = false
-Vue.prototype.myApi = myApi
-Vue.prototype.zcTools = zcTools
+Vue.prototype.$API = API
+Vue.prototype.$tools = zcTools
 Vue.prototype.toolTest = test
+Vue.prototype.$dayjs = dayjs
+Vue.prototype._ = lodash
 VueAMap.initAMapApiLoader({
   key: 'your amap key',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],

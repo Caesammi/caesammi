@@ -101,7 +101,7 @@ export default {
     twoSum(){
       //排序
       let a = this.originData
-      this.zcTools.zcNumberCompare(a)
+      this.$tools.zcNumberCompare(a)
       let N = a.length
       let cnt = 0
       for(let i = 0; i<N; i++){
@@ -123,7 +123,7 @@ export default {
             if (isB === false) {
               isBernoulli = true
             } else {
-              isBernoulli = this.zcTools.RandomBernoulli(0.5)
+              isBernoulli = this.$tools.RandomBernoulli(0.5)
             }
           if(isBernoulli){
             reRandom = Math.floor(Math.random() * (hi - lo) + lo)
@@ -295,7 +295,7 @@ export default {
     }
     console.log(JSON.stringify(asadf))
     let arr = [1,2,3,4]
-    this.zcTools.shuffle(arr)
+    this.$tools.shuffle(arr)
     console.log(arr)
     let str = 'abcd'
     console.log(str.charAt(0))

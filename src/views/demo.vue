@@ -1,5 +1,31 @@
 <template>
     <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;" class="demoBox">
+        <el-col style="border: 1px solid black">
+            <el-dropdown @command="handleCommand($event, 'handleYear')">
+                <el-button size="mini" type="ghost">
+                    {{timeCas.yearValue}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                    <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
+                        <el-dropdown-item v-for="(item, index) in timeCas.year" :command="item" :key="`casYear${index}`">{{item}}</el-dropdown-item>
+                    </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown @command="handleCommand($event, 'handleMonth')">
+                <el-button size="mini" type="ghost">
+                    {{timeCas.monthValue}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
+                    <el-dropdown-item v-for="(item, index) in timeCas.month" :command="item" :key="`casMonth${index}`">{{item}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown @command="handleCommand($event, 'handleDay')">
+                <el-button size="mini" type="ghost">
+                    {{timeCas.dayValue}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
+                    <el-dropdown-item v-for="(item, index) in timeCas.day" :command="item" :key="`casDay${index}`">{{item}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </el-col>
         <el-col :span="4">
             <div>
                 回文判断
@@ -275,6 +301,14 @@ export default {
   },
   data() {
     return {
+      timeCas: {
+        year: [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199],
+        month: [1,2,3,4,5,6,7,8,9,10,11,12],
+        day: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+        yearValue: '年',
+        monthValue: '月',
+        dayValue: '日'
+      },
       config: {
         points: points,
         lines: lines
@@ -484,7 +518,29 @@ export default {
       }
     }
   },
+  watch: {
+    timeCas: {
+      handler(val) {
+        console.log(val)
+      },
+      deep: true
+    }
+  },
   methods: {
+    handleCommand(val, type) {
+      let handle = {
+        handleYear: () => {
+          this.timeCas.yearValue = val
+        },
+        handleMonth: () => {
+          this.timeCas.monthValue = val
+        },
+        handleDay: () => {
+          this.timeCas.dayValue = val
+        }
+      }
+      handle[type]()
+    },
     outputHtml() {
       this.tinyHtml = this.myValue.toString()
       console.log(this.myValue)
@@ -521,6 +577,13 @@ export default {
     }
   },
   mounted() {
+    this.$API.mockTest().then(res => {
+      debugger
+    })
+    for(let i = 0; i < 31; i++) {
+      this.timeCas.day.push(1 + i)
+    }
+    console.log(JSON.stringify(this.timeCas.day))
     // JSON 去重
     this.originData = [
       {a: 'a'},
@@ -636,8 +699,8 @@ export default {
         name: 'ccc',
         value: 2
       }]
-    this.zcTools.zcJsonCompare(newArray, 'name')
-    let fff = this.zcTools.objArrDuplicate(newArray, 'name')
+    this.$tools.zcJsonCompare(newArray, 'name')
+    let fff = this.$tools.objArrDuplicate(newArray, 'name')
     console.log(newArray)
     console.log(fff)
     this.myValue = ''
