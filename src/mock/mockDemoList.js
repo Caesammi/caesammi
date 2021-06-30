@@ -1,4 +1,4 @@
-let demoList = {
+const demoList = {
   status: 200,
   message: 'success',
   data: {
@@ -10,7 +10,7 @@ let demoList = {
       'job|1': ['前端工程师', '后端工程师', 'UI工程师', '需求工程师']
     }]
   }
-};
+}
 export default {
   'get|http://localhost:8080/parameter/query': demoList
 }

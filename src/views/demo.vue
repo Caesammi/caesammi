@@ -577,6 +577,10 @@ export default {
     }
   },
   mounted() {
+    let today = this.$dayjs()
+    let yesterday = today.subtract(1, 'day').format('YYYYMMDD')
+    console.log(yesterday)
+    debugger
     this.$API.mockTest().then(res => {
       debugger
     })

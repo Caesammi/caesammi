@@ -1,7 +1,7 @@
 import axios from 'axios' // 引入axios
 import QS from 'qs' // 引入qs模块
-import {Message} from 'element-ui'
-import {replaceUrlParams} from '../tools/zcTools'
+import { Message } from 'element-ui'
+import { replaceUrlParams } from '../tools/zcTools'
 import store from '../store/index'
 import router from '../router'
 
@@ -20,10 +20,10 @@ switch (process.env.NODE_ENV) {
     break
 }
 
-//axios请求超时
+// axios请求超时
 axios.defaults.timeout = 10000
 
-//axios请求头
+// axios请求头
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 // 每次发送请求之前判断vuex中是否存在token
@@ -32,11 +32,10 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 // 请求拦截器
 axios.interceptors.request.use(
   config => {
-    
     const token = store.state.userName
-    
+
     token && (config.headers.Authorization = token)
-    
+
     return config
   },
   error => {
@@ -105,28 +104,28 @@ axios.interceptors.response.use(
     }
   })
 
-//封装get&post
-export function get (url, params) {
+// 封装get&post
+export function get(url, params) {
   return new Promise((resolve, reject) => {
     // params.push({token:store.getters.token})
-    let Param = {
-      ...params,
+    const Param = {
+      ...params
     }
-    let getUrl = replaceUrlParams(url, Param)
+    const getUrl = replaceUrlParams(url, Param)
     axios.get(getUrl).then(res => {
       resolve(res.data)
     }).catch(err => {
       reject(err.data)
-    }).finally(res=>{
-    
+    }).finally(res => {
+
     })
   })
 }
 
-export function post (url, params) {
+export function post(url, params) {
   return new Promise((resolve, reject) => {
-    let Param = {
-      ...params,
+    const Param = {
+      ...params
     }
     axios.post(url, Param)
       .then(res => {
@@ -138,10 +137,10 @@ export function post (url, params) {
   })
 }
 
-export function put (url, params) {
+export function put(url, params) {
   return new Promise((resolve, reject) => {
-    let Param = {
-      ...params,
+    const Param = {
+      ...params
     }
     axios.put(url, Param)
       .then(res => {
@@ -155,15 +154,15 @@ export function put (url, params) {
 
 export function del(url, params) {
   return new Promise((resolve, reject) => {
-    let Param = {
-      ...params,
+    const Param = {
+      ...params
     }
-    axios.delete(url+'?'+ QS.stringify(Param))
+    axios.delete(url + '?' + QS.stringify(Param))
       .then(res => {
-        resolve(res.data);
+        resolve(res.data)
       })
-      .catch(err =>{
+      .catch(err => {
         reject(err.data)
       })
-  });}
-
+  })
+}

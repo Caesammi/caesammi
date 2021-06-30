@@ -64,7 +64,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title || '默认'
-  next()
+  next() // next({ name: routerName })
 })
 const routerPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
