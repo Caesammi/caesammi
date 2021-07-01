@@ -1,5 +1,6 @@
 <template>
     <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;" class="demoBox">
+      <div style="width: 50%;height: 500px" id="echartsA" v-echart-resize></div>
         <el-col style="border: 1px solid black">
             <el-dropdown @command="handleCommand($event, 'handleYear')">
                 <el-button size="mini" type="ghost">
@@ -67,7 +68,6 @@
             </div>
             <Roller :text="testNum.toLocaleString('en-US')"/>
             <count-to :start-val=0 :end-val='10.1' decimal="." :duration="2600" class="card-panel-num"/>
-            <number-panel id="number_" :number-data="0.025"/>
         </el-col>
         <el-col>
             <div class="bottle-bg">
@@ -92,7 +92,7 @@
             <span v-html="tinyHtml"></span>
         </el-col>
         <el-col>
-            <div style="height: 400px;width: 100%;margin-top:20px;background: #112439" id="echart1"></div>
+            <div v-echart-resize style="height: 400px;width: 100%;margin-top:20px;background: #112439" id="echart1"></div>
         </el-col>
     </el-row>
 </template>
@@ -117,9 +117,10 @@ import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/plugins/lists'
 import 'tinymce/plugins/wordcount'
-import NumberPanel from '@/views/NumberPanel'
+// import 'tinymce/plugins'
 import CountTo from 'vue-count-to'
 import Roller from 'vue-roller'
+// import 'public/lineheight/plugin'
 // import 'public/lineheight/plugin'
   let logo = require('../../src/assets/logo.png')
 
@@ -295,7 +296,6 @@ export default {
   name: 'demo',
   components: {
     CountTo,
-    NumberPanel,
     jsonEditor, Editor, editorImage,
     Roller
   },
@@ -577,12 +577,31 @@ export default {
     }
   },
   mounted() {
+    let testenv = process.env.VUE_APP_ODS_GET_API
+    console.log(testenv)
+    debugger
+    // echartsA
+    let myId = document.getElementById('echartsA')
+    let myChart = this.$echarts.init(myId)
+    let option = {
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+      }]
+    }
+    myChart.setOption(option)
     let today = this.$dayjs()
     let yesterday = today.subtract(1, 'day').format('YYYYMMDD')
     console.log(yesterday)
-    debugger
     this.$API.mockTest().then(res => {
-      debugger
     })
     for(let i = 0; i < 31; i++) {
       this.timeCas.day.push(1 + i)

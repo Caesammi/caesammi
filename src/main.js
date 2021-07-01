@@ -8,6 +8,8 @@ import VueAMap from 'vue-amap'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import dayjs from 'dayjs'
 import lodash from 'lodash'
+import echarts from 'echarts'
+import registerDirectives from './directive'
 
 import './tools/dialogDrag'
 import * as zcTools from '../src/tools/zcTools'
@@ -28,6 +30,11 @@ Vue.prototype.$tools = zcTools
 Vue.prototype.toolTest = test
 Vue.prototype.$dayjs = dayjs
 Vue.prototype._ = lodash
+Vue.prototype.$echarts = echarts
+
+// 注册指令
+registerDirectives(Vue)
+
 VueAMap.initAMapApiLoader({
 	key: 'your amap key',
 	plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
@@ -35,7 +42,7 @@ VueAMap.initAMapApiLoader({
 	v: '1.4.4'
 })
 
-new Vue({
+window.vm = new Vue({
 	router,
 	store,
 	render: h => h(App)
