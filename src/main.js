@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import lodash from "lodash";
 import echarts from "echarts";
 import registerDirectives from "./directive";
-
+import './views/_globals'
 import "./tools/dialogDrag";
 import * as zcTools from "../src/tools/zcTools";
 import * as test from "../src/tools/test";
@@ -20,7 +20,6 @@ import "./tools/rem";
 
 import * as API from "./request/api";
 
-require("./views/_globals");
 require("./mock");
 
 Vue.use(ElementUI, { size: "mini" });

@@ -108,6 +108,7 @@ export default {
       this.isCollapse = htmlWidth < 800;
     }
     this.menuList = power.admin
+    this.defaultOpen = this.$route.path // 获取路径
   },
   methods: {
     logOut() {

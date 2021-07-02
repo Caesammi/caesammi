@@ -1,4 +1,4 @@
-function setRem () {
+function setRem() {
   const baseSize = 32 // 页面基准的文字大小 或者说是 元素大小 64px = 1rem
   const pageSize = 1920 // 页面基准的宽度
   const htmlWidth = document.documentElement.clientWidth || document.body.clientWidth
@@ -15,6 +15,6 @@ function setRem () {
 // 初始化
 setRem();
 // 改变窗口大小时重新设置 rem
-window.onresize = function () {
+window.onresize = function() {
   setRem()
 }

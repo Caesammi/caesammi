@@ -1,9 +1,14 @@
 <template>
   <el-row class="ZCTitleBox-wrap">
-    <el-col class="smallTitle" :style="backgroundProp">
+    <el-col
+      class="smallTitle"
+      :style="backgroundProp"
+    >
       <el-col class="vef-left-flex-container">
-        <slot></slot>
-        <div style="margin-left: 5px">{{ title }}</div>
+        <slot />
+        <div style="margin-left: 5px">
+          {{ title }}
+        </div>
         &nbsp;
         <el-popover
           v-if="showInfo"
@@ -11,20 +16,23 @@
           :title="info.a"
           width="auto"
           trigger="hover"
-          :content="info.b ? info.b : ''">
-          <div style="cursor: pointer;display: inline;color: white" slot="reference"
-               onclick="event.cancelBubble = true">
-            <i class="el-icon-info"></i>
+          :content="info.b ? info.b : ''"
+        >
+          <div
+            slot="reference"
+            style="cursor: pointer;display: inline;color: white"
+            onclick="event.cancelBubble = true"
+          >
+            <i class="el-icon-info" />
           </div>
         </el-popover>
       </el-col>
     </el-col>
   </el-row>
-
 </template>
 <script>
   export default {
-    name: 'ZCTitleBox',
+    name: 'ZcTitleBox',
     components: {},
     props: {
       showInfo: {
@@ -51,10 +59,10 @@
     data() {
       return {}
     },
-    methods: {},
+    watch: {},
     mounted() {
     },
-    watch: {}
+    methods: {}
   }
 </script>
 <style lang="less">

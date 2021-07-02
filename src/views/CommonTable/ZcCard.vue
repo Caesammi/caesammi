@@ -1,26 +1,31 @@
 <template>
-  <el-col style="height: 100%" class="ZCCard-wrap">
-    <slot name="title"></slot>
-    <el-col ref="content" style="height:calc(100%);font-size: 14px;padding: 5px;position: relative"
-            class="midContainer">
-      <slot name="content"></slot>
+  <el-col
+    style="height: 100%"
+    class="ZCCard-wrap"
+  >
+    <slot name="title" />
+    <el-col
+      ref="content"
+      style="height:calc(100%);font-size: 14px;padding: 5px;position: relative"
+      class="midContainer"
+    >
+      <slot name="content" />
     </el-col>
   </el-col>
-
 </template>
 <script>
   export default {
-    name: 'ZCCard',
+    name: 'ZcCard',
     components: {},
     props: {
     },
     data() {
       return {}
     },
-    methods: {},
+    watch: {},
     mounted() {
     },
-    watch: {}
+    methods: {}
   }
 </script>
 <style lang="less">

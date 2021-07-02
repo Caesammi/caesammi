@@ -1,5 +1,9 @@
 <template>
-  <el-col v-loading="loading" class="ZCTable-wrap" element-loading-background="white">
+  <el-col
+    v-loading="loading"
+    class="ZCTable-wrap"
+    element-loading-background="white"
+  >
     <el-table
       :height="height"
       :border="false"
@@ -9,27 +13,46 @@
       :row-class-name="tableRowClassName"
     >
       <!--            :row-class-name="tableRowClassName"-->
-      <el-table-column v-if="orderSwitch" align="center" width="80px">
-        <template slot="header" slot-scope="scope">
-          <div align="center" class="headerBox" style="color: white">序号</div>
+      <el-table-column
+        v-if="orderSwitch"
+        align="center"
+        width="80px"
+      >
+        <template
+          slot="header"
+          slot-scope="scope"
+        >
+          <div
+            align="center"
+            class="headerBox"
+            style="color: white"
+          >
+            序号
+          </div>
         </template>
         <template slot-scope="scope">
-          <div slot="content"
-               style="color: #939393;max-width:500px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;">
+          <div
+            slot="content"
+            style="color: #939393;max-width:500px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;"
+          >
             {{ scope.$index + 1 }}
           </div>
         </template>
       </el-table-column>
-      <table-header :column-height="columnHeight" v-for="(item, index) in tableColumn" :data="item" :key="index"/>
+      <table-header
+        v-for="(item, index) in tableColumn"
+        :key="index"
+        :column-height="columnHeight"
+        :data="item"
+      />
     </el-table>
   </el-col>
-
 </template>
 <script>
-  import tableHeader from './ZCTableHeader'
+  import tableHeader from './ZcTableHeader'
 
   export default {
-    name: 'ZCTable',
+    name: 'ZcTable',
     components: { tableHeader },
     props: {
       rowClassName: {
@@ -90,6 +113,16 @@
         loading: false
       }
     },
+    watch: {
+      tableData: {
+        handler(val) {
+          this.loading = false
+        },
+        deep: true
+      }
+    },
+    mounted() {
+    },
     methods: {
       tableRowClassName({ row, rowIndex }) {
         if (rowIndex % 2 === 1) {
@@ -116,16 +149,6 @@
       //     }
       //   }
       // }
-    },
-    mounted() {
-    },
-    watch: {
-      tableData: {
-        handler(val) {
-          this.loading = false
-        },
-        deep: true
-      }
     }
   }
 </script>

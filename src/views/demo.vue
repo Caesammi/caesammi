@@ -1,108 +1,233 @@
 <template>
-    <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;" class="demoBox">
-      <div style="width: 400px;height: 400px;border: 1px solid grey">
-        <z-c-card title="sdf"/>
-<!--        <z-c-card>-->
-<!--          <template v-slot:title>-->
-<!--            <z-c-title-box style="width: 300px" title="sdf"/>-->
-<!--          </template>-->
-<!--        </z-c-card>-->
+  <el-row
+    :gutter="10"
+    style="font-size:30px;margin: 10px 0 20px 0;"
+    class="demoBox"
+  >
+    <el-col>
+      <ZcCard>
+        <template #title>
+          <ZcTitleBox
+            :show-info="false"
+            background-prop="background: #4282fa;color: white;border-top-left-radius: 3px;border-top-right-radius: 3px;"
+            title="tableListTitle"
+          >
+            <div style="position: absolute;right: 5px;top: 0px">
+              <span style="color: white;cursor: pointer"><i class="el-icon-close" /></span>
+            </div>
+          </ZcTitleBox>
+        </template>
+        <template #content>
+          <span style="float: right">单位</span>
+          <ZcTable
+            height="530"
+            :order-switch="false"
+            header-style="background:#33aafc;color: white"
+            row-class-name="tableHighBlue"
+            :table-data="tableData"
+            style="margin-top: 5px"
+            :table-column="tableColumn"
+          />
+        </template>
+      </ZcCard>
+    </el-col>
+    <!--        <z-c-card>-->
+    <!--          <template v-slot:title>-->
+    <!--            <z-c-title-box style="width: 300px" title="sdf"/>-->
+    <!--          </template>-->
+    <!--        </z-c-card>-->
+    <ZcCard>
+      <template #content>
+        <div
+          id="echartsA"
+          v-echart-resize
+          style="width: 500px;height: 500px"
+        />
+      </template>
+    </ZcCard>
+    <el-col style="border: 1px solid black">
+      <el-dropdown @command="handleCommand($event, 'handleYear')">
+        <el-button
+          size="mini"
+          type="ghost"
+        >
+          {{ timeCas.yearValue }}<i class="el-icon-arrow-down el-icon--right" />
+        </el-button>
+        <el-dropdown-menu
+          slot="dropdown"
+          style="height: 100px;overflow: scroll"
+        >
+          <el-dropdown-item
+            v-for="(item, index) in timeCas.year"
+            :key="`casYear${index}`"
+            :command="item"
+          >
+            {{ item }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <el-dropdown @command="handleCommand($event, 'handleMonth')">
+        <el-button
+          size="mini"
+          type="ghost"
+        >
+          {{ timeCas.monthValue }}<i class="el-icon-arrow-down el-icon--right" />
+        </el-button>
+        <el-dropdown-menu
+          slot="dropdown"
+          style="height: 100px;overflow: scroll"
+        >
+          <el-dropdown-item
+            v-for="(item, index) in timeCas.month"
+            :key="`casMonth${index}`"
+            :command="item"
+          >
+            {{ item }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <el-dropdown @command="handleCommand($event, 'handleDay')">
+        <el-button
+          size="mini"
+          type="ghost"
+        >
+          {{ timeCas.dayValue }}<i class="el-icon-arrow-down el-icon--right" />
+        </el-button>
+        <el-dropdown-menu
+          slot="dropdown"
+          style="height: 100px;overflow: scroll"
+        >
+          <el-dropdown-item
+            v-for="(item, index) in timeCas.day"
+            :key="`casDay${index}`"
+            :command="item"
+          >
+            {{ item }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-col>
+    <el-col :span="4">
+      <div>
+        回文判断
+        <el-input v-model="huiWenData" />
+        <el-button @click="huiWen(huiWenData)">
+          判断
+        </el-button>
+        <br>
+        结果: {{ myIsPalindrome }}
       </div>
-      <div style="width: 50%;height: 500px" id="echartsA" v-echart-resize></div>
-        <el-col style="border: 1px solid black">
-            <el-dropdown @command="handleCommand($event, 'handleYear')">
-                <el-button size="mini" type="ghost">
-                    {{timeCas.yearValue}}<i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                    <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
-                        <el-dropdown-item v-for="(item, index) in timeCas.year" :command="item" :key="`casYear${index}`">{{item}}</el-dropdown-item>
-                    </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown @command="handleCommand($event, 'handleMonth')">
-                <el-button size="mini" type="ghost">
-                    {{timeCas.monthValue}}<i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
-                    <el-dropdown-item v-for="(item, index) in timeCas.month" :command="item" :key="`casMonth${index}`">{{item}}</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown @command="handleCommand($event, 'handleDay')">
-                <el-button size="mini" type="ghost">
-                    {{timeCas.dayValue}}<i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown" style="height: 100px;overflow: scroll">
-                    <el-dropdown-item v-for="(item, index) in timeCas.day" :command="item" :key="`casDay${index}`">{{item}}</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-        </el-col>
-        <el-col :span="4">
-            <div>
-                回文判断
-                <el-input v-model="huiWenData"></el-input>
-                <el-button @click="huiWen(huiWenData)">判断</el-button>
-                <br>
-                结果: {{ myIsPalindrome }}
-            </div>
-            <el-divider></el-divider>
-            <div>
-                文件类型判断
-                <el-input v-model="fullName"></el-input>
-                <el-button @click="getFileType()">get</el-button>
-                <br>
-                文件类型: {{ fileNameResult.fileType }}
-            </div>
-        </el-col>
-        <el-col :span="20" style="font-size: 18px">
-            <el-col style="font-size: 30px;line-height: 30px;margin-top:10px;margin-bottom: 10px;">
-                代码测试:
-                <el-button size="medium" @click="test" type="ghost">点击测试</el-button>
-            </el-col>
-            <el-col :span="12" class="htmlContent">
-                <!--        <el-input v-model="originData" type="textarea" :autosize="{ minRows: 8 }"/>-->
-                <jsonEditor v-model="originData"/>
-            </el-col>
-            <el-col :span="12" class="htmlContent">
-                <!--        <el-input v-model="resultData" type="textarea" :autosize="{ minRows: 8 }"/>-->
-                <jsonEditor v-model="resultData"/>
-            </el-col>
-        </el-col>
-        <el-col v-if="false" style="height: 600px">
-            <dv-flyline-chart-enhanced :config="config" style="width:100%;height:100%;" />
-        </el-col>
-        <el-col :span="12">
-            <div style="height: 28px;overflow: hidden">
-                <Roller :text="testNum.toLocaleString('en-US')"/>
-<!--                <vue-number-counter class='my-number' :value="-17842.7129" :option='myOption' />-->
-            </div>
-            <Roller :text="testNum.toLocaleString('en-US')"/>
-            <count-to :start-val=0 :end-val='10.1' decimal="." :duration="2600" class="card-panel-num"/>
-        </el-col>
-        <el-col>
-            <div class="bottle-bg">
-                <div :style="{bottom: '10px'}" class="bottle-cover"></div>
-            </div>
-            <div :class="[{contentTest: isActive}, {defaultTest: !isActive}]"></div>
-            <el-color-picker
-                size="medium"
-                v-model="color"
-                show-alpha
-                :predefine="predefineColors">
-            </el-color-picker>
-        </el-col>
-        <el-col :span="11">
-            <editor id="t1" v-model="myValue" :init="init"></editor>
-        </el-col>
-        <el-col align="center" :span="2">
-            <el-button @click="outputHtml">生成代码</el-button>
-            <editorImage class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
-        </el-col>
-        <el-col :span="11" class="htmlContent">
-            <span v-html="tinyHtml"></span>
-        </el-col>
-        <el-col>
-            <div v-echart-resize style="height: 400px;width: 100%;margin-top:20px;background: #112439" id="echart1"></div>
-        </el-col>
-    </el-row>
+      <el-divider />
+      <div>
+        文件类型判断
+        <el-input v-model="fullName" />
+        <el-button @click="getFileType()">
+          get
+        </el-button>
+        <br>
+        文件类型: {{ fileNameResult.fileType }}
+      </div>
+    </el-col>
+    <el-col
+      :span="20"
+      style="font-size: 18px"
+    >
+      <el-col style="font-size: 30px;line-height: 30px;margin-top:10px;margin-bottom: 10px;">
+        代码测试:
+        <el-button
+          size="medium"
+          type="ghost"
+          @click="test"
+        >
+          点击测试
+        </el-button>
+      </el-col>
+      <el-col
+        :span="12"
+        class="htmlContent"
+      >
+        <!--        <el-input v-model="originData" type="textarea" :autosize="{ minRows: 8 }"/>-->
+        <jsonEditor v-model="originData" />
+      </el-col>
+      <el-col
+        :span="12"
+        class="htmlContent"
+      >
+        <!--        <el-input v-model="resultData" type="textarea" :autosize="{ minRows: 8 }"/>-->
+        <jsonEditor v-model="resultData" />
+      </el-col>
+    </el-col>
+    <el-col
+      v-if="false"
+      style="height: 600px"
+    >
+      <dv-flyline-chart-enhanced
+        :config="config"
+        style="width:100%;height:100%;"
+      />
+    </el-col>
+    <el-col :span="12">
+      <div style="height: 28px;overflow: hidden">
+        <Roller :text="testNum.toLocaleString('en-US')" />
+        <!--                <vue-number-counter class='my-number' :value="-17842.7129" :option='myOption' />-->
+      </div>
+      <Roller :text="testNum.toLocaleString('en-US')" />
+      <count-to
+        :start-val="0"
+        :end-val="10.1"
+        decimal="."
+        :duration="2600"
+        class="card-panel-num"
+      />
+    </el-col>
+    <el-col>
+      <div class="bottle-bg">
+        <div
+          :style="{bottom: '10px'}"
+          class="bottle-cover"
+        />
+      </div>
+      <div :class="[{contentTest: isActive}, {defaultTest: !isActive}]" />
+      <el-color-picker
+        v-model="color"
+        size="medium"
+        show-alpha
+        :predefine="predefineColors"
+      />
+    </el-col>
+    <el-col :span="11">
+      <editor
+        id="t1"
+        v-model="myValue"
+        :init="init"
+      />
+    </el-col>
+    <el-col
+      align="center"
+      :span="2"
+    >
+      <el-button @click="outputHtml">
+        生成代码
+      </el-button>
+      <editorImage
+        class="editor-upload-btn"
+        @successCBK="imageSuccessCBK"
+      />
+    </el-col>
+    <el-col
+      :span="11"
+      class="htmlContent"
+    >
+      <span v-html="tinyHtml" />
+    </el-col>
+    <el-col>
+      <div
+        id="echart1"
+        v-echart-resize
+        style="height: 400px;width: 100%;margin-top:20px;background: #112439"
+      />
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -113,6 +238,7 @@ import jsonEditor from '../components/JsonEditor/index'
 import tinymce from 'tinymce/tinymce'
 import Editor from '@tinymce/tinymce-vue'
 import editorImage from '../components/EditorImage'
+// import ZCCard from './CommonTable/ZCCard'
 
 // 引入富文本编辑器主题的js和css
 import 'tinymce/themes/silver/theme.min.js'
@@ -300,15 +426,40 @@ import Roller from 'vue-roller'
     src: logo
 }
   let bgImgSrc = logo
+  let daytest = vm.$dayjs().subtract(1, 'day').format('YYYYMMDD')
 export default {
-  name: 'demo',
+  name: 'Demo',
   components: {
+    // ZCCard,
     CountTo,
     jsonEditor, Editor, editorImage,
     Roller
   },
   data() {
+    let that = this
     return {
+      tableData: [],
+      tableColumn: [ // 表格配置
+        { name: 'id', value: 'id', color: '#939393', titleColor: 'white' },
+        {
+          name: `${this.$tools.parseTime(daytest, '{y}')}名称`,
+          value: 'name',
+          color: '#939393',
+          titleColor: 'white'
+        },
+        {
+          name: `${this.$tools.parseTime(daytest, '{m}')}年龄`,
+          value: 'age',
+          color: '#939393',
+          titleColor: 'white'
+        },
+        {
+          name: `${this.$tools.parseTime(daytest, '{d}')}工作`,
+          value: 'job',
+          color: '#939393',
+          titleColor: 'white'
+        }
+      ],
       timeCas: {
         year: [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199],
         month: [1,2,3,4,5,6,7,8,9,10,11,12],
@@ -428,7 +579,7 @@ export default {
             orient: 'vertical', // 方向
             expandAndCollapse: true,
             label: {
-              formatter: function (val) {
+              formatter: function(val) {
                 let name = typeof val.name != 'undefined' ? val.name : ''
                 let value = typeof val.value != 'undefined' ? val.value : ''
                 return `${name}\n${value}`
@@ -534,57 +685,10 @@ export default {
       deep: true
     }
   },
-  methods: {
-    handleCommand(val, type) {
-      let handle = {
-        handleYear: () => {
-          this.timeCas.yearValue = val
-        },
-        handleMonth: () => {
-          this.timeCas.monthValue = val
-        },
-        handleDay: () => {
-          this.timeCas.dayValue = val
-        }
-      }
-      handle[type]()
-    },
-    outputHtml() {
-      this.tinyHtml = this.myValue.toString()
-      console.log(this.myValue)
-
-    },
-    imageSuccessCBK(arr) {
-      arr.forEach(v => this.myValue += `<img class="wscnph" src="${v.url}" >`)
-    },
-    testPre(method, originData) {
-      this.resultData = method
-    },
-    test() {
-      let originData = this.testData.groupByArr
-      this.originData = originData
-      let method = this.toolTest.objArrMerge(originData, 'books')
-      this.testPre(method, originData)
-
-    },
-    getFileType() {
-      this.fileNameResult = tools.getFileType(this.fullName)
-      console.log(this.fileNameResult)
-    },
-    huiWen(data) {
-      console.log(tools.isPalindrome(data))
-      this.myIsPalindrome = tools.isPalindrome(data)
-    },
-    newP() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          console.log('fff')
-          resolve('完成')
-        }, 1111)
-      })
-    }
-  },
   mounted() {
+    this.$API.mockTest().then(res => {
+      this.tableData = res.data.rows
+    })
     let testenv = process.env.VUE_APP_ODS_GET_API
     console.log(testenv)
     // echartsA
@@ -737,6 +841,56 @@ export default {
     let getID = document.getElementById('echart1')
     let thischart = echarts.init(getID)
     thischart.setOption(this.echartOpt)
+  },
+  methods: {
+    handleCommand(val, type) {
+      let handle = {
+        handleYear: () => {
+          this.timeCas.yearValue = val
+        },
+        handleMonth: () => {
+          this.timeCas.monthValue = val
+        },
+        handleDay: () => {
+          this.timeCas.dayValue = val
+        }
+      }
+      handle[type]()
+    },
+    outputHtml() {
+      this.tinyHtml = this.myValue.toString()
+      console.log(this.myValue)
+
+    },
+    imageSuccessCBK(arr) {
+      arr.forEach(v => this.myValue += `<img class="wscnph" src="${v.url}" >`)
+    },
+    testPre(method, originData) {
+      this.resultData = method
+    },
+    test() {
+      let originData = this.testData.groupByArr
+      this.originData = originData
+      let method = this.toolTest.objArrMerge(originData, 'books')
+      this.testPre(method, originData)
+
+    },
+    getFileType() {
+      this.fileNameResult = tools.getFileType(this.fullName)
+      console.log(this.fileNameResult)
+    },
+    huiWen(data) {
+      console.log(tools.isPalindrome(data))
+      this.myIsPalindrome = tools.isPalindrome(data)
+    },
+    newP() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('fff')
+          resolve('完成')
+        }, 1111)
+      })
+    }
   }
 }
 </script>
