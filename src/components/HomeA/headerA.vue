@@ -1,8 +1,8 @@
 <template>
     <el-header class="headerA">
-            <el-breadcrumb style="lineHeight:1.4" separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item v-for="(item,index) in breadCrumbList" :key="index" :to="item.path">{{item.name}}</el-breadcrumb-item>
-            </el-breadcrumb>
+<!--            <el-breadcrumb style="lineHeight:1.4" separator-class="el-icon-arrow-right">-->
+<!--                <el-breadcrumb-item v-for="(item,index) in breadCrumbList" :key="index" :to="item.path">{{item.name}}</el-breadcrumb-item>-->
+<!--            </el-breadcrumb>-->
 
     </el-header>
 </template>
@@ -24,21 +24,21 @@
 
         },
         computed: {
-            breadCrumbList () {
-                const {name} = this.$route;
-                let breadList = [{ path: 'map', name: 'Home' }];
-                this.menuList.forEach(item => {
-                    if (item.childrens.length > 0) {
-                        item.childrens.forEach(sub => {
-                            if (sub.name === name) {
-                                breadList.push({ path: item.path,name: item.header }, { path:sub.path,name: sub.name });
-                            }
-                        });
-                    }
-                });
-
-               return breadList;
-            }
+            // breadCrumbList () {
+            //     const {name} = this.$route;
+            //     let breadList = [{ path: 'map', name: 'Home' }];
+            //     this.menuList.forEach(item => {
+            //         if (item.children.length > 0) {
+            //             item.children.forEach(sub => {
+            //                 if (sub.name === name) {
+            //                     breadList.push({ path: item.path,name: item.header }, { path:sub.path,name: sub.name });
+            //                 }
+            //             });
+            //         }
+            //     });
+            //
+            //    return breadList;
+            // }
         },
     }
 </script>

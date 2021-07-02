@@ -1,5 +1,13 @@
 <template>
     <el-row :gutter="10" style="font-size:30px;margin: 10px 0 20px 0;" class="demoBox">
+      <div style="width: 400px;height: 400px;border: 1px solid grey">
+        <z-c-card title="sdf"/>
+<!--        <z-c-card>-->
+<!--          <template v-slot:title>-->
+<!--            <z-c-title-box style="width: 300px" title="sdf"/>-->
+<!--          </template>-->
+<!--        </z-c-card>-->
+      </div>
       <div style="width: 50%;height: 500px" id="echartsA" v-echart-resize></div>
         <el-col style="border: 1px solid black">
             <el-dropdown @command="handleCommand($event, 'handleYear')">
@@ -579,7 +587,6 @@ export default {
   mounted() {
     let testenv = process.env.VUE_APP_ODS_GET_API
     console.log(testenv)
-    debugger
     // echartsA
     let myId = document.getElementById('echartsA')
     let myChart = this.$echarts.init(myId)

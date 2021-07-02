@@ -23,7 +23,7 @@ module.exports = {
   root: true,
   // 'no-tabs': 'off',
   rules: {
-    'vue/valid-v-for': false,
+    // 'vue/valid-v-for': false,
     indent: [0, 2],
     // allow paren-less arrow functions
     'arrow-parens': 0,
