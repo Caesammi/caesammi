@@ -4,6 +4,7 @@
     style="font-size:30px;margin: 10px 0 20px 0;"
     class="demoBox"
   >
+    <swiper-test />
     <el-col>
       <ZcCard>
         <template #title>
@@ -19,15 +20,33 @@
         </template>
         <template #content>
           <span style="float: right">单位</span>
-          <ZcTable
-            height="530"
-            :order-switch="false"
-            header-style="background:#33aafc;color: white"
-            row-class-name="tableHighBlue"
-            :table-data="tableData"
-            style="margin-top: 5px"
-            :table-column="tableColumn"
-          />
+          <div
+            id="scrollDiv"
+            style="height: 530px;width: 100%;overflow: hidden;"
+          >
+            <div :style="scrollStyle">
+              <ZcTable
+                id="scrollDivA"
+                height="530"
+                :order-switch="true"
+                header-style="background:red;color: white"
+                row-class-name="tableHighBlue"
+                :table-data="tableData"
+                style="margin-top: 5px"
+                :table-column="tableColumn"
+              />
+              <ZcTable
+                id="scrollDivB"
+                height="530"
+                :order-switch="true"
+                header-style="background:red;color: white"
+                row-class-name="tableHighBlue"
+                :table-data="tableData"
+                style="margin-top: 5px"
+                :table-column="tableColumn"
+              />
+            </div>
+          </div>
         </template>
       </ZcCard>
     </el-col>
@@ -254,6 +273,7 @@ import 'tinymce/plugins/wordcount'
 // import 'tinymce/plugins'
 import CountTo from 'vue-count-to'
 import Roller from 'vue-roller'
+import SwiperTest from './SwiperTest'
 // import 'public/lineheight/plugin'
 // import 'public/lineheight/plugin'
   let logo = require('../../src/assets/logo.png')
@@ -431,6 +451,7 @@ export default {
   name: 'Demo',
   components: {
     // ZCCard,
+    SwiperTest,
     CountTo,
     jsonEditor, Editor, editorImage,
     Roller
@@ -438,21 +459,25 @@ export default {
   data() {
     let that = this
     return {
-      tableData: [],
+      scrollTimerA:null,
+      scrollStyle: '',
+      scrollPos: 0,
+        tableData: [],
       tableColumn: [ // 表格配置
-        { name: 'id', value: 'id', color: '#939393', titleColor: 'white' },
-        {
-          name: `${this.$tools.parseTime(daytest, '{y}')}名称`,
-          value: 'name',
-          color: '#939393',
-          titleColor: 'white'
-        },
-        {
-          name: `${this.$tools.parseTime(daytest, '{m}')}年龄`,
-          value: 'age',
-          color: '#939393',
-          titleColor: 'white'
-        },
+        { name: 'id', color: '#939393', titleColor: 'white',children: [
+            {
+              name: `${this.$tools.parseTime(daytest, '{y}')}名称`,
+              value: 'name',
+              color: '#939393',
+              titleColor: 'white'
+            },
+            {
+              name: `${this.$tools.parseTime(daytest, '{m}')}年龄`,
+              value: 'age',
+              color: '#939393',
+              titleColor: 'white'
+            }
+          ] },
         {
           name: `${this.$tools.parseTime(daytest, '{d}')}工作`,
           value: 'job',
@@ -688,6 +713,7 @@ export default {
   mounted() {
     this.$API.mockTest().then(res => {
       this.tableData = res.data.rows
+      this.scrollStart()
     })
     let testenv = process.env.VUE_APP_ODS_GET_API
     console.log(testenv)
@@ -843,6 +869,34 @@ export default {
     thischart.setOption(this.echartOpt)
   },
   methods: {
+    scrollStart() {
+      let topA = null
+      let topB = null
+      let domA = document.getElementById('scrollDivA')
+      let domB = document.getElementById('scrollDivB')
+      debugger
+      topA = domA.clientHeight
+      topB = domB.clientHeight
+      let topArr = [topA, topB]
+
+      let rolling = () => {
+        clearInterval(this.scrollTimerA)
+        this.scrollTimerA = setInterval(() => {
+          this.scrollStyle = `transform:translateY(-${this.scrollPos}px)`
+          this.scrollPos += 0.5
+          if (this.scrollPos === topB) {
+            console.log(topB)
+            topArr.reverse()
+            this.scrollPos = 0
+            this.scrollStyle = `transform:translateY(0)`
+            domA.style.top = topArr[1] + 'px'
+            domB.style.top = topArr[0] + 'px'
+            rolling()
+          }
+        }, 5)
+      }
+      rolling()
+    },
     handleCommand(val, type) {
       let handle = {
         handleYear: () => {

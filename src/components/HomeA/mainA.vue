@@ -1,5 +1,14 @@
 <template>
   <el-container class="el-master">
+    <el-button
+      id="backTopBtn"
+      style="display:none;position: fixed;bottom:40px;right:40px;z-index: 9999"
+      type="ghost"
+      icon="el-icon-caret-top"
+      size="medium"
+      circle
+      @click="backTop()"
+    />
     <!--      回到顶部-->
     <!--顶部动态工具栏封装-->
     <el-header
@@ -32,18 +41,6 @@
             :default-active="defaultOpen"
           >
             <side-bar :menu-list="menuList" />
-            <!--           <el-submenu v-for="(item,index) in menuList" :key="index" :index="index + ''">-->
-            <!--             <template slot="title">-->
-            <!--               <i :class="item.icon"></i>-->
-            <!--               <span slot="title">{{ item.name }}</span>-->
-            <!--             </template>-->
-            <!--             <el-menu-item-group style="text-align: left">-->
-            <!--               <el-menu-item v-for="(children,i) in item.children" @click="handleClick(children.path)" :key="i"-->
-            <!--                             :index="children.path">-->
-            <!--                 {{ children.name }}-->
-            <!--               </el-menu-item>-->
-            <!--             </el-menu-item-group>-->
-            <!--           </el-submenu>-->
           </el-menu>
           <div
             id="el-Arrow"
@@ -110,7 +107,32 @@ export default {
     this.menuList = power.admin
     this.defaultOpen = this.$route.path // 获取路径
   },
+  mounted() {
+    let dot = document.getElementsByClassName('el-main')[0]
+    dot.addEventListener('scroll', this.handleScroll)
+
+  },
   methods: {
+    handleScroll() {
+      let dot = document.getElementsByClassName('el-main')[0]
+      let backDom = document.getElementById('backTopBtn')
+      if (dot.scrollTop < 1000) {
+        backDom.style.display = 'none'
+      } else {
+        backDom.style.display = 'block'
+      }
+    },
+    backTop() {
+     let dot = document.getElementsByClassName('el-main')[0]
+      dot.scroll({
+        top: 0,
+        left:0,
+        behavior: 'smooth'
+      })
+    },
+    toBottom() {
+
+    },
     logOut() {
       console.log('登出')
     },

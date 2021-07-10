@@ -61,7 +61,7 @@
       />
     </template>
     <template v-if="data.children && data.children.length > 0">
-      <table-header
+      <ZcTableHeader
         v-for="(item, index) in data.children"
         :key="`${index}id`"
         :data="item"
